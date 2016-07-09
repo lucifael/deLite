@@ -1,0 +1,133 @@
+  // System Functions (Windows Only!)
+  {  Call with the following to find out the current directory for it
+             Desktop
+             Personal
+             Fonts
+             History
+             Recent
+             Start Menu
+             AppData
+             Startup
+             Favorites
+             Cache
+             Cookies
+             My Pictures
+             NetHood
+  }
+ {$IFDEF WINDOWS}
+   Sender.AddFunction(@ReturnSysDir, 'function sys_ReturnSysDir(const DirName : String) : String; ');
+   Sender.AddFunction(@myGetWindowsDirectory, 'function sys_GetWindowsDirectory : String;');
+   Sender.AddFunction(@myGetUserName, 'function sys_GetUserName : String;');
+   Sender.AddFunction(@myGetSystemDirectory, 'function sys_GetSystemDirectory : String;');
+   Sender.AddFunction(@myGetComputerName, 'function sys_GetComputerName : String;');
+   Sender.AddFunction(@GetTempFile, 'function sys_MakeTempFile(const Extension: string): string;');
+   Sender.AddFunction(@myGetTempPath, 'function myGetTempPath: String;');
+ {$ENDIF}
+
+ // Dialog Functions
+ Sender.AddFunction(@dlg_Open, 'function dlg_Open(Title, Filter: String) : String;');
+ Sender.AddFunction(@dlg_Save, 'function dlg_Save(Title, Filter, DefaultEXT : String) : String;');
+ Sender.AddFunction(@ShowMessage, 'Procedure dlg_Message(text : String)');
+ Sender.AddFunction(@FuncAsk, 'Function dlg_Ask(const TipText : String) : Integer;');
+ Sender.AddFunction(@dlg_Color, 'function dlg_Color(Title : String) : TColor;');
+ Sender.AddFunction(@AskText, 'function dlg_Text(Title : String) : String;');
+ Sender.AddFunction(@EditText, 'Function dlg_Edit(const Title, Current : String) : String;');
+ Sender.AddFunction(@dlg_UserPass, 'procedure dlg_UserPass(var username, password : String)');
+
+ // Debug
+ Sender.AddFunction(@MWriteS, 'procedure WriteS(const s: string)');
+ Sender.AddFunction(@MVal, 'procedure Val(const s: string; var n, z: Integer)');
+
+ // Directory Handling
+ sender.AddFunction(@CreateDir, 'function CreateDir (Const NewDir : String) : Boolean;');
+ sender.AddFunction(@ForceDirectories, 'Function ForceDirectories(Const Dir: string): Boolean;');
+ sender.AddFunction(@RemoveDir, 'function RemoveDir (Const Dir : String) : Boolean;');
+
+ // Other Missing Stuff
+ sender.AddFunction(@ShowMessage,'Procedure ShowMessage(const MSG: string)');
+ sender.AddFunction(@DateTimeToStr,'function DateTimeToStr(DateTime: TDateTime): string;');
+ sender.AddFunction(@TimeToStr, 'function TimeToStr(Time: TDateTime): string;');
+ sender.AddFunction(@DateToStr, 'function DateToStr(Date: TDateTime): string;');
+ sender.AddFunction(@Randomize, 'procedure Randomize;');
+ sender.AddFunction(@Random, 'function Random(const range : Integer) : Integer');
+ sender.AddFunction(@FileExistsUTF8, 'function FileExistsUTF8(const Filename : String) : Boolean');
+ sender.AddFunction(@Sleep, 'procedure Sleep(const Milliseconds : Integer)');
+
+ // Internet
+ sender.AddFunction(@URLDown,'procedure net_httpDown(filename, url: string)');
+ sender.AddFunction(@ParseURL,'procedure ParseURL(const URL : String; var Proto, User, Pass, Host, Port, Path : String)');
+ sender.AddFunction(@UrlEncode,'function UrlEncode(const DecodedStr: String; Pluses: Boolean): String;');
+ sender.AddFunction(@UrlDecode,'function UrlDecode(const EncodedStr: String): String;');
+ sender.AddFunction(@FTPPutFile2, 'function net_FtpPutFile(var lst : TStringList): Boolean;');
+ sender.AddFunction(@FTPGetFile2, 'function net_FtpGetFile(var lst : TStringList): Boolean;');
+ sender.AddFunction(@PingHost2, 'function net_Ping(const Host: string): Integer');
+ sender.AddFunction(@TraceRouteHost2, 'function net_TraceRoute(const Host: string): string;');
+ //function getIPs: Tstrings;
+ sender.AddFunction(@getIPs, 'function net_GetIPS : Tstrings;');
+ sender.AddFunction(@NetTime, 'function net_SyncTime(const host : String) : Boolean;');
+
+
+ // String Handling
+ sender.AddFunction(@SubStr,'Function SubStr(Const Source: String; Const StartPos : Integer; Const EndPos : Integer) : String;');
+ sender.AddFunction(@StringReplaceAll, 'function StringReplaceAll(const S, OldPattern, NewPattern: string): string;');
+ sender.AddFunction(@Fill_StringList, 'procedure Fill_StringList(var StrLst: TStringList; delimited_text: string; delimiter: Char);');
+ sender.AddFunction(@StripChar, 'function StripChar(text: string; ch: char): string;');
+ sender.AddFunction(@GetBetween, 'function GetBetween(const PairBegin, PairEnd, Value: string): string;');
+ sender.AddFunction(@bf_Encrypt, 'function bf_Encrypt(str, password: string): string;');
+ sender.AddFunction(@bf_Decrypt, 'function bf_Decrypt(str, password: string): string;');
+ sender.AddFunction(@EncodeStringBase64, 'function Base64_Encode(const s:string):String;');
+ sender.AddFunction(@DecodeStringBase64, 'function Base64_Decode(const s:string):String;');
+ //
+
+//
+
+ // File Handling
+ sender.AddFunction(@FileExists, 'function FileExists(const filename : String) : Boolean;');
+ sender.AddFunction(@ChangeFileExt, 'function ChangeFileExt(const filename, ext : String) : String;');
+ sender.AddFunction(@ExtractFilePath, 'function ExtractFilePath(const filename : String) : String;');
+ sender.AddFunction(@ExtractShortPathName, 'function ExtractShortPathName(const filename : String) : String;');
+ sender.AddFunction(@ExtractFileDir, 'function ExtractFileDir(const filename : String) : String;');
+ sender.AddFunction(@ExtractFileName, 'function ExtractFileName(const filename : String) : String;');
+ sender.AddFunction(@ExtractFileExt, 'function ExtractFileExt(const filename : String) : String;');
+ sender.AddFunction(@ExtractFileDrive, 'function ExtractFileDrive(const filename : String) : String;');
+ sender.AddFunction(@CopyFile, 'function CopyFile(const SrcFilename, DestFilename: string; PreserveTime: boolean): boolean;');
+
+ // Internal Stuff
+
+ sender.AddFunction(@de_ReturnExam, 'function de_ReturnExam : String;');
+ sender.AddFunction(@de_ReturnUnit, 'function de_ReturnUnit : String;');
+ sender.AddFunction(@de_ReturnHelp, 'function de_ReturnHelp : String;');
+ sender.AddFunction(@de_ReturnTool, 'function de_ReturnTool : String;');
+ sender.AddFunction(@de_ReturnSnip, 'function de_ReturnSnip : String;');
+ sender.AddFunction(@de_ReturnTemplate, 'function de_ReturnTemplate : String;');
+ sender.AddFunction(@de_ReturnUser, 'function de_ReturnUser : String;');
+ sender.AddFunction(@de_ReturnScript, 'function de_ReturnScript : String;');
+ sender.AddFunction(@de_ReturnScriptPath, 'function de_ReturnScriptPath : String;');
+
+ // Internal Editor Functions
+ sender.AddFunction(@de_GetSelText, 'function de_GetSelText : String;');
+ sender.AddFunction(@de_SetSelText, 'Procedure de_SetSelText(SelText : String);');
+ sender.AddFunction(@de_refreshEditor, 'Procedure de_refreshEditor');
+
+ // LST_ List Functions.  List's will be important in deLite
+ sender.AddFunction(@lst_RemoveDuplicates, 'procedure lst_RemoveDuplicates(var TheList : TStringList)');
+ sender.AddFunction(@lst_Copy, 'procedure lst_Copy(var From, ToLst : TStringList)');
+ sender.AddFunction(@GetFileList2, 'function lst_FileList(FDirectory, Filter: string; var lst : TStringList; const Recurse : Boolean): boolean;');
+
+ // System Shell Etc
+ sender.AddFunction(@OpenDocument, 'procedure OpenDocument(const doc : String)');
+ sender.AddFunction(@SetWallpaper, 'procedure sys_Wallpaper(const Filename : String; const style : Integer);');
+
+ // SND_  All to do with sounds
+ sender.AddFunction(@snd_PlayASound, 'procedure snd_PlaySound(FileName: string)');
+ //procedure
+ sender.AddFunction(@SendMCI, 'procedure snd_MCIString(const str : String)');
+
+ // INI Functions
+ sender.AddFunction(@ini_ReadString, 'function ini_ReadString(const filename, section, variable, default : String) : String;');
+ sender.AddFunction(@ini_WriteString, 'Procedure ini_WriteString(const filename, section, variable, Value : String);');
+ sender.AddFunction(@ini_ReadInteger, 'function ini_ReadInteger(const filename, section, variable : String; Default : Integer) : Integer;');
+ sender.AddFunction(@ini_WriteInteger, 'Procedure ini_WriteInteger(const filename, section, variable: String; Value : Integer);');
+ sender.AddFunction(@ini_WriteList, 'Procedure ini_WriteList(const filename, section : String; Var Lst : TStringList);');
+ sender.AddFunction(@ini_ReadList, 'Procedure ini_ReadList(const filename, section : String; Default : string; var lst : TStringList);');
+end; 

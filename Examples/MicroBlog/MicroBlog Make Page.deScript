@@ -1,0 +1,222 @@
+unit MicroBlogMakePage;
+{       Title: Micro Blogging - Make Page
+        Author: Lucifael
+        Last Update : 12/10/2015
+        Description:
+        Silly little idea I had about making a diary ala Twitter.
+        This file uses two files to then create a HTML Page out of your
+        blog entries.
+
+        It also uploads the file to index.html in the server, with the settings in the
+        Constants set below.
+
+        It stores the password and username, password IS encoded
+        and Base64 Encoded to ensure String Compatability.
+}
+
+
+{ Global Variables }
+
+
+// Change these to your values
+const
+     HOST = 'ftp.lucifael.com';
+     PORT = '21';
+     DIR = '/';
+
+var
+    // Setup Global Variables Here
+    HeaderFilename, FooterFilename, Fname : String;
+    HtmlOutput : TStringList;
+    Temp, LogFile, CSV, KeyWords, KCSV : TStringList;
+    TimeE, EntryE, OutFilename : String;
+    a, b : Integer;
+    User, Pass : String;
+    ftplst : TStringList;
+
+{ User Functions/Procedures }
+// Put Functions and Procedures Here
+
+procedure LoadLogin;
+begin
+     // Load the Server Username and Password here, Now with BlowFish Encoding
+     User := ini_ReadString(ChangeFileExt(Fname, '.cfg'), 'Login', 'Username', '');
+     Pass := bf_decrypt(ini_ReadString(ChangeFileExt(Fname, '.cfg'), 'Login', 'Password', ''), 'MyEncryption');
+end;
+
+procedure SaveLogin;
+begin
+     // Worth noting here that the password is now with BlowFish Encoding!
+     // You could definately make an internal script function to do your
+     // encryption/decryption for you.
+     ini_WriteString(ChangeFileExt(Fname, '.cfg'), 'Login', 'Username', User);
+     ini_WriteString(ChangeFileExt(Fname, '.cfg'), 'Login', 'Password', bf_Encrypt(Pass, 'MyEncryption'));
+end;
+
+procedure GetMakeFilename;
+begin
+     // This will nearly always never ask for a filename
+     // It's just there as an 'in case' thing.
+     fname := sys_ReturnSysDir('Personal');
+     Fname := Fname + 'MicroBlog\'
+     ForceDirectories(Fname);
+     if fname = 'MicroBlog\' then
+     begin
+          fname := dlg_Save('Save To Log File', 'Mini Blogger Files|*.mblog', '.mblog');
+     end else
+     begin
+          fname := fname + 'MicroBlog.mblog';
+     end;
+end;
+
+{ Main }
+begin
+    // Your script runs here
+    // Setup Filenames
+    GetMakeFilename;
+    // Load Saved Details (NO ENCRYPTION);
+    LoadLogin;
+
+    // I've been storing anything 'include like' in the units directory of my profile
+    // You could use a const variable here instead.
+    HeaderFilename := de_ReturnUnit + 'MBLogHead.txt';
+    FooterFilename := de_ReturnUnit + 'MBLogFoot.txt';
+    LogFile := TstringList.create;
+    try
+       if not FileExists(fname) then
+       begin
+            dlg_Message('No file to operate on');
+            exit;
+       end;
+       LogFile.LoadFromFile(Fname);
+       HTMLOutput := TStringList.create;
+       try
+          Temp := TStringList.create;
+          try
+             // Include the header
+             temp.LoadFromFile(HeaderFilename);
+             temp.text := StringReplaceAll(temp.text, '%UserName%', sys_GetUserName);
+             HTMLOutput.assign(Temp);
+             temp.clear;
+             // Now we parse the log entries, into time and entry;
+             csv := TStringList.create;
+             try
+                // Work backwards through the list, then the webpage will have the latest entry at the top!
+                for A := LogFile.count - 1 downto 0 do
+                begin
+                     csv.clear;
+                     Fill_StringList(csv, LogFile[a], '|');
+                     if csv.count>=1 then
+                     begin
+                          TimeE := csv[0];                 // Date and Time of Entry before the '|'
+                          EntryE := csv[1];                // The Entry itself is after the '|'
+                     end;
+                     // Replace The Keywords This allows auto linking of
+                     // certain key phrases, almost a Wiki function no?
+                     // Perhaps not quite, but still, kinda fun.
+                     // Fully User config via the file named below
+                     // There is no error checking for the CSV stuff per say, but the code
+                     // should catch anything that's not quite right, '|' is the delim
+                     // Same as the actual MicroBlog Entries.
+                     KeyWords := TStringList.create;
+                     try
+                        if FileExists(ChangeFileExt(Fname, '.kWords')) then
+                        begin
+                             KeyWords.LoadFromFile(ChangeFileExt(Fname, '.kWords'));
+                             for b := 0 to KeyWords.count - 1 do
+                             begin
+                                  // Loop through each, get Pairs, and replace as needed
+                                  KCSV := TStringList.create;
+                                  try
+                                     Fill_StringList(KCSV, KeyWords[b], '|');
+                                     if KCSV.Count>=1 then
+                                     begin
+                                          EntryE := StringReplaceAll(EntryE, KCSV[0], '<a href="' + KCSV[1] + '" target="_blank" class="keyword-link">' + KCSV[0] + '</a>')
+                                     end;
+                                  finally
+                                         KCSV.Free;
+                                  end;
+                             end;
+                        end;
+                     finally
+                            KeyWords.free;
+                     end;
+                     // Output in HTML, the table styles and everything else was included in the header file.
+                     HTMLOutput.Add('             <TR>');
+                     HTMLOutput.add('                     <TD width="15%" align="center"><i>' + TimeE + '</i></TD><TD width="75%">' + EntryE + '<BR>');
+                     HTMLOutput.add('                     <p align="right" style="font-size: 10px;"><a href="#top">Top</a></TD>');
+                     HTMLOutput.Add('             </TR>');
+                end;
+             finally
+                    csv.free;
+             end;
+             Temp.LoadFromFile(FooterFilename);
+             // This is a quick access command to copy contents of one list to another, could easily be done IN script as well
+             // This is just to make things easier.
+             lst_copy(temp, HTMLOutput);
+          finally
+                 Temp.free;
+          end;
+          //  Do Header
+          OutFilename := ChangeFileExt(Fname, '.html');
+          if OutFilename<>'' then
+          begin
+               HTMLOutput.SaveToFile(OutFilename);
+               HTMLOutput.SaveToFile(ExtractFilePath(OutFilename) + 'index.html');
+          end;
+       finally
+              HTMLOutput.free;
+       end;
+    finally
+           LogFile.free;
+    end;
+    if OutFilename<>'' then
+    begin
+         if dlg_ask('Document created' + #10#13 + ExtractFilename(OutFilename) + #10#13 + 'Do you wish to upload?')=1 then
+         begin
+              // Upload to special FTP account
+              // Get the username and password
+              // The upload routine, net_FTPPutFile doesn't seem to work.
+              // I'm not sure if this is my host or what?  It just doesn't work!
+              dlg_UserPass(User, Pass);
+
+              // Save the log in Details, need to add an encryption routine in there
+              // to obscure the password, currently, it doesn't.
+              SaveLogin;
+
+              // Due to a very strange error with the parameters, anything over a
+              // certain amount of parameters has to be put into a TStringList
+              // Otherwise it fails, thus the strange way of creating a parameter list
+              // Should be noted that if all the params aren't there, lst.count<7
+              // counting from 1 then it will bail! (With no message)
+
+              // This just checks the username and password, if they are false then bail.
+              if User='' then exit;
+              if Pass='' then exit;
+              ftpLst := TStringList.create;
+              try
+                 FTPLst.add(HOST);
+                 ftpLst.add(PORT);
+                 ftpLst.add(DIR);
+                 ftpLst.add('index.html');
+                 ftplst.add(OutFilename);
+                 ftplst.add(User);
+                 ftplst.add(Pass);
+//              function ntp_FtpPutFile(const IP, Port, User, Pass, Dir, LocalFilename: string): Boolean;');
+                if net_FtpPutFile(ftpLst) then
+                begin
+                   // Don't really need to make a fuss unless something bad happened!
+                end else
+                begin
+                   dlg_Message('File not uploaded');
+                end;
+             finally
+                    ftpLst.free;
+             end;
+         end;
+    end;
+    dlg_Message('Script Complete');
+end.
+
+
+{ EOF }

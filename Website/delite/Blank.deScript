@@ -1,0 +1,15 @@
+unit Blank;
+
+
+{ Global Variables }
+var
+    // Setup Global Variables HERE
+    MyVar : String;
+
+{ User Functions/Procedures }
+// Put Functions and Procedures HERE
+
+{ Main }
+begin
+    
+end.

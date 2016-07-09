@@ -1,0 +1,94 @@
+unit uTip;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls,
+  StdCtrls, Buttons;
+
+procedure ShowTip(const TipText : String);
+Function AskText(const Title : String) : String;
+Function EditText(const Title, Current : String) : String;
+
+type
+
+  { TfrmTip }
+
+  TfrmTip = class(TForm)
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    Image1: TImage;
+    Memo1: TMemo;
+    Panel1: TPanel;
+    Panel2: TPanel;
+  private
+    { private declarations }
+  public
+    { public declarations }
+  end;
+
+var
+  frmTip: TfrmTip;
+
+implementation
+
+{$R *.lfm}
+
+procedure ShowTip(const TipText : String);
+var
+  frm : TfrmTip;
+begin
+  frm := TfrmTip.create(application);
+  try
+    frm.Memo1.lines.text := TipText;
+    frm.ShowModal;
+  finally
+    frm.free;
+  end;
+end;
+
+Function AskText(const Title : String) : String;
+var
+  frm : TfrmTip;
+begin
+  result := '';
+  frm := TfrmTip.create(application);
+  frm.width := 250;
+  frm.Height := 250;
+  try
+    frm.caption := title;
+    frm.Memo1.ReadOnly:= False;
+    frm.memo1.BorderStyle:=bsSingle;
+    frm.Image1.visible := False;
+    frm.Memo1.lines.clear;
+    if frm.ShowModal = mrOK then result := frm.memo1.lines.text;
+  finally
+    frm.free;
+  end;
+end;
+
+Function EditText(const Title, Current : String) : String;
+var
+  frm : TfrmTip;
+begin
+  result := '';
+  frm := TfrmTip.create(application);
+  frm.width := 250;
+  frm.Height := 250;
+  try
+    frm.caption := title;
+    frm.Memo1.ReadOnly:= False;
+    frm.memo1.BorderStyle:=bsSingle;
+    frm.Memo1.Lines.text := Current;
+    frm.Image1.visible := False;
+    frm.Memo1.lines.clear;
+    if frm.ShowModal = mrOK then result := frm.memo1.lines.text;
+  finally
+    frm.free;
+  end;
+end;
+
+end.
+

@@ -1,0 +1,8 @@
+object Form1: TForm1
+  Left = 297
+  Height = 99
+  Top = 152
+  Width = 116
+  Caption = 'Scheduler'
+  LCLVersion = '1.2.4.0'
+end

@@ -1,0 +1,90 @@
+object frmUserPass: TfrmUserPass
+  Left = 298
+  Height = 117
+  Top = 152
+  Width = 320
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsDialog
+  Caption = 'Enter your Username and Password'
+  ClientHeight = 117
+  ClientWidth = 320
+  Position = poScreenCenter
+  LCLVersion = '1.2.4.0'
+  object GroupBox1: TGroupBox
+    Left = 0
+    Height = 41
+    Top = 0
+    Width = 320
+    Align = alTop
+    AutoSize = True
+    Caption = '&Username'
+    ClientHeight = 23
+    ClientWidth = 316
+    TabOrder = 0
+    object txtUsername: TEdit
+      Left = 0
+      Height = 23
+      Top = 0
+      Width = 316
+      Align = alTop
+      TabOrder = 0
+    end
+  end
+  object GroupBox2: TGroupBox
+    Left = 0
+    Height = 41
+    Top = 41
+    Width = 320
+    Align = alTop
+    AutoSize = True
+    Caption = '&Password'
+    ClientHeight = 23
+    ClientWidth = 316
+    TabOrder = 1
+    object txtPassword: TEdit
+      Left = 0
+      Height = 23
+      Top = 0
+      Width = 316
+      Align = alTop
+      EchoMode = emPassword
+      PasswordChar = '*'
+      TabOrder = 0
+    end
+  end
+  object Panel1: TPanel
+    Left = 0
+    Height = 29
+    Top = 88
+    Width = 320
+    Align = alBottom
+    BevelOuter = bvNone
+    ClientHeight = 29
+    ClientWidth = 320
+    TabOrder = 2
+    object BitBtn1: TBitBtn
+      Left = 0
+      Height = 29
+      Top = 0
+      Width = 75
+      Align = alLeft
+      Default = True
+      DefaultCaption = True
+      Kind = bkOK
+      ModalResult = 1
+      TabOrder = 0
+    end
+    object BitBtn2: TBitBtn
+      Left = 245
+      Height = 29
+      Top = 0
+      Width = 75
+      Align = alRight
+      Cancel = True
+      DefaultCaption = True
+      Kind = bkCancel
+      ModalResult = 2
+      TabOrder = 1
+    end
+  end
+end

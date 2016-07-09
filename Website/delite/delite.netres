@@ -1,0 +1,60 @@
+[Header]
+LastUpdate=22/10/2015
+Entries=6
+
+[Entry0]
+Name=Form Hello World
+Type=Examples
+URL=http://www.lucifael.com/news/delite/Hello03.deScript
+fname=Hello03.deScript
+Comments=This is the form based hello world script
+
+[Entry1]
+Name=Simple Hello World Script
+Type=Examples
+URL=http://www.lucifael.com/news/delite/Hello01.deScript
+fname=Hello01.deScript
+Comments=The classic hello world script in yet another scripting language
+
+[Entry2]
+Name=ShowMessage Hello World Script
+Type=Examples
+URL=http://www.lucifael.com/news/delite/Hello02.deScript
+fname=Hello02.deScript
+Comments=A slight take on the Hello World Script (Part Of A Series)
+
+[Entry3]
+Name=Blank File Template
+Type=Template
+URL=http://www.lucifael.com/news/delite/Blank.deScript
+fname=Blank.deScript
+Comments=This is a totally useless Template that's really the same as hitting the New Button
+
+[Entry4]
+Name=Form Wizard (ALPHA)
+Type=Wizard
+URL=http://software.lucifael.com/delite/FormWizard.exe
+fname=FormWizard.exe
+Comments=This is a ALPHA build of the form wizard.  It's getting there, but needs work.  Use at your own risk, but then again - it's not so bad.
+
+[Entry5]
+Name=Wallpaper GUI
+Type=Examples
+URL=http://software.lucifael.com/delite/WallpaperGUI.deScript
+fname=WallpaperGUI.deScript
+Comments=GUI for the Wallpaper scripts, allows you to make the wallpaper set file, and switch wallpapers.
+
+[Entry6]
+Name=Wallpaper Switch
+Type=Examples
+URL=http://software.lucifael.com/delite/WallpaperSwitch.deScript
+fname=WallpaperSwitch.deScript
+Comments=The switching script, designed to be run at scheduled intervals.
+
+[Entry7]
+Name=Wallpaper Switch
+Type=Examples
+URL=http://software.lucifael.com/delite/WallpaperSwitch.deScript
+fname=WallpaperSwitch.deScript
+Comments=The switching script, designed to be run at scheduled intervals.
+

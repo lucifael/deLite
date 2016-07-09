@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252" http-equiv="content-type">
+    <title>deLite Index</title>
+  </head>
+  <body>
+    <table style="width: 100%;" border="0" cellpadding="0" cellspacing="0">
+      <tbody>
+        <tr>
+          <td style="width: 115px;"><img alt="" src="00_Swish.png"><br>
+          </td>
+          <td style="width: 100%; text-align: left; vertical-align: top;">
+            <h1 align="center">&nbsp;deLite Help [Dialogs]</h1>
+          </td>
+        </tr>
+        <tr>
+          <td><br>
+          </td>
+          <td>
+            <h3>Dialogs</h3>
+            <p>This details the various special dialog commands that are in
+              deLite</p>
+          </td>
+        </tr>
+        <tr>
+          <td><br>
+          </td>
+          <td>
+            <h4>function dlg_Open(Title, Filter : String) : String</h4>
+            <h5>Usage:</h5>
+            <pre>         MyFile := dlg_Open('Select file to open', 'Text Files (*.txt)|*.txt')
+    </pre>
+            <h5>Description:</h5>
+            <p>Invokes the standard open dialog for your system, as used in most
+              applications including this editor.</p>
+            <h5>Returns</h5>
+            <p>String value</p>
+            <hr>
+            <h4>function dlg_Save(Title, Filter, DefaultEXT : String) : String</h4>
+            <h5>Usage:</h5>
+            <pre>         MyFile := dlg_Save('Select file to open', 'Text Files (*.txt)|*.txt', '.txt')
+    </pre>
+            <h5>Description:</h5>
+            <p>Invokes the standard save dialog for your system, as used in most
+              applications including this editor, set DefaultEXT to make the
+              filename have that extension by default.</p>
+            <h5>Returns</h5>
+            <p>String value</p>
+            <hr>
+            <h4>Procedure dlg_Message(text : String)</h4>
+            <h5>Usage:</h5>
+            <pre>         dlg_Message('Hello World');
+         or
+         ShowMessage('Hello World');
+    </pre>
+            <h5>Description:</h5>
+            <p>Displays a simple one button "OK" message box, useful for
+              displaying messages, can be used two ways. One is compliant with
+              the dialog naming conventions, the other is direct from Pascal</p>
+            <h5>Returns</h5>
+            <p>Nothing</p>
+            <hr>
+            <h4>function dlg_Ask(const TipText : String) : Integer</h4>
+            <h5>Useage:</h5>
+            <pre>           MyInt := dlg_Ask('Do you wish to continue');</pre>
+            <h5>Description:</h5>
+            <p>Use to show a custom ask dialog that allows a little more room
+              than the standard windows dialog. Returns 0 for No, and 1 for Yes</p>
+            <h5>Returns</h5>
+            <p>Integer, 0 or 1</p>
+            <hr>
+            <h4>function dlg_Color(Title : String) : TColor</h4>
+            <h5>Useage:</h5>
+            <pre>            MyColor := dlg_Color('Select a color');</pre>
+            <h5>Description:</h5>
+            <p>Allows you to ask user to select a color, and returns the
+              selection as a TColor</p>
+            <h5>Returns:</h5>
+            <p>A TColor</p>
+            <hr>
+            <h4>function dlg_Text(Title : String) : String</h4>
+            <h5>Useage:</h5>
+            <pre>           txt := dlg_Text('Enter text');</pre>
+            <h5>Description:</h5>
+            <p>A text entry dialog box with a lot more room than the standard
+              windows dialog. The control used is actually a Memo, so 64k can be
+              returned, and has scrollbars where needed.</p>
+            <h5>Returns:</h5>
+            <p>Text entered in the dialog, or '' if canceled</p>
+            <hr>
+            <h4>function dlg_Edit(const Title, CurrentText : String) : String</h4>
+            <h5>Useage:</h5>
+            <pre>           txt := dlg_Edit('Change Text', txt);</pre>
+            <h5>Description:</h5>
+            <p>Same as above only the text box is set with <b>CurrentText</b>
+              allowing you to edit text in the same fashion as the text entry
+              dialog</p>
+            <h5>Returns:</h5>
+            <p>Text entered in the dialog, or '' if canceled</p>
+            <hr>
+            <h4>procedure dlg_UserPass(var username, password : String)</h4>
+            <h5>Useage:</h5>
+            <pre>           dlg_UserPass(Username, Password);</pre>
+            <h5>Description</h5>
+            <p>Allows entry of a username and password and the password is
+              obscured allowing more secure entry. The Microblog script makes
+              use of this dialog to great effect. On Successful OK, the
+              variables are set to the text entried in the username and password
+              boxes. The password is obscured only while entered, the string
+              returned is in <b>no way</b> encrypted, there are functions to do
+              this for you.</p>
+            <h5>Returns</h5>
+            <p>On OK'ing the dialog Username, and Password variables are set</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+  </body>
+</html>

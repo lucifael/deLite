@@ -1,0 +1,18 @@
+unit dlgOpenSaveText;
+
+
+{ Global Variables }
+var
+    // Setup Global Variables HERE
+    MyVar : String;
+
+{ User Functions/Procedures }
+// Put Functions and Procedures HERE
+
+{ Main }
+begin
+     MyVar := dlg_Open('Open Testing', 'My Files|*.txt');
+     ShowMessage(MyVar);
+     MyVar := dlg_Save('Save Testing', 'My Files|*.txt', '.txt');
+     ShowMessage(MyVar);
+end.

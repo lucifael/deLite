@@ -1,0 +1,16 @@
+unit AskDialogTest;
+
+
+{ Global Variables }
+
+
+{ User Functions/Procedures }
+// Put Functions and Procedures HERE
+
+{ Main }
+begin
+    if dlg_Ask('Are You Happy?') = 1 then
+	begin
+		ShowMessage('I''m Glad You''re Happy');
+	end else ShowMessage('I''m Sorry You''re Not Happy');
+end.

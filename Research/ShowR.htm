@@ -1,0 +1,185 @@
+<html><head>
+
+   <meta http-equiv="Content-Type" content="text/html; CHARSET=windows-1251"><title>Borland Delphi form</title>
+   
+   <meta name="Author" content="A.E.Hmelnov">
+   <meta name="GENERATOR" content="BinView (Win95; I) [AX]">
+   <meta name="Description" content="Parsed binary file">
+   <!-- base href="http://giscenter.icc.ru:8082/scripts/WWWBinV.dll/ShowR?DFM.RFH" --></head><body linkifytime="78" linkified="0" linkifying="false">
+<font color="#202080" face="Arial, Helvetica"><font size="+1"><b>Borland Delphi form</b>(<i>DFM.RFH</i>):</font><br><b>Class:</b> <i>Resource</i>, <b>Status:</b> <i>Complete</i>, <b>Last change:</b> <i>12.11.2003 13:14:18</i></font><hr><pre><b>type
+
+</b>TFileHdr <b>struc</b> <b>pas
+</b>  bFF<font color="#008080"><b>:</b></font> byte
+  w10<font color="#008080"><b>:</b></font> word
+  ResName<font color="#008080"><b>:</b></font> pchar
+  w1030<font color="#008080"><b>:</b></font> word
+  ImageSize<font color="#008080"><b>:</b></font> ulong
+<b>ends</b><font color="#008080"><b>:</b></font> <b>assert</b><font color="#008080"><b>[@.</b></font>bFF<font color="#008080"><b>=</b></font><font color="#008000"><b>0xFF</b></font><font color="#008080"><b>,@.</b></font>w10<font color="#008080"><b>=</b></font><font color="#008000"><b>10</b></font><font color="#008080"><b>,@.</b></font>w1030<font color="#008080"><b>=</b></font><font color="#008000"><b>0x1030</b></font><font color="#008080"><b>,@.</b></font>ImageSize<font color="#008080"><b>=</b></font>FileSize<font color="#008080"><b>-@:</b></font>Size<font color="#008080"><b>]
+
+</b></font><b>data
+</b>  <font color="#008000"><b>0</b></font> TFileHdr FHdr
+  FHdr<font color="#008080"><b>:</b></font>Size <b>array</b><font color="#008080"><b>[</b></font><font color="#008000"><b>4</b></font><font color="#008080"><b>]</b></font> <b>of</b> char Sign
+
+<b>assert</b> <font color="#008080"><b>(</b></font>Sign<font color="#008080"><b>=</b></font><font color="#0000ff"><b>'TPF0'</b></font><font color="#008080"><b>)</b></font><b>and</b> FHdr<font color="#008080"><b>:</b></font><b>Assert</b><font color="#008080"><b>;
+
+</b></font><b>type
+</b>TValueType <b>enum</b> byte <font color="#008080"><b>(</b></font>vaNull<font color="#008080"><b>,</b></font> vaList<font color="#008080"><b>,</b></font> vaInt8<font color="#008080"><b>,</b></font> vaInt16<font color="#008080"><b>,</b></font> vaInt32<font color="#008080"><b>,</b></font> vaExtended<font color="#008080"><b>,
+</b></font>  vaString<font color="#008080"><b>,</b></font> vaIdent<font color="#008080"><b>,</b></font> vaFalse<font color="#008080"><b>,</b></font> vaTrue<font color="#008080"><b>,</b></font> vaBinary<font color="#008080"><b>,</b></font> vaSet<font color="#008080"><b>,</b></font> vaLString<font color="#008080"><b>,
+</b></font>  vaNil<font color="#008080"><b>,</b></font> vaCollection<font color="#008080"><b>,</b></font> vaSingle<font color="#008080"><b>,</b></font> vaCurrency<font color="#008080"><b>,</b></font> vaDate<font color="#008080"><b>,</b></font> vaWString<font color="#008080"><b>,
+</b></font>  vaInt64<font color="#008080"><b>,</b></font> vaUTF8String<font color="#008080"><b>)
+
+</b></font>TExtended <b>array</b><font color="#008080"><b>[</b></font><font color="#008000"><b>10</b></font><font color="#008080"><b>]</b></font> <b>of</b> Byte
+TSingle <b>array</b><font color="#008080"><b>[</b></font><font color="#008000"><b>4</b></font><font color="#008080"><b>]</b></font> <b>of</b> Byte<font color="#008080"><b>;
+</b></font>TCurrency <b>array</b><font color="#008080"><b>[</b></font><font color="#008000"><b>8</b></font><font color="#008080"><b>]</b></font> <b>of</b> Byte
+TDateTime <b>array</b><font color="#008080"><b>[</b></font><font color="#008000"><b>8</b></font><font color="#008080"><b>]</b></font> <b>of</b> Byte
+
+TLStr <b>struc</b> <b>pas
+</b>  L<font color="#008080"><b>:</b></font> ulong
+  S<font color="#008080"><b>:</b></font> <b>array</b><font color="#008080"><b>[@.</b></font>L<font color="#008080"><b>]</b></font><b>of</b> Char
+<b>ends</b><font color="#008080"><b>:</b></font><b>displ</b><font color="#008080"><b>=(@.</b></font>S<font color="#008080"><b>)
+
+</b></font>TWStr <b>struc</b> <b>pas
+</b>  L<font color="#008080"><b>:</b></font> ulong
+  S<font color="#008080"><b>:</b></font> <b>array</b><font color="#008080"><b>[@.</b></font>L<font color="#008080"><b>]</b></font><b>of</b> WChar
+<b>ends</b><font color="#008080"><b>:</b></font><b>displ</b><font color="#008080"><b>=(@.</b></font>S<font color="#008080"><b>)
+
+</b></font>T1ByteChar char<font color="#008080"><b>():</b></font><b>assert</b><font color="#008080"><b>[(@&gt;</b></font><font color="#008000"><b>0</b></font><font color="#008080"><b>)</b></font><b>and</b><font color="#008080"><b>(@&lt;</b></font><font color="#008000"><b>0x80</b></font><font color="#008080"><b>)]
+</b></font>T2ByteChar <b>array</b><font color="#008080"><b>[</b></font><font color="#008000"><b>2</b></font><font color="#008080"><b>]</b></font><b>of</b> Byte<font color="#008080"><b>:</b></font><b>assert</b><font color="#008080"><b>[((@[</b></font><font color="#008000"><b>0</b></font><font color="#008080"><b>]</b></font><b>and</b> <font color="#008000"><b>0xE0</b></font><font color="#008080"><b>)=</b></font><font color="#008000"><b>0xC0</b></font><font color="#008080"><b>)
+</b></font>  <b>and</b><font color="#008080"><b>((@[</b></font><font color="#008000"><b>1</b></font><font color="#008080"><b>]</b></font><b>and</b> <font color="#008000"><b>0xC0</b></font><font color="#008080"><b>)=</b></font><font color="#008000"><b>0x80</b></font><font color="#008080"><b>)]:</b></font><b>displ</b><font color="#008080"><b>=(</b></font>HEX<font color="#008080"><b>((@[</b></font><font color="#008000"><b>0</b></font><font color="#008080"><b>]</b></font><b>and</b> <font color="#008000"><b>0x1F</b></font><font color="#008080"><b>)</b></font><b>shl</b> <font color="#008000"><b>6</b></font><font color="#008080"><b>+(@[</b></font><font color="#008000"><b>1</b></font><font color="#008080"><b>]</b></font><b>and</b> <font color="#008000"><b>0x3F</b></font><font color="#008080"><b>)))
+</b></font>T3ByteChar <b>array</b><font color="#008080"><b>[</b></font><font color="#008000"><b>3</b></font><font color="#008080"><b>]</b></font><b>of</b> Byte<font color="#008080"><b>:</b></font><b>assert</b><font color="#008080"><b>[((@[</b></font><font color="#008000"><b>0</b></font><font color="#008080"><b>]</b></font><b>and</b> <font color="#008000"><b>0xF0</b></font><font color="#008080"><b>)=</b></font><font color="#008000"><b>0xE0</b></font><font color="#008080"><b>)
+</b></font>  <b>and</b><font color="#008080"><b>((@[</b></font><font color="#008000"><b>1</b></font><font color="#008080"><b>]</b></font><b>and</b> <font color="#008000"><b>0xC0</b></font><font color="#008080"><b>)=</b></font><font color="#008000"><b>0x80</b></font><font color="#008080"><b>)</b></font><b>and</b><font color="#008080"><b>((@[</b></font><font color="#008000"><b>2</b></font><font color="#008080"><b>]</b></font><b>and</b> <font color="#008000"><b>0xC0</b></font><font color="#008080"><b>)=</b></font><font color="#008000"><b>0x80</b></font><font color="#008080"><b>)]:</b></font><b>displ</b><font color="#008080"><b>=(</b></font>HEX<font color="#008080"><b>((@[</b></font><font color="#008000"><b>0</b></font><font color="#008080"><b>]</b></font><b>and</b> <font color="#008000"><b>0x0F</b></font><font color="#008080"><b>)</b></font><b>shl</b> <font color="#008000"><b>12
+</b></font>  <font color="#008080"><b>+(@[</b></font><font color="#008000"><b>1</b></font><font color="#008080"><b>]</b></font><b>and</b> <font color="#008000"><b>0x3F</b></font><font color="#008080"><b>)</b></font><b>shl</b> <font color="#008000"><b>6</b></font><font color="#008080"><b>+(@[</b></font><font color="#008000"><b>2</b></font><font color="#008080"><b>]</b></font><b>and</b> <font color="#008000"><b>0x3F</b></font><font color="#008080"><b>)))
+
+</b></font>TUtf8Char <b>try
+</b>  B1<font color="#008080"><b>:</b></font> T1ByteChar
+  B2<font color="#008080"><b>:</b></font> T2ByteChar
+  B3<font color="#008080"><b>:</b></font> T3ByteChar
+  X<font color="#008080"><b>:</b></font> Byte
+<b>endt
+
+</b>TUtf8Array<font color="#008080"><b>(</b></font>Sz<font color="#008080"><b>)</b></font> <b>array</b> <b>of</b> TUtf8Char<font color="#008080"><b>:[@:</b></font>Size<font color="#008080"><b>=@:</b></font>Sz<font color="#008080"><b>]:</b></font><b>displ</b><font color="#008080"><b>=(
+</b></font>  <font color="#0000ff"><b>'"'</b></font><font color="#008080"><b>,</b></font>ShowArray<font color="#008080"><b>(@,(</b></font>WCHR<font color="#008080"><b>(@.</b></font>B1 <b>exc</b><font color="#008080"><b>(
+</b></font>    <font color="#008080"><b>((@.</b></font>B2<font color="#008080"><b>[</b></font><font color="#008000"><b>0</b></font><font color="#008080"><b>]</b></font><b>and</b> <font color="#008000"><b>0x1F</b></font><font color="#008080"><b>)</b></font><b>shl</b> <font color="#008000"><b>6</b></font><font color="#008080"><b>+(@.</b></font>B2<font color="#008080"><b>[</b></font><font color="#008000"><b>1</b></font><font color="#008080"><b>]</b></font><b>and</b> <font color="#008000"><b>0x3F</b></font><font color="#008080"><b>))</b></font> <b>exc</b><font color="#008080"><b>(
+</b></font>    <font color="#008080"><b>((@.</b></font>B3<font color="#008080"><b>[</b></font><font color="#008000"><b>0</b></font><font color="#008080"><b>]</b></font><b>and</b> <font color="#008000"><b>0x0F</b></font><font color="#008080"><b>)</b></font><b>shl</b> <font color="#008000"><b>12</b></font><font color="#008080"><b>+(@.</b></font>B3<font color="#008080"><b>[</b></font><font color="#008000"><b>1</b></font><font color="#008080"><b>]</b></font><b>and</b> <font color="#008000"><b>0x3F</b></font><font color="#008080"><b>)</b></font><b>shl</b> <font color="#008000"><b>6</b></font><font color="#008080"><b>+(@.</b></font>B3<font color="#008080"><b>[</b></font><font color="#008000"><b>2</b></font><font color="#008080"><b>]</b></font><b>and</b> <font color="#008000"><b>0x3F</b></font><font color="#008080"><b>))</b></font> <b>exc
+</b>    <font color="#008080"><b>@.</b></font>X<font color="#008080"><b>))))),</b></font><font color="#0000ff"><b>'"'</b></font><font color="#008080"><b>)
+
+</b></font>TUtf8Str <b>struc</b> <b>pas
+</b>  L<font color="#008080"><b>:</b></font> ulong
+  S<font color="#008080"><b>:</b></font> TUtf8Array<font color="#008080"><b>(@.</b></font>L<font color="#008080"><b>)
+</b></font><b>ends</b><font color="#008080"><b>:</b></font><b>displ</b><font color="#008080"><b>=(@.</b></font>S<font color="#008080"><b>)
+
+</b></font>TInt64 <b>struc</b> <b>pas
+</b>  Lo<font color="#008080"><b>:</b></font> ulong
+  Hi<font color="#008080"><b>:</b></font> ulong
+<b>ends</b><font color="#008080"><b>:</b></font><b>displ</b><font color="#008080"><b>=(</b></font>HEX<font color="#008080"><b>(@.</b></font>Hi<font color="#008080"><b>),</b></font>HEX<font color="#008080"><b>(@.</b></font>Lo<font color="#008080"><b>,</b></font><font color="#008000"><b>8</b></font><font color="#008080"><b>))
+
+</b></font>TValList <b>forward
+</b>TCollList <b>forward
+
+</b>TBinValRec <b>struc</b> <b>pas
+</b>  Count<font color="#008080"><b>:</b></font> ulong
+  D<font color="#008080"><b>:</b></font> <b>raw</b><font color="#008080"><b>[@.</b></font>Count<font color="#008080"><b>]
+</b></font><b>ends
+
+</b>TSetTbl <b>array</b> <b>of</b> str <font color="#008080"><b>?@[</b></font><font color="#008000"><b>0</b></font><font color="#008080"><b>]=</b></font><font color="#008000"><b>0</b></font><font color="#008080"><b>!</b></font>Byte<font color="#008080"><b>;
+
+</b></font>TValue <b>struc</b> <b>pas
+</b>  T<font color="#008080"><b>:</b></font> TValueType
+  D<font color="#008080"><b>:</b></font> <b>case</b> <font color="#008080"><b>@.</b></font>T <b>of
+</b>    vaList<font color="#008080"><b>:</b></font> TValList
+    vaInt8<font color="#008080"><b>:</b></font> byte
+    vaInt16<font color="#008080"><b>:</b></font> word
+    vaInt32<font color="#008080"><b>:</b></font> ulong
+    vaExtended<font color="#008080"><b>:</b></font> TExtended
+    vaString<font color="#008080"><b>:</b></font> str
+    vaLString<font color="#008080"><b>:</b></font> TLStr
+    vaIdent<font color="#008080"><b>:</b></font> str
+    vaBinary<font color="#008080"><b>:</b></font> TBinValRec
+    vaSet<font color="#008080"><b>:</b></font> TSetTbl
+    vaCollection<font color="#008080"><b>:</b></font> TCollList
+    vaSingle<font color="#008080"><b>:</b></font> TSingle
+    vaCurrency<font color="#008080"><b>:</b></font> TCurrency
+    vaDate<font color="#008080"><b>:</b></font> TDateTime
+    vaWString<font color="#008080"><b>:</b></font> TWStr
+    vaInt64<font color="#008080"><b>:</b></font> TInt64
+    vaUTF8String<font color="#008080"><b>:</b></font> TUtf8Str<font color="#000080"><i>//TLStr
+</i></font>  <b>endc
+ends
+
+</b>TValList <b>array</b> <b>of</b> TValue <font color="#008080"><b>?@.</b></font>T<font color="#008080"><b>=</b></font>TValueType<font color="#008080"><b>.</b></font>vaNull<font color="#008080"><b>;
+
+</b></font>TPropRec <b>struc</b> <b>pas
+</b>  Name<font color="#008080"><b>:</b></font> str
+  V<font color="#008080"><b>:</b></font> TValue
+<b>ends
+
+</b>TPropList <b>array</b> <b>of</b> TPropRec <font color="#008080"><b>?@.</b></font>Name<font color="#008080"><b>[</b></font><font color="#008000"><b>0</b></font><font color="#008080"><b>]=</b></font><font color="#008000"><b>0</b></font><font color="#008080"><b>!</b></font>byte<font color="#008080"><b>;
+
+</b></font>TIntVal <b>struc</b> <b>pas
+</b>  T<font color="#008080"><b>:</b></font> TValueType
+  V<font color="#008080"><b>:</b></font> <b>case</b> <font color="#008080"><b>@.</b></font>T <b>of
+</b>    vaInt8<font color="#008080"><b>:</b></font> byte
+    vaInt16<font color="#008080"><b>:</b></font> word
+    vaInt32<font color="#008080"><b>:</b></font> ulong
+  <b>endc
+ends</b><font color="#008080"><b>:</b></font> <b>assert</b><font color="#008080"><b>[(@.</b></font>T<font color="#008080"><b>=</b></font>TValueType<font color="#008080"><b>.</b></font>vaInt8<font color="#008080"><b>)</b></font><b>or</b><font color="#008080"><b>(@.</b></font>T<font color="#008080"><b>=</b></font>TValueType<font color="#008080"><b>.</b></font>vaInt16<font color="#008080"><b>)
+</b></font>  <b>or</b><font color="#008080"><b>(@.</b></font>T<font color="#008080"><b>=</b></font>TValueType<font color="#008080"><b>.</b></font>vaInt32<font color="#008080"><b>)]
+
+</b></font>TStopByte <b>enum</b> byte <font color="#008080"><b>(</b></font>S<font color="#008080"><b>=</b></font><font color="#008000"><b>0</b></font><font color="#008080"><b>):</b></font><b>assert</b><font color="#008080"><b>[@=</b></font><font color="#008000"><b>0</b></font><font color="#008080"><b>]
+
+</b></font>TCollRec <b>struc</b> <b>pas
+</b>  D<font color="#008080"><b>:</b></font> <b>try
+</b>    V<font color="#008080"><b>:</b></font> TIntVal
+    Z<font color="#008080"><b>:</b></font> TStopByte
+    E<font color="#008080"><b>:</b></font> <b>void
+</b>  <b>endt
+</b>  ListT<font color="#008080"><b>:</b></font> TValueType
+  Props<font color="#008080"><b>:</b></font> TPropList
+<b>ends</b><font color="#008080"><b>:</b></font> <b>assert</b><font color="#008080"><b>[@.</b></font>ListT<font color="#008080"><b>=</b></font>TValueType<font color="#008080"><b>.</b></font>vaList<font color="#008080"><b>]
+
+</b></font>TCollList <b>array</b> <b>of</b> TCollRec <font color="#008080"><b>?(@.</b></font>D<font color="#008080"><b>.</b></font>Z<font color="#008080"><b>=</b></font><font color="#008000"><b>0</b></font><font color="#008080"><b>)</b></font><b>exc</b> <font color="#008000"><b>0</b></font><font color="#008080"><b>!</b></font>byte<font color="#008080"><b>;
+
+</b></font><b>type</b> <b>bit
+</b>  TFilerFlags <b>set</b> <font color="#008000"><b>4</b></font> <b>of</b> <font color="#008080"><b>(</b></font>ffInherited<font color="#008080"><b>,</b></font>ffChildPos<font color="#008080"><b>)
+</b></font>  TFilerPrefixFlags <b>struc</b> <b>pas
+</b>    F<font color="#008080"><b>:</b></font> TFilerFlags
+    Rest<font color="#008080"><b>:</b></font> <b>num</b><font color="#008080"><b>+(</b></font><font color="#008000"><b>4</b></font><font color="#008080"><b>)
+</b></font>  <b>ends
+
+type
+</b>  TPrefixRec <b>struc
+</b>    TFilerPrefixFlags F
+    <b>case</b> <font color="#008080"><b>(@.</b></font>F<font color="#008080"><b>.</b></font>F <b>and</b> <font color="#008000"><b>0x2</b></font><font color="#008080"><b>)</b></font> <b>of
+</b>      <font color="#008000"><b>0x2</b></font><font color="#008080"><b>:</b></font> TValue
+    <b>endc</b> ChildPos
+  <b>ends</b><font color="#008080"><b>:</b></font><b>assert</b><font color="#008080"><b>[@.</b></font>F<font color="#008080"><b>.</b></font>Rest<font color="#008080"><b>=</b></font><font color="#008000"><b>0xF</b></font><font color="#008080"><b>]
+
+</b></font><b>type
+</b>  TObjectRec <b>forward
+
+</b>  TObjectTbl <b>array</b> <b>of</b> <font color="#008080"><b>(</b></font><b>try
+</b>    Z<font color="#008080"><b>:</b></font> TStopByte
+    O<font color="#008080"><b>:</b></font> TObjectRec
+  <b>endt</b><font color="#008080"><b>)</b></font> <font color="#008080"><b>?(@.</b></font>Z<font color="#008080"><b>=</b></font><font color="#008000"><b>0</b></font><font color="#008080"><b>)</b></font> <b>exc</b> <font color="#008000"><b>0</b></font><font color="#008080"><b>;
+
+
+</b></font>  TObjectRec <b>struc</b> <b>pas
+</b>    Prefix<font color="#008080"><b>:</b></font> <b>try
+</b>      P<font color="#008080"><b>:</b></font> TPrefixRec
+      E<font color="#008080"><b>:</b></font> <b>void
+</b>     <b>endt
+</b>    ClassName<font color="#008080"><b>:</b></font> str
+    ObjectName<font color="#008080"><b>:</b></font> str
+    PropList<font color="#008080"><b>:</b></font> TPropList
+    ObjList<font color="#008080"><b>:</b></font> TObjectTbl
+  <b>ends
+
+data
+</b>  FHdr<font color="#008080"><b>:</b></font>Size<font color="#008080"><b>+</b></font><font color="#008000"><b>4</b></font> TObjectRec RootObj
+
+<b>descr</b> <font color="#008080"><b>(</b></font><font color="#0000ff"><b>'Delphi (All versions) Form File Format.'</b></font><font color="#008080"><b>,</b></font>NL<font color="#008080"><b>,
+</b></font>  <font color="#0000ff"><b>'Info Source: &lt;Delphi&gt;/source/vcl/classes.pas'</b></font><font color="#008080"><b>,</b></font>NL<font color="#008080"><b>)
+</b></font>
+</pre><hr><p><a href="http://giscenter.icc.ru:8082/scripts/WWWBinV.dll/Cat">Other specifications</a>.</p><hr><p> <a href="http://monster.icc.ru/%7Ealex/FlexT/"><b>FlexT</b></a> home page,
+<a href="http://hmelnov.icc.ru/">Author`s</a> home page. </p>
+</body></html>

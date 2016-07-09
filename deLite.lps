@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="9"/>
+    <BuildModes Active="Debug"/>
+    <Units Count="42">
+      <Unit0>
+        <Filename Value="deLite.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="deLite"/>
+        <EditorIndex Value="1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="14" Y="13"/>
+        <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="Units\umain.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmMain"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="uMain"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="0"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1830"/>
+        <CursorPos X="29" Y="1845"/>
+        <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="Units\bigini.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="BigIni"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="932"/>
+        <CursorPos X="65" Y="957"/>
+        <UsageCount Value="200"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="Units\uabout.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmAbout"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="uAbout"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="101"/>
+        <CursorPos X="11" Y="108"/>
+        <UsageCount Value="200"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="Units\uhttpdownloader.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="uhttpdownloader"/>
+        <UsageCount Value="200"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="Units\unetassets.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmNetAssets"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="uNetAssets"/>
+        <EditorIndex Value="2"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="86"/>
+        <CursorPos X="98" Y="124"/>
+        <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="Units\uStrTools.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="uStrTools"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="719"/>
+        <CursorPos X="1" Y="742"/>
+        <UsageCount Value="200"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="Units\uTools.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="uTools"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="13"/>
+        <CursorPos X="24" Y="32"/>
+        <UsageCount Value="200"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="Units\versioninfo.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="versioninfo"/>
+        <UsageCount Value="200"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="Units\utip.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmTip"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="uTip"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="33"/>
+        <CursorPos X="1" Y="86"/>
+        <UsageCount Value="201"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="Units\utipoftheday.pas"/>
+        <IsPartOfProject Value="True"/>
+        <HasResources Value="True"/>
+        <UnitName Value="uTipOfTheDay"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="115"/>
+        <CursorPos X="11" Y="140"/>
+        <UsageCount Value="201"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="Units\uask.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmAsk"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="uAsk"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="4"/>
+        <CursorPos X="6" Y="14"/>
+        <UsageCount Value="201"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="Units\usettings.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmSettings"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="uSettings"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="520"/>
+        <CursorPos X="37" Y="538"/>
+        <UsageCount Value="200"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="Units\uuserpass.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmUserPass"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="uUserPass"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="13"/>
+        <CursorPos X="21" Y="52"/>
+        <UsageCount Value="183"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="Units\unewwithwizard.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmNewWizard"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="uNewWithWizard"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="32"/>
+        <CursorPos X="15" Y="64"/>
+        <UsageCount Value="133"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="Units\usolution.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmSolution"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="uSolution"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="15"/>
+        <CursorPos X="55" Y="27"/>
+        <UsageCount Value="123"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="Units\uencrypt.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="uEncrypt"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="40" Y="36"/>
+        <UsageCount Value="114"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="Units\ugotoline.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmGotoLine"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="uGotoLine"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="15" Y="1"/>
+        <UsageCount Value="96"/>
+      </Unit17>
+      <Unit18>
+        <Filename Value="Units\udeincludes.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="uDEIncludes"/>
+        <EditorIndex Value="3"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="537"/>
+        <CursorPos X="1" Y="576"/>
+        <UsageCount Value="81"/>
+        <Loaded Value="True"/>
+      </Unit18>
+      <Unit19>
+        <Filename Value="Units\ufileget.pas"/>
+        <ComponentName Value="frmFilenameGet"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="uFileGet"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="14" Y="12"/>
+        <UsageCount Value="165"/>
+      </Unit19>
+      <Unit20>
+        <Filename Value="C:\lazarus\lcl\dialogs.pp"/>
+        <UnitName Value="Dialogs"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="514"/>
+        <CursorPos X="1" Y="522"/>
+        <UsageCount Value="2"/>
+      </Unit20>
+      <Unit21>
+        <Filename Value="C:\LazComp\Synapse\source\ftpsend.pas"/>
+        <UnitName Value="ftpsend"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1074"/>
+        <CursorPos X="9" Y="1084"/>
+        <UsageCount Value="3"/>
+      </Unit21>
+      <Unit22>
+        <Filename Value="C:\LazComp\indy4lazarus-20040117\source\idwinsock2.pas"/>
+        <UnitName Value="idwinsock2"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="4487"/>
+        <CursorPos X="86" Y="4520"/>
+        <UsageCount Value="3"/>
+      </Unit22>
+      <Unit23>
+        <Filename Value="C:\LazComp\SVN CheckOuts\Synapse\source\ftpsend.pas"/>
+        <UnitName Value="ftpsend"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1839"/>
+        <CursorPos X="1" Y="1877"/>
+        <UsageCount Value="4"/>
+      </Unit23>
+      <Unit24>
+        <Filename Value="C:\lazarus\fpc\2.6.4\source\packages\fcl-base\src\base64.pp"/>
+        <UnitName Value="base64"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="61"/>
+        <CursorPos X="1" Y="89"/>
+        <UsageCount Value="10"/>
+      </Unit24>
+      <Unit25>
+        <Filename Value="C:\lazarus\fpc\2.6.4\source\rtl\objpas\dateutils.pp"/>
+        <UnitName Value="dateutils"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="8"/>
+      </Unit25>
+      <Unit26>
+        <Filename Value="C:\LazComp\00 - To Do\pascalscript-3.0.3.54\pascalscript-3.0.3.54\Source\uPSComponent_Default.pas"/>
+        <UnitName Value="uPSComponent_Default"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="22"/>
+        <CursorPos X="3" Y="9"/>
+        <UsageCount Value="8"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit26>
+      <Unit27>
+        <Filename Value="C:\LazComp\00 - To Do\pascalscript-3.0.3.54\pascalscript-3.0.3.54\Source\uPSC_dateutils.pas"/>
+        <UnitName Value="uPSC_dateutils"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="71" Y="20"/>
+        <UsageCount Value="8"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit27>
+      <Unit28>
+        <Filename Value="C:\LazComp\SVN CheckOuts\Synapse\source\pingsend.pas"/>
+        <UnitName Value="pingsend"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="639"/>
+        <CursorPos X="36" Y="677"/>
+        <UsageCount Value="5"/>
+      </Unit28>
+      <Unit29>
+        <Filename Value="C:\LazComp\SVN CheckOuts\Synapse\source\nntpsend.pas"/>
+        <UnitName Value="nntpsend"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="10"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="14"/>
+      </Unit29>
+      <Unit30>
+        <Filename Value="C:\LazComp\SVN CheckOuts\Synapse\source\sntpsend.pas"/>
+        <UnitName Value="sntpsend"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="130"/>
+        <CursorPos X="23" Y="168"/>
+        <UsageCount Value="14"/>
+      </Unit30>
+      <Unit31>
+        <Filename Value="C:\LazComp\SVN CheckOuts\Synapse\source\synautil.pas"/>
+        <UnitName Value="synautil"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="129"/>
+        <CursorPos X="10" Y="152"/>
+        <UsageCount Value="14"/>
+      </Unit31>
+      <Unit32>
+        <Filename Value="C:\lazarus\fpc\2.6.4\source\packages\winunits-base\src\mmsystem.pp"/>
+        <UnitName Value="mmsystem"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1834"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="7"/>
+      </Unit32>
+      <Unit33>
+        <Filename Value="C:\lazarus\fpc\2.6.4\source\packages\fcl-registry\src\registry.pp"/>
+        <UnitName Value="registry"/>
+        <EditorIndex Value="4"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="103"/>
+        <CursorPos X="3" Y="45"/>
+        <UsageCount Value="32"/>
+        <Loaded Value="True"/>
+      </Unit33>
+      <Unit34>
+        <Filename Value="C:\lazarus\ide\formeditor.pp"/>
+        <UnitName Value="FormEditor"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="104"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="9"/>
+      </Unit34>
+      <Unit35>
+        <Filename Value="C:\LazComp\00 - To Do\pascalscript-3.0.3.54\pascalscript-3.0.3.54\Source\ThirdParty\ROPS_EXTENDED.dpk"/>
+        <UnitName Value="ROPS_EXTENDED"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="39"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit35>
+      <Unit36>
+        <Filename Value="C:\LazComp\00 - To Do\pascalscript-3.0.3.54\pascalscript-3.0.3.54\Source\ThirdParty\uPSI_JvMail.pas"/>
+        <UnitName Value="uPSI_JvMail"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit36>
+      <Unit37>
+        <Filename Value="C:\LazComp\00 - To Do\pascalscript-3.0.3.54\pascalscript-3.0.3.54\Source\ThirdParty\uPSI_Registry.pas"/>
+        <UnitName Value="uPSI_Registry"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit37>
+      <Unit38>
+        <Filename Value="C:\LazComp\00 - To Do\pascalscript-3.0.3.54\pascalscript-3.0.3.54\Source\ThirdParty\uPSI_IBX.pas"/>
+        <UnitName Value="uPSI_IBX"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit38>
+      <Unit39>
+        <Filename Value="C:\LazComp\00 - To Do\pascalscript-3.0.3.54\pascalscript-3.0.3.54\Source\ThirdParty\uPS_ExtReg.pas"/>
+        <UnitName Value="uPS_ExtReg"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit39>
+      <Unit40>
+        <Filename Value="C:\LazComp\00 - To Do\pascalscript-3.0.3.54\pascalscript-3.0.3.54\Source\ThirdParty\uPSI_Mask.pas"/>
+        <UnitName Value="uPSI_Mask"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit40>
+      <Unit41>
+        <Filename Value="C:\LazComp\00 - To Do\pascalscript-3.0.3.54\pascalscript-3.0.3.54\Source\ThirdParty\uPSI_Dialogs.pas"/>
+        <UnitName Value="uPSI_Dialogs"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit41>
+    </Units>
+    <General>
+      <ActiveWindowIndexAtStart Value="0"/>
+    </General>
+    <JumpHistory Count="30" HistoryIndex="29">
+      <Position1>
+        <Filename Value="Units\umain.pas"/>
+        <Caret Line="2004" Column="20" TopLine="1966"/>
+      </Position1>
+      <Position2>
+        <Filename Value="Units\umain.pas"/>
+        <Caret Line="2019" Column="22" TopLine="1981"/>
+      </Position2>
+      <Position3>
+        <Filename Value="Units\umain.pas"/>
+        <Caret Line="2032" Column="20" TopLine="1995"/>
+      </Position3>
+      <Position4>
+        <Filename Value="Units\umain.pas"/>
+        <Caret Line="2057" Column="18" TopLine="2019"/>
+      </Position4>
+      <Position5>
+        <Filename Value="Units\umain.pas"/>
+        <Caret Line="2072" Column="22" TopLine="2034"/>
+      </Position5>
+      <Position6>
+        <Filename Value="Units\umain.pas"/>
+        <Caret Line="2083" Column="16" TopLine="2046"/>
+      </Position6>
+      <Position7>
+        <Filename Value="Units\umain.pas"/>
+        <Caret Line="2120" Column="85" TopLine="2082"/>
+      </Position7>
+      <Position8>
+        <Filename Value="Units\umain.pas"/>
+        <Caret Line="34" Column="1" TopLine="1"/>
+      </Position8>
+      <Position9>
+        <Filename Value="Units\umain.pas"/>
+        <Caret Line="24" Column="21" TopLine="1"/>
+      </Position9>
+      <Position10>
+        <Filename Value="Units\umain.pas"/>
+        <Caret Line="29" Column="49" TopLine="6"/>
+      </Position10>
+      <Position11>
+        <Filename Value="Units\umain.pas"/>
+        <Caret Line="30" Column="11" TopLine="7"/>
+      </Position11>
+      <Position12>
+        <Filename Value="Units\umain.pas"/>
+        <Caret Line="31" Column="34" TopLine="8"/>
+      </Position12>
+      <Position13>
+        <Filename Value="Units\umain.pas"/>
+        <Caret Line="1460" Column="3" TopLine="1425"/>
+      </Position13>
+      <Position14>
+        <Filename Value="Units\umain.pas"/>
+        <Caret Line="1420" Column="16" TopLine="1405"/>
+      </Position14>
+      <Position15>
+        <Filename Value="Units\umain.pas"/>
+        <Caret Line="1443" Column="8" TopLine="1401"/>
+      </Position15>
+      <Position16>
+        <Filename Value="Units\umain.pas"/>
+        <Caret Line="1352" Column="19" TopLine="1332"/>
+      </Position16>
+      <Position17>
+        <Filename Value="Units\umain.pas"/>
+        <Caret Line="1426" Column="45" TopLine="1403"/>
+      </Position17>
+      <Position18>
+        <Filename Value="Units\umain.pas"/>
+        <Caret Line="1424" Column="1" TopLine="1409"/>
+      </Position18>
+      <Position19>
+        <Filename Value="Units\umain.pas"/>
+        <Caret Line="1426" Column="1" TopLine="1409"/>
+      </Position19>
+      <Position20>
+        <Filename Value="Units\umain.pas"/>
+        <Caret Line="1428" Column="1" TopLine="1409"/>
+      </Position20>
+      <Position21>
+        <Filename Value="Units\umain.pas"/>
+        <Caret Line="1429" Column="1" TopLine="1409"/>
+      </Position21>
+      <Position22>
+        <Filename Value="Units\umain.pas"/>
+        <Caret Line="1430" Column="1" TopLine="1409"/>
+      </Position22>
+      <Position23>
+        <Filename Value="Units\umain.pas"/>
+        <Caret Line="1444" Column="1" TopLine="1409"/>
+      </Position23>
+      <Position24>
+        <Filename Value="Units\umain.pas"/>
+        <Caret Line="1445" Column="1" TopLine="1409"/>
+      </Position24>
+      <Position25>
+        <Filename Value="Units\umain.pas"/>
+        <Caret Line="1473" Column="18" TopLine="1444"/>
+      </Position25>
+      <Position26>
+        <Filename Value="Units\umain.pas"/>
+        <Caret Line="1444" Column="2" TopLine="1408"/>
+      </Position26>
+      <Position27>
+        <Filename Value="Units\umain.pas"/>
+        <Caret Line="1464" Column="4" TopLine="1447"/>
+      </Position27>
+      <Position28>
+        <Filename Value="Units\umain.pas"/>
+        <Caret Line="1932" Column="25" TopLine="1913"/>
+      </Position28>
+      <Position29>
+        <Filename Value="deLite.lpr"/>
+        <Caret Line="23" Column="26" TopLine="1"/>
+      </Position29>
+      <Position30>
+        <Filename Value="Units\umain.pas"/>
+        <Caret Line="1435" Column="1" TopLine="1412"/>
+      </Position30>
+    </JumpHistory>
+  </ProjectSession>
+  <EditorMacros Count="0"/>
+</CONFIG>
