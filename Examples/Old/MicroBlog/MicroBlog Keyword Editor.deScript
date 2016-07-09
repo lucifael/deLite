@@ -1,0 +1,297 @@
+unit MicroBlogKeywordEditor;
+
+
+{ Global Variables  }
+var
+      // Setup Global Variables Here
+       MyForm : TForm;
+       Panel1_6784: TPanel;
+        btnLoad: TButton;
+        btnSave: TButton;
+        btnClose: TButton;
+        Panel2_1300: TPanel;
+        Panel2_2150: TPanel;
+        lblKeyword: TLabel;
+        txtKeyword: TEdit;
+        lblLink: TLabel;
+        txtLink: TEdit;
+        btnAdd: TButton;
+        btnDelete: TButton;
+        lbItems: TListBox;
+        btnEdit: TButton;
+
+        // My Defines
+        filename_KWord : String;
+
+{ User Functions/Procedures }
+// Put Functions and Procedures Here
+
+procedure btnEditOnClick(sender : TObject);
+begin
+     //  If item index <> - 1 then we can edit the entry
+     if lbItems.ItemIndex<>-1 then
+     begin
+          lbItems.items[lbItems.ItemIndex] := txtKeyword.text + '|' + txtLink.text;
+     end;
+end;
+
+procedure lbItemsClick(Sender: TObject);
+var
+   csv : TStringList;
+   kword, link : String;
+begin
+     if lbItems.ItemIndex<>-1 then
+     begin
+          // Esiest way for me is to use the Fill String List command
+          // But could easily be done with POS command
+          // I Just find using the command easier, and it's easier to check for
+          // Errors.
+          csv := TStringList.create;
+          try
+             Fill_StringList(csv, lbItems.Items[lbItems.ItemIndex], '|');
+             if csv.Count>=1 then
+             begin
+                  // Above we have the error checking I talked about.  Namely we're
+                  // checking we have enough fields.
+                  kword := csv[0];
+                  Link := csv[1];
+                  txtKeyword.text := kWord;
+                  txtLink.text := Link;
+             end;
+          finally
+                 csv.free;
+          end;
+     end;
+end;
+
+PRocedure btnLoadClick(sender : TObject);
+begin
+     // Load the Keywords File
+     lbItems.Items.clear;
+     if FileExists(Filename_KWord) then
+     begin
+          lbItems.items.loadFromFile(filename_KWord);
+     end else
+     begin
+          dlg_Message('No Keywords file to load' + #10#13 + 'Creating New One.');
+          lbItems.Items.SaveToFile(Filename_KWord);
+     end;
+end;
+
+Procedure btnSaveClick(sender : TObject);
+begin
+     // Save the Keywords File
+     lbItems.items.SaveToFile(Filename_KWord);
+end;
+
+procedure btnAddClick(sender : TObject);
+begin
+     if (txtKeyword.text<>'') and (txtLink.text<>'') then
+     begin
+          lbItems.Items.add(txtKeyword.text + '|' + txtLink.text);
+     end else
+     begin
+          dlg_Message('All fields not filled in');
+     end;
+end;
+
+procedure btnDeleteClick(sender : TObject);
+begin
+     if lbItems.ItemIndex<>-1 then lbItems.items.delete(lbItems.ItemIndex);
+end;
+
+// Create Form by Form Wizard
+procedure CreateForm;
+begin
+       MyForm := TForm.create(self)
+       MyForm.Top := 145;
+       MyForm.Left := 238;
+       MyForm.Width := 530;
+       MyForm.Height := 433;
+       MyForm.Position := poScreenCenter;
+       MyForm.BorderStyle := bsDialog;
+         // Begin Panel1_6784 Definition
+         Panel1_6784 := TPanel.create(MyForm);
+         Panel1_6784.Parent := MyForm;
+         Panel1_6784.SetBounds(424,0,106,433);
+         Panel1_6784.Width := 106;
+         Panel1_6784.Height := 433;
+         Panel1_6784.Name := 'Panel1_6784';
+         Panel1_6784.caption := '';
+         Panel1_6784.Align := alRight;
+         // End Panel1_6784 Definition
+         // Begin Panel1_6784 Indentation
+         // Begin btnLoad Definition
+         btnLoad := TButton.create(Panel1_6784);
+         btnLoad.Parent := Panel1_6784;
+         btnLoad.SetBounds(1,1,104,35);
+         btnLoad.Width := 104;
+         btnLoad.Height := 35;
+         btnLoad.Name := 'btnLoad';
+         btnLoad.Caption := '&Load';
+         btnLoad.Align := alTop;
+         btnLoad.OnClick := @btnLoadClick;
+         // End btnLoad Definition
+         // End Panel1_6784 Indentation
+         // Begin Panel1_6784 Indentation
+         // Begin btnSave Definition
+         btnSave := TButton.create(Panel1_6784);
+         btnSave.Parent := Panel1_6784;
+         btnSave.SetBounds(1,36,104,35);
+         btnSave.Width := 104;
+         btnSave.Height := 35;
+         btnSave.Name := 'btnSave';
+         btnSave.Caption := '&Save';
+         btnSave.Align := alTop;
+         btnSave.OnClick := @btnSaveClick;
+         // End btnSave Definition
+         // End Panel1_6784 Indentation
+         // Begin Panel1_6784 Indentation
+         // Begin btnClose Definition
+         btnClose := TButton.create(Panel1_6784);
+         btnClose.Parent := Panel1_6784;
+         btnClose.SetBounds(1,397,104,35);
+         btnClose.Width := 104;
+         btnClose.Height := 35;
+         btnClose.Name := 'btnClose';
+         btnClose.Caption := '&Close';
+         btnClose.Align := alBottom;
+         btnClose.ModalResult := mrCancel;
+         btnClose.Cancel := True;
+         // End btnClose Definition
+         // End Panel1_6784 Indentation
+         // End frmDesign Indentation
+         // Begin Panel2_1300 Definition
+         Panel2_1300 := TPanel.create(MyForm);
+         Panel2_1300.Parent := MyForm;
+         Panel2_1300.SetBounds(0,0,424,433);
+         Panel2_1300.Width := 424;
+         Panel2_1300.Height := 433;
+         Panel2_1300.Name := 'Panel2_1300';
+         Panel2_1300.caption := '';
+         Panel2_1300.Align := alClient;
+         // End Panel2_1300 Definition
+         // Begin Panel2_2150 Definition
+         Panel2_2150 := TPanel.create(Panel2_1300);
+         Panel2_2150.Parent := Panel2_1300;
+         Panel2_2150.SetBounds(1,1,422,150);
+         Panel2_2150.Width := 422;
+         Panel2_2150.Height := 150;
+         Panel2_2150.Name := 'Panel2_2150';
+         Panel2_2150.caption := '';
+         Panel2_2150.Align := alTop;
+         // End Panel2_2150 Definition
+         // Begin lblKeyword Definition
+         lblKeyword := TLabel.create(Panel2_2150);
+         lblKeyword.Parent := Panel2_2150;
+         lblKeyword.SetBounds(1,1,420,25);
+         lblKeyword.Width := 420;
+         lblKeyword.Height := 25;
+         lblKeyword.Name := 'lblKeyword';
+         lblKeyword.Caption := 'Keyword';
+         lblKeyword.Align := alTop;
+         // End lblKeyword Definition
+         // End Panel2_2150 Indentation
+         // Begin txtKeyword Definition
+         txtKeyword := TEdit.create(Panel2_2150);
+         txtKeyword.Parent := Panel2_2150;
+         txtKeyword.SetBounds(1,26,420,23);
+         txtKeyword.Name := 'txtKeyword';
+         txtKeyword.Width := 420;
+         txtKeyword.Height := 23;
+         txtKeyword.Text := '';
+         txtKeyword.Align := alTop;
+         // End txtKeyword Definition
+         // End Panel2_2150 Indentation
+         // Begin lblLink Definition
+         lblLink := TLabel.create(Panel2_2150);
+         lblLink.Parent := Panel2_2150;
+         lblLink.SetBounds(1,49,420,25);
+         lblLink.Width := 420;
+         lblLink.Height := 25;
+         lblLink.Name := 'lblLink';
+         lblLink.Caption := 'Link';
+         lblLink.Align := alTop;
+         // End lblLink Definition
+         // End Panel2_2150 Indentation
+         // Begin txtLink Definition
+         txtLink := TEdit.create(Panel2_2150);
+         txtLink.Parent := Panel2_2150;
+         txtLink.SetBounds(1,74,420,23);
+         txtLink.Name := 'txtLink';
+         txtLink.Width := 420;
+         txtLink.Height := 23;
+         txtLink.Text := '';
+         txtLink.Align := alTop;
+         // End txtLink Definition
+         // End Panel2_2150 Indentation
+         // Begin Panel2_2150 Indentation
+         // Begin btnAdd Definition
+         btnAdd := TButton.create(Panel2_2150);
+         btnAdd.Parent := Panel2_2150;
+         btnAdd.SetBounds(1,110,75,35);
+         btnAdd.Width := 75;
+         btnAdd.Height := 35;
+         btnAdd.Name := 'btnAdd';
+         btnAdd.Caption := '&Add';
+         btnAdd.Align := alNone;
+         btnAdd.OnClick := @btnAddClick;
+         // End btnAdd Definition
+         // End Panel2_2150 Indentation
+         // Begin Panel2_2150 Indentation
+         // Begin btnDelete Definition
+         btnDelete := TButton.create(Panel2_2150);
+         btnDelete.Parent := Panel2_2150;
+         btnDelete.SetBounds(76,110,75,35);
+         btnDelete.Width := 75;
+         btnDelete.Height := 35;
+         btnDelete.Name := 'btnDelete';
+         btnDelete.Caption := '&Delete';
+         btnDelete.Align := alNone;
+         btnDelete.OnClick := @btnDeleteClick;
+         // End btnDelete Definition
+         // End Panel2_2150 Indentation
+         // End Panel2_1300 Indentation
+         // Begin lbItems Definition
+         lbItems := TListBox.create(Panel2_1300);
+         lbItems.Parent := Panel2_1300;
+         lbItems.SetBounds(1,151,422,281);
+         lbItems.Width := 422;
+         lbItems.Height := 281;
+         lbItems.Name := 'lbItems';
+         lbItems.items.text := '';
+         lbItems.Align := alClient;
+         lbItems.OnClick := @lbItemsClick;
+         // End lbItems Definition
+         // End Panel2_1300 Indentation
+         // End frmDesign Indentation
+         // Begin frmDesign Indentation
+         // Begin btnEdit Definition
+         btnEdit := TButton.create(MyForm);
+         btnEdit.Parent := MyForm;
+         btnEdit.SetBounds(152,111,75,35);
+         btnEdit.Width := 75;
+         btnEdit.Height := 35;
+         btnEdit.Name := 'btnEdit';
+         btnEdit.Caption := '&Edit';
+         btnEdit.Align := alNone;
+         btnEdit.OnClick := @btnEditOnClick;
+         // End btnEdit Definition
+         // End frmDesign Indentation
+         // End Of Form Definition
+End;
+
+
+{ Main }
+begin
+       // Make the filename
+       filename_Kword := sys_ReturnSysDir('Personal');
+       Filename_Kword := filename_kword + 'MicroBlog\';
+       Filename_Kword := Filename_KWord + 'MicroBlog.Kwords';
+        CreateForm;
+        btnLoadClick(self);
+        MyForm.ShowModal;
+end.
+
+
+{ EOF }

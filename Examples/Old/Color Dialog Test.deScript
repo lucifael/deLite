@@ -1,0 +1,16 @@
+unit ColorDialogTest;
+
+
+{ Global Variables }
+var
+    // Setup Global Variables HERE
+    MyVar : TColor;
+
+{ User Functions/Procedures }
+// Put Functions and Procedures HERE
+
+{ Main }
+begin
+     MyVar := dlg_Color('Pick a color');
+     ShowMessage(IntToStr(MyVar));
+end.

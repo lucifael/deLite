@@ -1,0 +1,17 @@
+unit Untitled;
+
+
+{ Global Variables }
+var
+    // Setup Global Variables Here
+    MyVar : String;
+
+{ User Functions/Procedures }
+// Put Functions and Procedures Here
+
+{ Main }
+begin
+    // Your script runs here
+end.     
+
+{ EOF }

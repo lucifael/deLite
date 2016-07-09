@@ -1,0 +1,917 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+
+
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>Irongut's Delphi Pages: Taming the Lizard with Delphi</title>
+  
+  <meta name="author" content="irongut">
+  <meta name="description" content="Irongut's Delphi Pages: Articles on Borland Delphi and Kylix programming and back issues of the Pascal Newsletter.">
+  <meta name="keywords" content="Delphi,Kylix,Borland,Pascal,Pascal Newsletter,Runtime Queries,Using HTML Help,Delphi Shell Controls,Mozilla ActiveX Control,TMozillaBrowser,TWebBrowser,Inno Setup Review,Irongut,Programming,Articles">
+  <meta name="robots" content="index,follow">
+  <link rel="stylesheet" href="taming_the_lizard_with_delphi_files/irongut.css" type="text/css">
+  <link href="http://www.paranoia.clara.net/favicon.ico" rel="shortcut icon">
+  <script type="text/javascript" src="taming_the_lizard_with_delphi_files/irongut_functions.js"></script>
+  <script type="text/javascript" src="taming_the_lizard_with_delphi_files/irongut_ads2_sub.js"></script>
+  <script type="text/javascript" src="taming_the_lizard_with_delphi_files/irongut_menu.js"></script></head><body linkifytime="234" linkified="3" linkifying="false">
+
+
+
+<div id="idpMenu">
+<a href="http://www.paranoia.clara.net/index.html"><img class="idpLogo" src="taming_the_lizard_with_delphi_files/irongut.png" title="Irongut's Delphi Pages: Home" alt="Irongut's Delphi Pages"></a>
+<br>
+<p>
+<a href="http://www.paranoia.clara.net/index.html" onmouseover="SubHotImage(document.B_Home);" onmouseout="SubNormalImage(document.B_Home);">Home<img src="taming_the_lizard_with_delphi_files/next.png" name="B_Home" title="" alt="" style="border: 0px solid ; width: 16px; height: 16px;"></a>
+</p>
+<p>
+<a href="http://www.paranoia.clara.net/news.html" onmouseover="SubHotImage(document.B_News)" onmouseout="SubNormalImage(document.B_News);">News<img src="taming_the_lizard_with_delphi_files/next.png" name="B_News" title="" alt="" style="border: 0px solid ; width: 16px; height: 16px;"></a><br>
+<span class="menuSubLink"><a href="http://www.paranoia.clara.net/news_archive/index.html" onmouseover="SubHotImage(document.B_NewsArchive);" onmouseout="SubNormalImage(document.B_NewsArchive);">News Archive<img style="border: 0px solid ; width: 16px; height: 16px;" src="taming_the_lizard_with_delphi_files/next.png" alt="" name="B_NewsArchive"></a></span>
+</p>
+<p>
+<a href="http://www.paranoia.clara.net/articles/index.html" onmouseover="SubHotImage(document.B_Articles);" onmouseout="SubNormalImage(document.B_Articles);">Articles<img src="taming_the_lizard_with_delphi_files/next.png" name="B_Articles" title="" alt="" style="border: 0px solid ; width: 16px; height: 16px;"></a><br>
+<span class="menuSubLink">Taming the Lizard<img style="width: 16px; height: 16px;" alt="" title="" src="taming_the_lizard_with_delphi_files/here.png"></span>
+</p>
+<p>
+<a href="http://www.paranoia.clara.net/forums.html" onmouseover="SubHotImage(document.B_Forums);" onmouseout="SubNormalImage(document.B_Forums);">Forums / Groups<img src="taming_the_lizard_with_delphi_files/next.png" name="B_Forums" title="" alt="" style="border: 0px solid ; width: 16px; height: 16px;"></a>
+</p>
+<p>
+<a href="http://www.paranoia.clara.net/mozilla_delphi_project.html" onmouseover="SubHotImage(document.B_MozDelphi);" onmouseout="SubNormalImage(document.B_MozDelphi);">Mozilla-Delphi Project<img src="taming_the_lizard_with_delphi_files/next.png" name="B_MozDelphi" title="" alt="" style="border: 0px solid ; width: 16px; height: 16px;"></a>
+</p>
+<p>
+<a href="http://www.paranoia.clara.net/delphi_newsletter.html" onmouseover="SubHotImage(document.B_Newsletter);" onmouseout="SubNormalImage(document.B_Newsletter);">Pascal Newsletter<img src="taming_the_lizard_with_delphi_files/next.png" name="B_Newsletter" title="" alt="" style="border: 0px solid ; width: 16px; height: 16px;"></a>
+</p>
+<p>
+<a href="http://www.paranoia.clara.net/software/index.html" onmouseover="SubHotImage(document.B_Software);" onmouseout="SubNormalImage(document.B_Software);">Software<img src="taming_the_lizard_with_delphi_files/next.png" name="B_Software" title="" alt="" style="border: 0px solid ; width: 16px; height: 16px;"></a>
+</p>
+<p>
+<a href="http://www.paranoia.clara.net/links.html" onmouseover="SubHotImage(document.B_Links);" onmouseout="SubNormalImage(document.B_Links);">Links<img src="taming_the_lizard_with_delphi_files/next.png" name="B_Links" title="" alt="" style="border: 0px solid ; width: 16px; height: 16px;"></a>
+</p>
+<p>
+<a href="http://www.paranoia.clara.net/search.html" onmouseover="SubHotImage(document.B_Search);" onmouseout="SubNormalImage(document.B_Search);">Search<img src="taming_the_lizard_with_delphi_files/next.png" name="B_Search" title="" alt="" style="border: 0px solid ; width: 16px; height: 16px;"></a>
+</p>
+<p>
+Vote For Us:<img src="taming_the_lizard_with_delphi_files/next_blank.png" title="" alt="" style="width: 16px; height: 16px;"><br>
+<span class="menuSubLink"><a href="javascript:VoteIDP();" onmouseover="SubHotImage(document.B_VoteIDP);" onmouseout="SubNormalImage(document.B_VoteIDP);">Irongut's Delphi Pages<img src="taming_the_lizard_with_delphi_files/next.png" name="B_VoteIDP" title="" alt="" style="border: 0px solid ; width: 16px; height: 16px;"></a></span><br>
+<span class="menuSubLink" onmouseover="SubHotImage(document.B_VotePN);" onmouseout="SubNormalImage(document.B_VotePN);"><a href="javascript:VoteNewsletter();">Pascal Newsletter<img src="taming_the_lizard_with_delphi_files/next.png" name="B_VotePN" title="" alt="" style="border: 0px solid ; width: 16px; height: 16px;"></a></span>
+</p>
+<p>
+<a href="http://www.paranoia.clara.net/contact.html" onmouseover="SubHotImage(document.B_Contact);" onmouseout="SubNormalImage(document.B_Contact);">Contact Details<img src="taming_the_lizard_with_delphi_files/next.png" name="B_Contact" title="" alt="" style="border: 0px solid ; width: 16px; height: 16px;"></a>
+</p>
+<p>
+<a href="http://www.paranoia.clara.net/legal.html" onmouseover="SubHotImage(document.B_Legal);" onmouseout="SubNormalImage(document.B_Legal);">Legal Stuff<img src="taming_the_lizard_with_delphi_files/next.png" name="B_Legal" title="" alt="" style="border: 0px solid ; width: 16px; height: 16px;"></a>
+</p>
+<p class="menuBanners">
+<br>
+<br>
+<a href="javascript:addSidebar();"><img src="taming_the_lizard_with_delphi_files/mozilla_addsidebar.png" title="Add Mozilla Sidebar" alt="Mozilla Sidebar" style="border: 0px solid ; width: 100px; height: 50px;"></a>
+</p>
+<p class="menuBanners">
+<br>
+<br>
+<script type="text/javascript">getVBanner();</script><a href="http://www.paranoia.clara.net/delphi_newsletter.html"><img src="taming_the_lizard_with_delphi_files/pascal-en-125x125.gif" name="V_Banner" alt="Pascal Newsletter" style="border: 0px solid ; width: 125px; height: 125px;" title="Subscribe to the Pascal Newsletter"></a><br><br>
+
+</p>
+</div>
+
+
+<div id="topBanner">
+  <script type="text/javascript">getHBanner();</script><a href="http://www.paranoia.clara.net/software/wallswap.html"><img src="taming_the_lizard_with_delphi_files/wallswap_banner_468x60.png" name="H_Banner" alt="WallSwap" title="Download WallSwap FREE"></a><br>
+
+</div>
+
+
+<div id="idpMainPage">
+
+  <div id="titleNav">
+    <a href="http://www.paranoia.clara.net/downloads/taming_the_lizard.zip"><img src="taming_the_lizard_with_delphi_files/zip.png" alt="Zip" title="Get the code!" style="border: 0px none ; margin: 10px 2px; width: 30px; height: 32px;"></a>
+  </div>
+
+
+  <div id="titleName">
+    Taming the Lizard with Delphi<br>
+    <span style="font-size: smaller;">By Dave Murray &lt;irongut at vodafone dot net&gt;</span>
+  </div>
+
+
+  <br>
+  <p>Would you like to display HTML in your applications using an open source solution? The Gecko 
+Runtime Environment by the <a href="http://www.mozilla.org/">Mozilla Foundation</a> can be embedded 
+in a Delphi application by using the <a href="http://www.iol.ie/%7Elocka/mozilla/mozilla.htm">Mozilla 
+ActiveX Control</a>. This article shows how to use this control and points out some of the differences 
+between it and the IE based <code>TWebBrowser</code>. The accompanying source code was written in 
+Delphi 6 but should work in Delphi 5 and later. If you want to use the Mozilla ActiveX Control with 
+Delphi 4 you also need to read <a href="http://www.paranoia.clara.net/articles/delphi4_lizard_taming.html">Delphi 4 Lizard Taming</a>.</p>
+
+  <p>First some background and terminology. In 1998 Netscape released the source code for Communicator, 
+their Internet suite, to the open source community and created Mozilla.org. After several years 
+development, the project finally released Mozilla 1.0 in 2002. By then Netscape had been bought by AOL, 
+who repackaged Mozilla 1.0 as Netscape 7.0. In 2003, AOL closed its Netscape software division and the 
+Mozilla code is now entirely controlled by the non-profit Mozilla Foundation. During development the 
+Communicator code was completely re-written and new technologies were invented such as 
+<a href="http://www.mozilla.org/projects/xul/">XUL</a>, a cross platform UI definition language using 
+XML, CSS and JavaScript. The <a href="http://www.mozilla.org/products/mozilla1.x/">Mozilla Suite</a> of 
+a Browser, Mail and Newsreader, HTML Composer and an Address Book is now being superseded by 
+<a href="http://www.mozilla.org/products/firefox/">Firefox</a> (browser), 
+<a href="http://www.mozilla.org/products/thunderbird/">Thunderbird</a> (email), and 
+<a href="http://www.nvu.com/">Nvu</a> (composer). Behind all these applications is the <a href="http://www.mozilla.org/newlayout/faq.html">Gecko Runtime Environment</a> (GRE) - a fast, free 
+and standards compliant HTML display engine.</p>
+
+  <p>All the Mozilla code is released under an <a href="http://www.mozilla.org/MPL/">MPL/GPL/LGPL 
+tri-license</a> so you can choose the license that suits your needs when using it. For C programmers, 
+building applications based on the Mozilla code is easy, they can just download the code and start 
+hacking immediately but there is also an option for the rest of us. There is an ActiveX control, 
+written by <a href="http://www.iol.ie/%7Elocka/mozilla/mozilla.htm">Adam Lock</a>, which can be used 
+to embed the GRE in other applications. This Mozilla ActiveX Control is written to emulate the familiar 
+IE based <code>TWebBrowser</code>.</p>
+
+  <p>There is little documentation for the Mozilla Control but you can use the <a href="http://msdn.microsoft.com/library/default.asp?url=/workshop/browser/webbrowser/reference/objects/webbrowser.asp">MSDN
+WebBrowser documentation</a> and ask questions in the <a href="http://groups.google.com/groups?hl=en&amp;lr=lang_en&amp;ie=UTF-8&amp;group=netscape.public.mozilla.embedding">netscape.public.mozilla.embedding</a>
+newsgroup.</p>
+
+  <h4>Installing the Mozilla ActiveX Control</h4>
+
+  <p>The Mozilla ActiveX Control requires files that do not ship with a standard GRE (or with Mozilla or 
+Firefox) so the author provides a package that installs the GRE and support files and registers the 
+control for you. An additional GRE is installed, even if the same version is already on your PC, in a 
+directory you specify. I don't like this way of doing things because the installer requires user input 
+which prevents us creating a seamless installer for our own applications. I plan to work out which files 
+are required for a future article about installing the control with an application.</p>
+
+  <p style="text-align: center;">
+    <a href="http://www.iol.ie/%7Elocka/mozilla/MozillaControl15.exe">Download Mozilla ActiveX Control v1.5</a><br>
+    <a href="http://www.iol.ie/%7Elocka/mozilla/MozillaControl16.exe">Download Mozilla ActiveX Control v1.6</a><br>
+    <a href="http://www.iol.ie/%7Elocka/mozilla/MozillaControl171.exe">Download Mozilla ActiveX Control v1.7.1</a><br>
+  </p>
+
+  <h4>Importing the Control into Delphi</h4>
+
+  <p>You can now import the control into Delphi in the normal way: Component | Import ActiveX 
+Control | Mozilla Control 1.0 Type Library | Install. The control will appear on the ActiveX page 
+of the Component Palette as <code>TMozillaControl</code>; it doesn't contain its own image so it 
+will use Delphi's default one. The archive accompanying this article contains a *.dcr file that 
+you can use to replace the generated one for a nicer image.</p>
+
+  <p>I've received reports from Chris Bensen at Borland that the control doesn't always show up in the 
+Import ActiveX Control wizard in Delphi 7 and Delphi 2005. If this happens to you, start a command prompt, 
+go to the directory where you installed the control and type <code>regsvr32 mozctlx.dll</code>. The 
+control should now show up in the IDE as expected. <em>Do not register any other DLLs!</em></p>
+
+  <h4>Building a Browser Framework</h4>
+
+  <p>Since the Mozilla Control is designed to directly replace <code>TWebBrowser</code>, I will 
+first describe a browser framework that could be used to demonstrate or test either control. The 
+main form will have a main menu and be composed of a <code>TPanel</code> at the top that contains 
+a <code>TToolBar</code>, a <code>TEdit</code> for entering URLs and a <code>TAnimate</code> for 
+the throbber, another <code>TPanel</code> below for the browser control and at the bottom a 
+<code>TStatusBar</code> with a progress meter (<code>TProgressBar</code>). The status bar needs 
+2 panels, the first 150 width for the progress meter and the rest for status messages.</p>
+
+  <p class="image-title">
+    <img src="taming_the_lizard_with_delphi_files/taminglizard_figure1_tfrmmain.png" title="Figure 1 - TfrmMain" alt="TfrmMain" style="width: 500px; height: 333px;"><br>
+    Figure 1 - TfrmMain
+  </p>
+
+  <p>The main menu has the following items:</p>
+
+  <ul class="bulletList">
+    <li class="bulletList">File: Open, Save As, Page Setup, Print Preview, Print, Exit</li>
+    <li class="bulletList">Edit: Copy, Clear Selection, Select All, Preferences</li>
+    <li class="bulletList">Go: Back, Forward, Stop, Reload, Home</li>
+    <li class="bulletList">Help: About</li>
+  </ul>
+
+  <p>The toolbar has the following buttons: Back, Forward, Stop, Refresh, Home, Print and 
+Properties. I'm using several <code>TImageList</code> components for the main menu and toolbar 
+button images and for the throbber (page loading animation) I used 'Delphi6\Demos\CoolStuf\Cool.avi'.</p>
+
+  <h4>Adding TMozillaControl to a Form</h4>
+
+  <p>Adding a <code>TMozillaControl</code> to a form presents us with some unusual problems. For 
+a start you can't select it by clicking on it so you have to use the Object Inspector or Object 
+Treeview (use this if you need to delete it). And, it is not possible to drag or stretch the 
+control so you have to change its <code>Top</code>, <code>Left</code>, etc properties in the 
+Object Inspector to position it. Also, it doesn't have an <code>Anchors</code> property so I 
+recommend that you place it on a <code>TPanel</code> and set <code>Align := alClient</code> as I 
+have done.</p>
+
+  <p>I don't know why the Mozilla Control has these problems (or why it is lime green in the IDE) 
+but they are minor inconveniences rather than major bugs.</p>
+
+  <h4>Connecting TMozillaControl to the Framework</h4>
+
+  <p>Now that the Mozilla Control is correctly placed on the form it is time to start connecting 
+it to the rest of the GUI. The <a href="#TfrmMain.mBackClick">methods for the Go menu</a> (and 
+buttons) are identical to using <code>TWebBrowser</code>. We just call the relevant methods of 
+the control, e.g. <code>mzGecko.GoBack</code>.</p>
+
+  <p><code>TMozillaControl</code> provides overloaded <code>Navigate</code> methods which are 
+identical to <code>TWebBrowser</code>:</p>
+
+  <p class="code-methods1"><code>procedure Navigate(const URL: WideString); overload;</code></p>
+
+  <p class="code-methods2"><code>procedure Navigate(const URL:WideString; var Flags:OleVariant);overload;</code></p>
+
+  <p class="code-methods1"><code>procedure Navigate(const URL: WideString; var Flags: OleVariant; 
+var TargetFrameName: OleVariant); overload;</code></p>
+
+  <p class="code-methods2"><code>procedure Navigate(const URL: WideString; var Flags: OleVariant; 
+var TargetFrameName: OleVariant; var PostData: OleVariant); overload;</code></p>
+
+  <p class="code-methods1"><code>procedure Navigate(const URL: WideString; var Flags: OleVariant; 
+var TargetFrameName: OleVariant; var PostData: OleVariant; var Headers: OleVariant); overload;</code></p>
+
+  <p>We use one of these in <a href="#TfrmMain.edtAddressKeyDown"><code>TfrmMain.edtAddressKeyDown</code></a> 
+to browse to the given URL when Enter is pressed.</p>
+
+  <p>The <code>OnStatusTextChange</code> and <code>OnCommandStateChange</code> events work exactly 
+as with <code>TWebBrowser</code>. The <code>Text</code> parameter of <a href="#TfrmMain.mzGeckoStatusTextChange"><code>OnStatusTextChange</code></a> is displayed in the 
+second panel of the status bar. <a href="#TfrmMain.mzGeckoCommandStateChange"><code>OnCommandStateChange</code></a> 
+is used to enable and disable the Back and Forward buttons and menu items.</p>
+
+<p>Initially I had some trouble using the <a href="#TfrmMain.mzGeckoProgressChange"><code>OnProgressChange</code></a> 
+event to control a progress meter. The code I have used before with <code>TWebBrowser</code> didn't 
+work but Sterling Bates suggested an alternative that works perfectly. The new code simply shows the 
+progress as a percentage of the maximum. To complete this feature the progress is set to 0 in 
+<a href="#TfrmMain.mzGeckoDownloadComplete"><code>OnDownloadComplete</code></a>.
+
+  </p><p>All browsers have an animation called a throbber which tells the user that a page is loading. 
+We start this animation in the control's <a href="#TfrmMain.mzGeckoDownloadBegin"><code>OnDownloadBegin</code></a> 
+event and stop it in the <a href="#TfrmMain.mzGeckoDownloadComplete"><code>OnDownloadComplete</code></a> 
+event. We also use the latter event to ensure that <code>edtAddress</code> shows the correct URL.</p>
+
+  <h4>Open URL Dialog</h4>
+
+  <p class="image-title">
+    <img style="width: 316px; height: 100px;" alt="Open URL Dialog" title="Figure 2 - Open URL Dialog" src="taming_the_lizard_with_delphi_files/taminglizard_figure2_opendialog.png"><br>
+    Figure 2 - Open URL Dialog</p>
+
+  <p>Our browser needs a dialog that allows the user to open a URL or file. There is only one 
+complication when using <code>TMozillaControl</code>, when opening a local file any relative images 
+or links with a backslash in their path won't load. This is easy to fix, we just need a function 
+that replaces any backslash with slash before we attempt to use the URL. I used the <a href="#TfrmMain.CharReplace"><code>CharReplace</code></a> function from the <a href="http://www.delphi-jedi.org/">JEDI Code Library</a> (<code>JclStrings.pas</code>) and have 
+copied it into the code for the reader's benefit.</p>
+
+  <h4>Preferences</h4>
+
+  <p class="image-title">
+    <img src="taming_the_lizard_with_delphi_files/taminglizard_figure3_preferencesdialog.png" title="Figure 3 - Preferences Dialog" alt="Preferences Dialog" style="width: 255px; height: 203px;"><br>
+    Figure 3 - Preferences Dialog</p>
+
+  <p>Preferences are also pretty simple. I've stored them in global variables and they are read 
+and written when the dialog is created and closed. I used the <code>CharReplace</code> function 
+again to ensure that the start and home pages will be valid URLs.</p>
+
+  <p>Trying to show the start page in <code><a href="#TfrmMain.FormCreate">TfrmMain.FormCreate</a></code> 
+gave an unspecified error, probably because the control wasn't properly initialised yet. So, we 
+must do it in <a href="#TfrmMain.FormShow"><code>TfrmMain.FormShow</code></a> if the application 
+has just started.</p>
+
+  <h4>Printing and EOleExceptions</h4>
+
+  <p>If you've used <code>TWebBrowser</code> before you'll know that printing is an OLE command 
+invoked via the <code>IOleCommandTarget</code> interface by calling the control's <code>ExecWB</code> 
+method. You'll also know that to avoid an <code>EOleException</code> we need to initialise the OLE 
+library before we use it and free it when we've finished. This is best done in <a href="#initialization"><code>initialization</code> and <code>finalization</code></a> sections. 
+We use this code to <a href="#TfrmMain.mPrintClick">Print</a> a page:</p>
+
+  <p style="text-align: center;"><code>mzGecko.ExecWB(OLECMDID_PRINT, OLECMDEXECOPT_PROMPTUSER);</code></p>
+
+  <p>Initially everything went wrong when I tried <a href="#TfrmMain.mPageSetupClick">Page Setup</a> 
+(<code>OLECMDID_PAGESETUP</code>) and <a href="#TfrmMain.mPrintPreviewClick">Print Preview</a> 
+(<code>OLECMDID_PRINTPREVIEW</code>). Both commands caused an exception - EOleException: Trying to 
+revoke a drop target that has not been registered. In order to find out what was going wrong I talked 
+to Adam Lock who recommended I look at the source code. I don't do C but he gave me a few pointers 
+and I bravely dived into 
+<a href="http://lxr.mozilla.org/seamonkey/source/embedding/browser/activex/src/control/MozillaBrowser.h"><code>MozillaBrowser.h</code></a>. :) 
+I immediately noticed that <code>OLECMDID_PRINTPREVIEW</code> is not defined and reported it as 
+<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=214884">bug #214884</a>.</p>
+
+  <p class="image-title">
+    <img style="width: 350px; height: 95px;" alt="EOleException" title="Figure 4 - EOleException" src="taming_the_lizard_with_delphi_files/taminglizard_figure4_eoleexception.png"><br>
+    Figure 4 - EOleException</p>
+
+  <p><code>OLECMDID_PAGESETUP</code> is defined in <code>MozillaBrowser.h</code> but gave the same 
+exception so I reported it as <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=225045">bug #225045</a>. 
+Since then, Adam Lock has looked into the problem. He expected <code>OLECMDID_PAGESETUP</code> to 
+show a dialog with the message 'No page setup yet!'. The problem was a bug in the way the control 
+tests the second parameter passed in <code>ExecWB</code>. Prior to v1.7, the answer is to pass 
+<code>OLECMDEXECOPT_DODEFAULT</code> instead of <code>OLECMDEXECOPT_PROMPTUSER</code>. Adam has now 
+corrected this and implemented a Page Setup dialog in v1.7. The dialog has all the expected options 
+and a nice headers and footers page but measurements are in inches although the dialog says 
+millimeters. Also, these settings are not saved so they have to be entered every time an application  
+is run. These problems are fairly minor and I hope to see them fixed soon.</p>
+
+  <p class="image-title">
+    <img style="width: 255px; height: 233px;" alt="Page Setup" title="Figure 5 - Page Setup Dialog" src="taming_the_lizard_with_delphi_files/taminglizard_figure5_pagesetup.png"><br>
+    Figure 5 - Page Setup Dialog</p>
+
+  <p>Another File menu command gave me the same exception, Save As. The problem when calling 
+<code>OLECMDID_SAVEAS</code> is the second parameter again. This has the same workaround prior to 
+v1.7 and has also been fixed.</p>
+
+  <h4>The Edit Menu</h4>
+
+  <p>Several edit menu commands are also invoked via <code>IOleCommandTarget</code> - <a href="#TfrmMain.mCopyClick">Copy</a> (<code>OLECMDID_COPY</code>), <a href="#TfrmMain.mSelectAllClick">Select All</a> (<code>OLECMDID_SELECTALL</code>) and Clear 
+Selection (<code>OLECMDID_CLEARSELECTION</code>). The first two commands work as per 
+<code>TWebBrowser</code> but with <a href="#TfrmMain.mClearSelectionClick">Clear Selection</a> 
+we get an <code>EOleException</code> again. Looking at the source, <code>OLECMDID_CLEARSELECTION</code> 
+is not defined in <code>MozillaBrowser.h</code>; <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=214884">Bugzilla #214884</a>.</p>
+
+  <h4>Conclusion</h4>
+
+  <p>The Mozilla Control can be used to display HTML and provide basic browsing functionality in a 
+Delphi application. It is designed to be a close copy of <code>TWebBrowser</code> to make it easier 
+to use but is missing some functionality and has a few quirks of its own. Although development of 
+the control is slow there is work being done and some of the bugs have been fixed recently. There are 
+<span style="text-decoration: line-through;">three</span> two main problems that prevent us providing 
+some basic features:</p>
+
+  <ul class="bulletList">
+    <li class="bulletList"><span style="text-decoration: line-through;">Page Setup dialog not 
+implemented; <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=225045">Bugzilla #225045</a></span></li>
+    <li class="bulletList">Print Preview command doesn't exist; <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=214884">Bugzilla #214884</a></li>
+    <li class="bulletList">Clear Selection command doesn't exist; <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=214884">Bugzilla #214884</a></li>
+  </ul>
+
+  <p>The latest version, the Mozila ActiveX Control v1.7.1, is based on the Mozilla v1.7.2 codebase. 
+This includes the recent <a href="http://www.mozillazine.org/talkback.html?article=4964"><code>shell:</code> 
+protocol security patch</a> as well as many other speed and stability improvements. I recommend 
+everyone to use this version in their applications.</p>
+
+  <p>In future articles I plan to explain how to automatically install the Mozilla Control with an 
+application and explore more complex features like DOM support. The  code accompanying this article 
+is a basic browser framework that can be used to demonstrate or test the Mozilla Control. Feel free 
+to use and abuse it as you wish.</p>
+
+  <p class="image-title">
+    <img style="width: 500px; height: 323px;" alt="Demo Browser" title="Figure 6 - Demo Browser" src="taming_the_lizard_with_delphi_files/taminglizard_figure6_demobrowser.png"><br>
+    Figure 6 - Demo Browser</p>
+
+  <h4>References</h4>
+
+  <p id="references">
+    <a href="http://www.mozilla.org/">Mozilla Foundation</a><br>
+    <a href="http://www.iol.ie/%7Elocka/mozilla/mozilla.htm">Mozilla Control</a><br>
+    <a href="http://lxr.mozilla.org/seamonkey/source/embedding/browser/activex/src/control/">Mozilla Control Source Code</a><br>
+    <a href="http://bugzilla.mozilla.org/">Bugzilla</a><br>
+    <a href="news://netscape.public.mozilla.embedding">netscape.public.mozilla.embedding</a> (via default Newsreader)<br>
+    <a href="http://groups.google.com/groups?hl=en&amp;lr=lang_en&amp;ie=UTF-8&amp;group=netscape.public.mozilla.embedding">netscape.public.mozilla.embedding</a> (via Google Groups)<br>
+    <a href="http://msdn.microsoft.com/library/default.asp?url=/workshop/browser/webbrowser/reference/objects/webbrowser.asp"> MSDN WebBrowser Reference</a><br>
+    <a href="http://www.delphi-jedi.org/">Project JEDI</a><br>
+  </p>
+
+  <br>
+  <h4><a name="SourceCode">The Code</a></h4>
+
+<p style="font-size: 8pt; text-align: left;">
+<code>
+unit MainForm;<br>
+{Main Form unit for Gecko Browser, a demo of embedding Gecko in Delphi 5+ apps}<br>
+{v1.0 Written by Dave Murray &lt;<a class="linkification-ext" href="mailto:irongut@vodafone.net" title="Linkification: mailto:irongut@vodafone.net">irongut@vodafone.net</a>&gt;, October - November 2003}<br>
+{v1.1 Written by Dave Murray, March 2004}<br>
+{v1.2 Written by Dave Murray, April + July 2004}<br>
+{Gecko Browser v1.2 was written using Mozilla ActiveX Control v1.7.1}<br>
+<br>
+<br>
+interface<br>
+<br>
+uses<br>
+&nbsp; Windows, Messages, SysUtils, Variants, Classes, Graphics,
+Controls, Forms,<br>
+&nbsp; Dialogs, ComCtrls, StdCtrls, ToolWin, ExtCtrls, ImgList, Menus,
+OleCtrls,<br>
+&nbsp; ActiveX, MOZILLACONTROLLib_TLB;<br>
+<br>
+type<br>
+&nbsp; TfrmMain = class(TForm)<br>
+&nbsp;&nbsp;&nbsp; mnmnuMain: TMainMenu;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mFile: TMenuItem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mOpen: TMenuItem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mSaveAs: TMenuItem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; N1: TMenuItem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mPageSetup: TMenuItem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mPrintPreview: TMenuItem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mPrint: TMenuItem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; N2: TMenuItem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mExit: TMenuItem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mEdit: TMenuItem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mCopy: TMenuItem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mClearSelection: TMenuItem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mSelectAll: TMenuItem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; N4: TMenuItem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mPreferences: TMenuItem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mGo: TMenuItem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mBack: TMenuItem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mForward: TMenuItem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mStop: TMenuItem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mReload: TMenuItem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; N3: TMenuItem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mHome: TMenuItem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mHelp: TMenuItem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mAbout: TMenuItem;<br>
+&nbsp;&nbsp;&nbsp; pnlBtnNav: TPanel;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tlbrButtons: TToolBar;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tlbtnBack: TToolButton;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tlbtnForward: TToolButton;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tlbtnStop: TToolButton;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tlbtnReload: TToolButton;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tlbtnHome: TToolButton;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tlbtnSplit1: TToolButton;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tlbtnPrint: TToolButton;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tlbtnSplit2: TToolButton;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tlbtnProperties: TToolButton;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tlbtnSplit3: TToolButton;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; edtAddress: TEdit;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pnlThrobber: TPanel;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; nmtThrobber: TAnimate;<br>
+&nbsp;&nbsp;&nbsp; pnlBrowser: TPanel;<br>
+&nbsp;&nbsp;&nbsp; stsbrStatus: TStatusBar;<br>
+&nbsp;&nbsp;&nbsp; imglstMainMenu: TImageList;<br>
+&nbsp;&nbsp;&nbsp; imglstButtons: TImageList;<br>
+&nbsp;&nbsp;&nbsp; imglstButtonsHot: TImageList;<br>
+&nbsp;&nbsp;&nbsp; imglstButtonsDisabled: TImageList;<br>
+&nbsp;&nbsp;&nbsp; prgrssbrProgress: TProgressBar;<br>
+&nbsp;&nbsp;&nbsp; mzGecko: TMozillaBrowser;<br>
+&nbsp;&nbsp;&nbsp; {### FORM METHODS ###}<br>
+&nbsp;&nbsp;&nbsp; procedure FormCreate(Sender: TObject);<br>
+&nbsp;&nbsp;&nbsp; procedure FormShow(Sender: TObject);<br>
+&nbsp;&nbsp;&nbsp; {### MENUITEM METHODS}<br>
+&nbsp;&nbsp;&nbsp; procedure mOpenClick(Sender: TObject);<br>
+&nbsp;&nbsp;&nbsp; procedure mSaveAsClick(Sender: TObject);<br>
+&nbsp;&nbsp;&nbsp; procedure mPageSetupClick(Sender: TObject);<br>
+&nbsp;&nbsp;&nbsp; procedure mPrintPreviewClick(Sender: TObject);<br>
+&nbsp;&nbsp;&nbsp; procedure mPrintClick(Sender: TObject);<br>
+&nbsp;&nbsp;&nbsp; procedure mExitClick(Sender: TObject);<br>
+&nbsp;&nbsp;&nbsp; procedure mCopyClick(Sender: TObject);<br>
+&nbsp;&nbsp;&nbsp; procedure mClearSelectionClick(Sender: TObject);<br>
+&nbsp;&nbsp;&nbsp; procedure mSelectAllClick(Sender: TObject);<br>
+&nbsp;&nbsp;&nbsp; procedure mPreferencesClick(Sender: TObject);<br>
+&nbsp;&nbsp;&nbsp; procedure mBackClick(Sender: TObject);<br>
+&nbsp;&nbsp;&nbsp; procedure mForwardClick(Sender: TObject);<br>
+&nbsp;&nbsp;&nbsp; procedure mStopClick(Sender: TObject);<br>
+&nbsp;&nbsp;&nbsp; procedure mReloadClick(Sender: TObject);<br>
+&nbsp;&nbsp;&nbsp; procedure mHomeClick(Sender: TObject);<br>
+&nbsp;&nbsp;&nbsp; procedure mAboutClick(Sender: TObject);<br>
+&nbsp;&nbsp;&nbsp; {### MOZILLA CONTROL METHODS ###}<br>
+&nbsp;&nbsp;&nbsp; procedure mzGeckoStatusTextChange(Sender: TObject;
+const Text: WideString);<br>
+&nbsp;&nbsp;&nbsp; procedure mzGeckoProgressChange(Sender: TObject;
+Progress, ProgressMax: Integer);<br>
+&nbsp;&nbsp;&nbsp; procedure mzGeckoCommandStateChange(Sender: TObject;
+Command: Integer; Enable: WordBool);<br>
+&nbsp;&nbsp;&nbsp; procedure mzGeckoDownloadBegin(Sender: TObject);<br>
+&nbsp;&nbsp;&nbsp; procedure mzGeckoDownloadComplete(Sender: TObject);<br>
+&nbsp;&nbsp;&nbsp; {### MISC METHODS ###}<br>
+&nbsp;&nbsp;&nbsp; procedure edtAddressKeyDown(Sender: TObject; var
+Key: Word; Shift: TShiftState);<br>
+&nbsp; private<br>
+&nbsp;&nbsp;&nbsp; { Private declarations }<br>
+&nbsp;&nbsp;&nbsp; function CharReplace(var S: AnsiString; const
+Search, Replace: AnsiChar): Integer;<br>
+&nbsp; public<br>
+&nbsp;&nbsp;&nbsp; { Public declarations }<br>
+&nbsp; end;<br>
+<br>
+var<br>
+&nbsp; frmMain: TfrmMain;<br>
+<br>
+implementation<br>
+<br>
+{$R *.dfm}<br>
+<br>
+uses CommCtrl, Globals, OpenForm, PrefsForm;<br>
+<br>
+<br>
+var<br>
+&nbsp; ON_START : boolean;<br>
+<br>
+<br>
+{### FORM METHODS ###}<br>
+<br>
+<a name="TfrmMain.FormCreate"></a><br>
+procedure TfrmMain.FormCreate(Sender: TObject);<br>
+{initialise...}<br>
+begin<br>
+&nbsp; {setup window}<br>
+&nbsp; Application.Title := PROGRAM_TITLE;<br>
+&nbsp; Self.Caption := PROGRAM_TITLE;<br>
+&nbsp; {move progress bar to status bar's first panel}<br>
+&nbsp; prgrssbrProgress.Parent := stsbrStatus;<br>
+&nbsp; prgrssbrProgress.Top := 2;<br>
+&nbsp; prgrssbrProgress.Left := 2;<br>
+&nbsp; prgrssbrProgress.Height := stsbrStatus.Height - 2;<br>
+&nbsp; prgrssbrProgress.Width := stsbrStatus.Panels[0].Width - 2;<br>
+&nbsp; prgrssbrProgress.Position := 0;<br>
+&nbsp; prgrssbrProgress.Refresh;<br>
+&nbsp; {setup vars}<br>
+&nbsp; ON_START := true;<br>
+end; {procedure TfrmMain.FormCreate}<br>
+<a name="TfrmMain.FormShow"></a><br>
+procedure TfrmMain.FormShow(Sender: TObject);<br>
+{navigate to start page if first show}<br>
+begin<br>
+&nbsp; if ON_START then begin<br>
+&nbsp;&nbsp;&nbsp; ON_START := false;<br>
+&nbsp;&nbsp;&nbsp; {show start page}<br>
+&nbsp;&nbsp;&nbsp; case START_TYPE of<br>
+&nbsp; //&nbsp;&nbsp;&nbsp; 0 : {blank page}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 :
+mzGecko.Navigate(WideString(HOME_ADDRESS)); {home page}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2 :
+mzGecko.Navigate(WideString(START_ADDRESS)); {custom start page}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end; {case START_TYPE..}<br>
+&nbsp;&nbsp;&nbsp; end; {if ON_START..}<br>
+end; {procedure TfrmMain.FormShow}<br>
+<br>
+<br>
+{### MENUITEM METHODS ###}<br>
+<br>
+<a name="TfrmMain.mOpenClick"></a><br>
+procedure TfrmMain.mOpenClick(Sender: TObject);<br>
+{open web page from URL or file}<br>
+var<br>
+&nbsp; Address : string;<br>
+&nbsp; frmOpen: TfrmOpen;<br>
+begin<br>
+&nbsp; {show open page dialog - frmOpen}<br>
+&nbsp; frmOpen := TfrmOpen.Create(self);<br>
+&nbsp; try<br>
+&nbsp;&nbsp;&nbsp; if (frmOpen.ShowModal = mrOk) then begin<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {retrieve address}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Address := frmOpen.edtURL.Text;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if not(trim(Address) = '') then begin<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {navigate to address}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CharReplace(Address, '\', '/'); {correct bug with relative links + images}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+mzGecko.Navigate(WideString(Address));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end; {if not(Address = ''..}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end; {if mrOk..}<br>
+&nbsp; finally<br>
+&nbsp;&nbsp;&nbsp; {free dialog}<br>
+&nbsp;&nbsp;&nbsp; frmOpen.Free;<br>
+&nbsp;&nbsp;&nbsp; end; {try..finally..}<br>
+end; {procedure TfrmMain.mOpenClick}<br>
+<a name="TfrmMain.mSaveAsClick"></a><br>
+procedure TfrmMain.mSaveAsClick(Sender: TObject);<br>
+{show Save As dialog}<br>
+{Control &lt;= v1.6: OLECMDEXECOPT_PROMPTUSER causes EOleException due to bug in flag<br>
+&nbsp;tests, use OLECMDEXECOPT_DODEFAULT instead; Bugzilla 2250454.<br>
+&nbsp;Control v1.7: Flag tests fixed so can use OLECMDEXECOPT_PROMPTUSER; Bugzilla 2250454<br>
+var<br>
+&nbsp; PageFilename : OleVariant;<br>
+begin<br>
+&nbsp; try<br>
+&nbsp;&nbsp;&nbsp; {ensure not busy}<br>
+&nbsp;&nbsp;&nbsp; if not(mzGecko.Busy) then begin<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PageFilename := mzGecko.LocationName + '.html';<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {show save as dialog}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mzGecko.ExecWB(OLECMDID_SAVEAS,
+OLECMDEXECOPT_PROMPTUSER {OLECMDEXECOPT_DODEFAULT}, PageFilename);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end; {if not Busy..}<br>
+&nbsp; except<br>
+&nbsp;&nbsp;&nbsp; {handle exceptions}<br>
+&nbsp;&nbsp;&nbsp; on E : Exception do<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MessageDlg('ERROR: Unable to show Save As dialog. ' + #13 + E.ClassName<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; + ': ' + E.Message + '.', mtError, [mbOk], 0);<br>
+&nbsp;&nbsp;&nbsp; end; {try..except..}<br>
+end; {procedure TfrmMain.mSaveAsClick}<br>
+<a name="TfrmMain.mPageSetupClick"></a><br>
+procedure TfrmMain.mPageSetupClick(Sender: TObject);<br>
+{show Page Setup dialog}<br>
+{Control &lt;= v1.6: OLECMDEXECOPT_PROMPTUSER causes EOleException due to bug in flag tests,<br>
+&nbsp;use OLECMDEXECOPT_DODEFAULT instead + get 'not implemented' dialog; Bugzilla 2250454.<br>
+&nbsp;Control v1.7: Flag tests fixed so can use OLECMDEXECOPT_PROMPTUSER and Page Setup<br>
+&nbsp;has been implemented; Bugzilla 2250454 fixed.}<br>
+begin<br>
+&nbsp; try<br>
+&nbsp;&nbsp;&nbsp; {ensure not busy or printing before showing dialog}<br>
+&nbsp;&nbsp;&nbsp; if not(mzGecko.Busy) and (mzGecko.QueryStatusWB(OLECMDID_PAGESETUP) &gt; 0)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {show page setup dialog}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; then mzGecko.ExecWB(OLECMDID_PAGESETUP, OLECMDEXECOPT_PROMPTUSER {OLECMDEXECOPT_DODEFAULT});<br>
+&nbsp; except<br>
+&nbsp;&nbsp;&nbsp; {handle exceptions}<br>
+&nbsp;&nbsp;&nbsp; on E : Exception do<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MessageDlg('ERROR: Unable to show Page Setup dialog. ' + #13 + E.ClassName<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; + ': ' + E.Message + '.', mtError, [mbOk], 0);<br>
+&nbsp;&nbsp;&nbsp; end; {try..except..}<br>
+end; {procedure TfrmMain.mPageSetupClick}<br>
+<a name="TfrmMain.mPrintPreviewClick"></a><br>
+procedure TfrmMain.mPrintPreviewClick(Sender: TObject);<br>
+{show Print Preview window}<br>
+{OLECMDID_PRINTPREVIEW not currently supported in Mozilla Control
+although<br>
+&nbsp;QueryStatusWB returns OLECMDF_SUPPORTED so disable menu item.<br>
+&nbsp;OLECMDID_PRINTPREVIEW not defined in MozillaBrowser.h; Bugzilla
+214884.}<br>
+begin<br>
+&nbsp; try<br>
+&nbsp;&nbsp;&nbsp; {ensure not busy or printing before showing dialog}<br>
+&nbsp;&nbsp;&nbsp; if not(mzGecko.Busy) and
+(mzGecko.QueryStatusWB(OLECMDID_PRINTPREVIEW) &gt; 0)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {show Print Preview window}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; then
+mzGecko.ExecWB(OLECMDID_PRINTPREVIEW, OLECMDEXECOPT_PROMPTUSER);<br>
+&nbsp; except<br>
+&nbsp;&nbsp;&nbsp; {handle exceptions}<br>
+&nbsp;&nbsp;&nbsp; on E : Exception do<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MessageDlg('ERROR: Unable to show Print
+Preview dialog. ' + #13 + E.ClassName<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; + ': ' + E.Message + '.',
+mtError, [mbOk], 0);<br>
+&nbsp;&nbsp;&nbsp; end; {try..except..}<br>
+end; {procedure TfrmMain.mPrintPreviewClick}<br>
+<a name="TfrmMain.mPrintClick"></a><br>
+procedure TfrmMain.mPrintClick(Sender: TObject);<br>
+{print current page}<br>
+begin<br>
+&nbsp; try<br>
+&nbsp;&nbsp;&nbsp; {ensure not busy or printing before showing dialog}<br>
+&nbsp;&nbsp;&nbsp; if not(mzGecko.Busy) and
+(mzGecko.QueryStatusWB(OLECMDID_PRINT) &gt; 0)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {show Print dialog}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; then mzGecko.ExecWB(OLECMDID_PRINT,
+OLECMDEXECOPT_PROMPTUSER);<br>
+&nbsp; except<br>
+&nbsp;&nbsp;&nbsp; {handle exceptions}<br>
+&nbsp;&nbsp;&nbsp; on E : Exception do<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MessageDlg('ERROR: Unable to show Print
+dialog. ' + #13 + E.ClassName<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; + ': ' + E.Message + '.',
+mtError, [mbOk], 0);<br>
+&nbsp;&nbsp;&nbsp; end; {try..except..}<br>
+end; {procedure TfrmMain.mPrintClick}<br>
+<a name="TfrmMain.mExitClick"></a><br>
+procedure TfrmMain.mExitClick(Sender: TObject);<br>
+{close application}<br>
+begin<br>
+&nbsp; {close frmMain - closes app}<br>
+&nbsp; Self.Close;<br>
+end; {procedure TfrmMain.mExitClick}<br>
+<a name="TfrmMain.mCopyClick"></a><br>
+procedure TfrmMain.mCopyClick(Sender: TObject);<br>
+{copy selection to clipboard}<br>
+begin<br>
+&nbsp; try<br>
+&nbsp;&nbsp;&nbsp; {copy selection}<br>
+&nbsp;&nbsp;&nbsp; mzGecko.ExecWB(OLECMDID_COPY,
+OLECMDEXECOPT_DODEFAULT);<br>
+&nbsp; except<br>
+&nbsp;&nbsp;&nbsp; {handle exceptions}<br>
+&nbsp;&nbsp;&nbsp; on E : Exception do begin<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MessageDlg('ERROR:'#13'Unable to Copy
+selected text to clipboard.' + #13 + E.ClassName<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; + ': ' + E.Message + '.',
+mtError, [mbOk], 0);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end; {on Exception..}<br>
+&nbsp;&nbsp;&nbsp; end; {try..except..}<br>
+end; {procedure TfrmMain.mCopyClick}<br>
+<a name="TfrmMain.mClearSelectionClick"></a><br>
+procedure TfrmMain.mClearSelectionClick(Sender: TObject);<br>
+{clear selection}<br>
+{OLECMDID_CLEARSELECTION not currently supported in Mozilla Control
+although<br>
+&nbsp;QueryStatusWB returns OLECMDF_SUPPORTED so disable menu item.<br>
+&nbsp;OLECMDID_CLEARSELECTION not defined in MozillaBrowser.h; Bugzilla
+214884.}<br>
+begin<br>
+&nbsp; try<br>
+&nbsp;&nbsp;&nbsp; {clear selection}<br>
+&nbsp;&nbsp;&nbsp; mzGecko.ExecWB(OLECMDID_CLEARSELECTION,
+OLECMDEXECOPT_DODEFAULT);<br>
+&nbsp; except<br>
+&nbsp;&nbsp;&nbsp; {handle exceptions}<br>
+&nbsp;&nbsp;&nbsp; on E : Exception do begin<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MessageDlg('ERROR:'#13'Unable to Clear
+the current selection.' + #13 + E.ClassName<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; + ': ' + E.Message + '.',
+mtError, [mbOk], 0);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end; {on Exception..}<br>
+&nbsp;&nbsp;&nbsp; end; {try..except..}<br>
+end; {procedure TfrmMain.mClearSelectionClick}<br>
+<a name="TfrmMain.mSelectAllClick"></a><br>
+procedure TfrmMain.mSelectAllClick(Sender: TObject);<br>
+{select entire page}<br>
+begin<br>
+&nbsp; try<br>
+&nbsp;&nbsp;&nbsp; {select all}<br>
+&nbsp;&nbsp;&nbsp; mzGecko.ExecWB(OLECMDID_SELECTALL,
+OLECMDEXECOPT_DODEFAULT);<br>
+&nbsp; except<br>
+&nbsp;&nbsp;&nbsp; {handle exceptions}<br>
+&nbsp;&nbsp;&nbsp; on E : Exception do begin<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MessageDlg('ERROR:'#13'Unable to Select
+All text on page.' + #13 + E.ClassName<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; + ': ' + E.Message + '.',
+mtError, [mbOk], 0);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end; {on Exception..}<br>
+&nbsp;&nbsp;&nbsp; end; {try..except..}<br>
+end; {procedure TfrmMain.mSelectAllClick}<br>
+<a name="TfrmMain.mPreferencesClick"></a><br>
+procedure TfrmMain.mPreferencesClick(Sender: TObject);<br>
+{edit Gecko Browser prefs}<br>
+var<br>
+&nbsp; frmPrefs: TfrmPrefs;<br>
+begin<br>
+&nbsp; {show Preferences dialog - frmPrefs}<br>
+&nbsp; frmPrefs := TfrmPrefs.Create(self);<br>
+&nbsp; try<br>
+&nbsp;&nbsp;&nbsp; if (frmPrefs.ShowModal = mrOk) then begin<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {correct addresses}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CharReplace(START_ADDRESS, '\', '/');
+{correct bug with relative links + images}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CharReplace(HOME_ADDRESS, '\', '/');
+{correct bug with relative links + images}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end; {if mrOk..}<br>
+&nbsp; finally<br>
+&nbsp;&nbsp;&nbsp; {free dialog}<br>
+&nbsp;&nbsp;&nbsp; frmPrefs.Free;<br>
+&nbsp;&nbsp;&nbsp; end; {try..finally..}<br>
+end; {procedure TfrmMain.mPreferencesClick}<br>
+<a name="TfrmMain.mBackClick"></a><br>
+procedure TfrmMain.mBackClick(Sender: TObject);<br>
+{go Back a page}<br>
+begin<br>
+&nbsp; {back}<br>
+&nbsp; mzGecko.GoBack;<br>
+end; {procedure TfrmMain.mBackClick}<br>
+<a name="TfrmMain.mForwardClick"></a><br>
+procedure TfrmMain.mForwardClick(Sender: TObject);<br>
+{go Forward a page}<br>
+begin<br>
+&nbsp; {forward}<br>
+&nbsp; mzGecko.GoForward;<br>
+end; {procedure TfrmMain.mForwardClick}<br>
+<a name="TfrmMain.mStopClick"></a><br>
+procedure TfrmMain.mStopClick(Sender: TObject);<br>
+{stop loading page}<br>
+begin<br>
+&nbsp; {stop}<br>
+&nbsp; mzGecko.Stop;<br>
+end; {procedure TfrmMain.mStopClick}<br>
+<a name="TfrmMain.mReloadClick"></a><br>
+procedure TfrmMain.mReloadClick(Sender: TObject);<br>
+{reload page}<br>
+begin<br>
+&nbsp; {refresh}<br>
+&nbsp; mzGecko.Refresh;<br>
+end; {procedure TfrmMain.mReloadClick}<br>
+<a name="TfrmMain.mHomeClick"></a><br>
+procedure TfrmMain.mHomeClick(Sender: TObject);<br>
+{go to Home page}<br>
+begin<br>
+&nbsp; {navigate to Gecko Browser Home}<br>
+&nbsp; mzGecko.Navigate(WideString(HOME_ADDRESS));<br>
+end; {procedure TfrmMain.mHomeClick}<br>
+<br>
+procedure TfrmMain.mAboutClick(Sender: TObject);<br>
+{show simple About dialog}<br>
+begin<br>
+&nbsp; MessageDlg(PROGRAM_TITLE + #13 + '(c) 2003 - 2004 Conspiracy Software' + #13<br>
+&nbsp;&nbsp;&nbsp; + 'A demo of embedding Gecko (Mozilla) in Delphi applications.' + #13<br>
+&nbsp;&nbsp;&nbsp; + 'Written by Dave Murray &lt;<a class="linkification-ext" href="mailto:irongut@vodafone.net" title="Linkification: mailto:irongut@vodafone.net">irongut@vodafone.net</a>&gt;' + #13<br>
+&nbsp;&nbsp;&nbsp; + PROGRAM_TITLE + ' was written using ' + MOZILLA_VERSION + '.',<br>
+&nbsp;&nbsp;&nbsp; mtInformation, [mbOk], 0);<br>
+end; {procedure TfrmMain.mAboutClick}<br>
+<br>
+<br>
+{### MOZILLA CONTROL METHODS ###}<br>
+<br>
+<a name="TfrmMain.mzGeckoStatusTextChange"></a><br>
+procedure TfrmMain.mzGeckoStatusTextChange(Sender: TObject; const Text:
+WideString);<br>
+{show status text in stsbrStatus}<br>
+begin<br>
+&nbsp; stsbrStatus.Panels[1].Text := Text;<br>
+end; {procedure TfrmMain.mzGeckoStatusTextChange}<br>
+<a name="TfrmMain.mzGeckoProgressChange"></a><br>
+procedure TfrmMain.mzGeckoProgressChange(Sender: TObject; Progress, ProgressMax: Integer);<br>
+{show download progress}<br>
+begin<br>
+&nbsp;&nbsp;{new code suggested by Sterling Bates, see Bugzilla #225041}<br>
+&nbsp;&nbsp;prgrssbrProgress.Position := Round((Progress / ProgressMax) * 100);<br>
+&nbsp;&nbsp;prgrssbrProgress.Max := 100;<br>
+end; {procedure TfrmMain.mzGeckoProgressChange}<br>
+<a name="TfrmMain.mzGeckoCommandStateChange"></a><br>
+procedure TfrmMain.mzGeckoCommandStateChange(Sender: TObject; Command:
+Integer; Enable: WordBool);<br>
+{fired when user navigates, use to enable/disable navigation buttons}<br>
+const<br>
+&nbsp; {from SHDocVw.pas}<br>
+&nbsp; CSC_NAVIGATEFORWARD = $00000001;<br>
+&nbsp; CSC_NAVIGATEBACK = $00000002;<br>
+begin<br>
+&nbsp; if (Command = CSC_NAVIGATEFORWARD) then begin<br>
+&nbsp;&nbsp;&nbsp; {enable / disable Forward button + menu item}<br>
+&nbsp;&nbsp;&nbsp; tlbtnForward.Enabled := Enable;<br>
+&nbsp;&nbsp;&nbsp; mForward.Enabled := Enable;<br>
+&nbsp;&nbsp;&nbsp; end {if Command = CSC_NAVIGATEFORWARD}<br>
+&nbsp; else if (Command = CSC_NAVIGATEBACK) then begin<br>
+&nbsp;&nbsp;&nbsp; {enable / disabel Back button + menu item}<br>
+&nbsp;&nbsp;&nbsp; tlbtnBack.Enabled := Enable;<br>
+&nbsp;&nbsp;&nbsp; mBack.Enabled := Enable;<br>
+&nbsp;&nbsp;&nbsp; end; {else if..}<br>
+end; {procedure TfrmMain.mzGeckoCommandStateChange}<br>
+<a name="TfrmMain.mzGeckoDownloadBegin"></a><br>
+procedure TfrmMain.mzGeckoDownloadBegin(Sender: TObject);<br>
+{begining navigation, start throbber}<br>
+begin<br>
+&nbsp;&nbsp;nmtThrobber.Active := true;<br>
+end; {procedure TfrmMain.mzGeckoDownloadBegin}<br>
+<a name="TfrmMain.mzGeckoDownloadComplete"></a><br>
+procedure TfrmMain.mzGeckoDownloadComplete(Sender: TObject);<br>
+{ending navigation, stop throbber + ensure edtAddress shows URL}<br>
+var<br>
+&nbsp;&nbsp;URL : string;<br>
+begin<br>
+&nbsp;&nbsp;URL := mzGecko.LocationURL;<br>
+&nbsp;&nbsp;if not(edtAddress.Text = URL) then edtAddress.Text := URL;<br>
+&nbsp;&nbsp;nmtThrobber.Active := false;<br>
+&nbsp;&nbsp;prgrssbrProgress.Position := 0;<br>
+end; {procedure TfrmMain.mzGeckoDownloadComplete}<br>
+<br>
+<br>
+{### MISC METHODS ###}<br>
+<br>
+<a name="TfrmMain.edtAddressKeyDown"></a><br>
+procedure TfrmMain.edtAddressKeyDown(Sender: TObject; var Key: Word;
+Shift: TShiftState);<br>
+{navigate to current address}<br>
+begin<br>
+&nbsp; if (Key = VK_RETURN) then
+mzGecko.Navigate(WideString(edtAddress.Text));<br>
+end; {procedure TfrmMain.edtAddressKeyDown}<br>
+<br>
+<br>
+{### PRIVATE METHODS ###}<br>
+<br>
+<a name="TfrmMain.CharReplace"></a><br>
+function TfrmMain.CharReplace(var S: AnsiString; const Search, Replace:
+AnsiChar): Integer;<br>
+{Reproduced from JEDI Code Library JclStrings.pas for demonstration
+purposes.}<br>
+{<a class="linkification-ext" href="http://www.delphi-jedi.org/" title="Linkification: http://www.delphi-jedi.org/">http://www.delphi-jedi.org/</a>}<br>
+var<br>
+&nbsp; P: PAnsiChar;<br>
+begin<br>
+&nbsp; Result := 0;<br>
+&nbsp; if Search &lt;&gt; Replace then<br>
+&nbsp; begin<br>
+&nbsp;&nbsp;&nbsp; UniqueString(S);<br>
+&nbsp;&nbsp;&nbsp; P := PAnsiChar(S);<br>
+&nbsp;&nbsp;&nbsp; while P^ &lt;&gt; #0 do<br>
+&nbsp;&nbsp;&nbsp; begin<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if P^ = Search then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; begin<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; P^ := Replace;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Inc(Result);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Inc(P);<br>
+&nbsp;&nbsp;&nbsp; end;<br>
+&nbsp; end;<br>
+end; {function TfrmMain.CharReplace}<br>
+<br>
+<a name="initialization"></a><br>
+initialization<br>
+OleInitialize(nil);<br>
+<br>
+finalization<br>
+OleUninitialize;<br>
+<br>
+end.
+</code>
+</p>
+
+  <table id="getCode" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="zipCell">
+          <a href="http://www.paranoia.clara.net/downloads/taming_the_lizard.zip"><img alt="Zip" title="Get the code!" src="taming_the_lizard_with_delphi_files/zip.png"></a>
+        </td>
+        <td class="textCell">
+          Download the source code.<br>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+  <p style="text-align: center;"><a href="mailto:?subject=Check%20out%20this%20Delphi%20Article&amp;body=http://www.paranoia.clara.net/articles/taming_the_lizard_with_delphi.html">Refer
+this page to a friend!</a></p>
+
+</div>
+
+
+<div id="idpFooter">
+  <div class="idpFooterLeft">
+    <script type="text/javascript">
+      var t = new Date(document.lastModified);
+      document.write("Last Update: " + t.getDate() + "/" + (t.getMonth()+1) + "/" + t.getFullYear());
+    </script>Last Update: 21/1/2006
+  </div>
+  <div class="idpFooterRight">
+    Copyright © 2003 - 2006 Conspiracy Software. All Rights Reserved.
+    <img class="hiddenImage" src="taming_the_lizard_with_delphi_files/next_hot.png" title="" alt="">
+  </div>
+</div>
+
+
+</body></html>

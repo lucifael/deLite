@@ -1,0 +1,433 @@
+<HTML><HEAD><TITLE>SwissDelphiCenter.ch : ...read text from a PDF doc without using ActiveX?</TITLE></HEAD><META NAME="Title" CONTENT="SwissDelphiCenter.ch">
+<META NAME="Author" CONTENT="Simon Grossenbacher"
+<META NAME="Publisher" CONTENT="SwissDelphiCenter.ch">
+<META NAME="Revisit" CONTENT="After 30 days">
+<META NAME="Keywords" 
+CONTENT="delphi,borland,programm,programming,schweiz,forum,forums,newsletter,download,delphi,kylix,linux,windows,winapi,libc, api">
+<META NAME="Description" CONTENT="All about Borland Delphi. Programming tips, downloads, forums, news, topsites, newsletter">
+<META NAME="Abstract" CONTENT="All about Borland Delphi.">
+<META NAME="Robots" CONTENT="INDEX,FOLLOW">
+<META NAME="expires" CONTENT="0">
+<link rel="SHORTCUT ICON" href="http://www.swissdelphicenter.ch/favicon.ico">
+
+<link rel="STYLESHEET" href="../swissdelphicenter.css" type="text/css">
+</head>
+<body bgcolor="#FFFFFF">
+<table width="100%" border="0">
+  <tr>
+    <td width="33%"><i><a href="index.php"><img src="../pics/sdclogo.png" border="0" width="300" height="40"></a></i></td>
+    <td width="67%">
+<object classid='clsid:D27CDB6E-AE6D-11cf-96B8-444553540000' codebase='http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=5,0,0,0' width='468' height='60'><param name='movie' value='http://www.swissdelphicenter.com/ads/banners/mysqldac_flash2.swf?clickTAG=http://www.swissdelphicenter.ch/ads/adclick.php%3Fbannerid=58%26zoneid=7%26source=%26dest=http%3A%2F%2Fwww.microolap.com'><param name='quality' value='high'><embed src='http://www.swissdelphicenter.com/ads/banners/mysqldac_flash2.swf?clickTAG=http://www.swissdelphicenter.ch/ads/adclick.php%3Fbannerid=58%26zoneid=7%26source=%26dest=http%3A%2F%2Fwww.microolap.com' quality=high width='468' height='60' type='application/x-shockwave-flash' pluginspace='http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash'></embed></object><div id="beacon_58" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src='http://www.swissdelphicenter.ch/ads/adlog.php?bannerid=58&amp;clientid=58&amp;zoneid=7&amp;source=&amp;block=0&amp;capping=0&amp;cb=b092adb958d07e2f030529857d3ae6fb' width='0' height='0' alt='' style='width: 0px; height: 0px;'></div><br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<a href="werbung.php">Advertising on SwissDelphiCenter</a>
+
+</td>
+  </tr>
+</table>
+<br>
+&nbsp;<a href="whatsnew.php">whats new</a>&nbsp;&brvbar;&nbsp;
+<a href="tipsindex.php">programming tips</a>&nbsp;&brvbar;&nbsp;
+<a href="indyarticles.php">indy articles</a>&nbsp;&brvbar;&nbsp;
+<a href="iwarticles.php">intraweb articles</a>&nbsp;&brvbar;&nbsp;
+<a href="infoindex.php">informations</a>&nbsp;&brvbar;&nbsp;
+<a href="linksindex.php">links</a>&nbsp;&brvbar;&nbsp;
+<a href="interviews.php">interviews</a>&nbsp;&brvbar;&nbsp;
+<a href="sonstigesindex.php">misc</a>&nbsp;&brvbar;&nbsp;
+<a href="forum/index.php">forum</a>
+<br>
+&nbsp;<a href="devnews.php">developer news</a>&nbsp;&brvbar;&nbsp;
+<a href="kylix.php">kylix</a>&nbsp;&brvbar;&nbsp;
+<a href="tutorials.php">tutorials</a>&nbsp;&brvbar;&nbsp;
+<a href="shop.php">online shop</a>&nbsp;&brvbar;&nbsp;
+<a href="photos/index.php">photos</a>&nbsp;&brvbar;&nbsp;
+<a href="addwin.php">Add&Win Game</a>
+<br><br>
+<table width="100%" border="0" cellpadding="4" cellspacing="0">
+  <tr>
+    <td>
+    </td>
+  </tr>
+  <tr> 
+    <td>
+      <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr> 
+          <td width="21%" align="left" valign="top"> 
+            <table border="0" bgcolor="#0099FF" cellpadding="2" cellspacing="0" width="100%">
+              <tr align="left" valign="top"> 
+                <td> 
+                  <table width="100%" border="0" cellpadding="10" cellspacing="0">
+                    <tr bgcolor="#99CCFF"> 
+                      <td>
+ 
+<p><b>Tips (1553)</b></p>
+
+<a href="datenbanken.php">Database (90)</a><br><a href="dateien.php">Files (139)</a><br><a href="oberflaeche.php">Forms (112)</a><br><a href="grafik.php">Graphic (116)</a><br><a href="ide.php">IDE (21)</a><br><a href="indy.php">Indy (5)</a><br><a href="internet.php">Internet / LAN (130)</a><br><a href="intraweb.php">IntraWeb (0)</a><br><a href="kylixtips.php">Kylix (10)</a><br><a href="math.php">Math (77)</a><br><a href="sonstiges.php">Misc (126)</a><br><a href="multimedia.php">Multimedia (46)</a><br><a href="objekte.php">Objects/<br>ActiveX (51)</a><br><a href="opentools.php">OpenTools API (3)</a><br><a href="printing.php">Printing (34)</a><br><a href="strings.php">Strings (83)</a><br><a href="system.php">System (267)</a><br><a href="vcl.php">VCL (243)</a><br>
+
+
+  <br>
+  <a href="tiptop15.php">Top15</a><br><br>
+  <a href="tipsbycomp.php">Tips sort by<br>component</a><br><br>
+  <a href="tipsuchen.php">Search Tip</a><br><br>
+
+  <a href="addtip.php">Add new Tip</a><br><br>
+  <a href="addwin.php"><b>Add&Win Game</b></a>
+
+</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+            <br>
+                    <table border="0" bgcolor="#0099FF" cellpadding="2" cellspacing="0" width="100%">
+          <tr align="left" valign="top">
+            <td height="3">
+              <table width="100%" border="0" cellpadding="10" cellspacing="0" height="100%">
+                <tr bgcolor="#FFFFFF" align="left" valign="top"> 
+                  <td bgcolor="#99CCFF"><b>BorCon 2003 pictures</b></td>
+                </tr>
+                <tr bgcolor="#FFFFFF" align="left" valign="top">
+                  
+          <td>The Borland Conference 2003 has finished. We have taken some impressions for you in the <b><a 
+href="http://www.swissdelphicenter.ch/en/photos/index.php">photo gallery</a></b></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+            <br>            
+            <table border="0" bgcolor="#0099FF" cellpadding="2" cellspacing="0" width="100%">
+              <tr align="left" valign="top"> 
+                <td> 
+                  <table width="100%" border="0" cellpadding="10" cellspacing="0">
+                    <tr bgcolor="#99CCFF" align="left" valign="top"> 
+                      <td>
+                        <center>
+<span class="useronline">118 Visitors Online</span>                        </center>
+                        </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+            <br><br>
+            <center>
+            <a href="http://www.borland.com" target="_blank"><img src="../pics/btp.gif" alt="SwissDelphiCenter is a Borland Technology Partner" border="0"></a>
+            </center>
+          </td>
+          <td width="1%" align="left" valign="top">&nbsp;</td>
+          <td align="left" valign="top" width="78%"> 
+            <table width="100%" border="0" cellpadding="2" cellspacing="0" height="100%" bgcolor="#0099FF">
+              <tr> 
+                <td> 
+                  <table width="100%" border="0" cellpadding="5" height="100%" bgcolor="#FFFFFF" cellspacing="0">
+                    <tr align="left" valign="top"> 
+                      <td> 
+
+<table width="100%" border="0">
+  <tr> 
+    <td>
+      <span class="titel">...read text from a PDF doc without using ActiveX?</span>
+    </td>
+  </tr>
+  <tr> 
+    <td>Autor: 
+      <a href="sendmail.php?id=2169">Stefan Wimmer</a>    </td>
+  </tr>
+  <tr><td>[<a href="newcomment.php?id=2169">Write new comment</a>]</td></tr><tr><td>[ <a href="printcode.php?id=2169" target="_blank">Print tip</a> 
+]</td><td>&nbsp;</td><td>&nbsp;</td></tr></table>
+<br>
+<table border="0" width="529">
+  <tr> 
+    <td width="149"><b>Tip Rating (7):</b></td>
+    <td width="370">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>
+<img src='../pics/progressbar-grau.gif'>&nbsp;<img src='../pics/progressbar-grau.gif'>&nbsp;<img src='../pics/progressbar-blau.gif'>&nbsp;<img src='../pics/progressbar-grau.gif'>&nbsp;<img src='../pics/progressbar-grau.gif'>&nbsp;</td>
+  </tr>
+</table>
+
+<p><br>
+</p>
+<p>
+<span class="sourcecode">
+<font  size=2 face="Courier New" color="#000080"><i>{+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++<br />
+<br />
+&nbsp;So&nbsp;jetzt&nbsp;hab&nbsp;ich&nbsp;endlich&nbsp;eine&nbsp;L&ouml;sung&nbsp;gefunden&nbsp;wie&nbsp;man<br />
+&nbsp;den&nbsp;gesamten&nbsp;Text&nbsp;aus&nbsp;einer&nbsp;PDF&nbsp;Datei&nbsp;(auch&nbsp;mit&nbsp;mehreren&nbsp;Seiten&nbsp;m&ouml;glich)<br />
+&nbsp;auslesen&nbsp;kann.<br />
+&nbsp;Ich&nbsp;muss&nbsp;mich&nbsp;schon&nbsp;gleich&nbsp;mal&nbsp;im&nbsp;vorherein&nbsp;f&uuml;r&nbsp;meine&nbsp;unsaubere<br />
+&nbsp;Programmierung&nbsp;entschuldigen,&nbsp;aber&nbsp;ich&nbsp;hoffe&nbsp;ihr&nbsp;k&ouml;nnt&nbsp;trotzdem&nbsp;was<br />
+&nbsp;damit&nbsp;anfangen!&nbsp;Das&nbsp;Formular&nbsp;beinhaltet&nbsp;ein&nbsp;TMemo,&nbsp;5&nbsp;TLabel,&nbsp;1&nbsp;TButton<br />
+&nbsp;und&nbsp;einen&nbsp;OpenDialog<br />
+<br />
+&nbsp;ach&nbsp;ja,&nbsp;ihr&nbsp;m&uuml;sst&nbsp;vorher&nbsp;noch&nbsp;eine&nbsp;Typbibliothek&nbsp;einf&uuml;gen,<br />
+&nbsp;&ouml;ffnet&nbsp;dazu&nbsp;den&nbsp;Typbibliothek&nbsp;Importieren&nbsp;Dialog&nbsp;(unter&nbsp;Projekt&nbsp;zu<br />
+&nbsp;finden)&nbsp;und&nbsp;W&auml;hlt&nbsp;beim&nbsp;Hinzuf&uuml;gen&nbsp;den&nbsp;Ordner&nbsp;von&nbsp;Adobe&nbsp;Acrobat&nbsp;aus.<br />
+&nbsp;Dort&nbsp;solltet&nbsp;ihr&nbsp;eine&nbsp;Datei&nbsp;namens&nbsp;Acrobat.tbl&nbsp;finden,&nbsp;wenn&nbsp;nicht&nbsp;dann<br />
+&nbsp;einfach&nbsp;mal&nbsp;suchen.<br />
+&nbsp;Jetzt&nbsp;noch&nbsp;die&nbsp;Unit&nbsp;Anlegen&nbsp;dann&nbsp;Installieren&nbsp;und&nbsp;fertig.<br />
+&nbsp;viel&nbsp;spass<br />
+&nbsp;<br />
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++<br />
+<br />
+&nbsp;This&nbsp;tip&nbsp;show&nbsp;the&nbsp;way&nbsp;to&nbsp;cath&nbsp;the&nbsp;whole&nbsp;text&nbsp;of&nbsp;a&nbsp;PDF&nbsp;document.<br />
+&nbsp;<br />
+&nbsp;You&nbsp;will&nbsp;need:<br />
+&nbsp;-&nbsp;1&nbsp;TMemo,&nbsp;5&nbsp;TLabel,&nbsp;1&nbsp;TButton&nbsp;and&nbsp;1&nbsp;OpenDialog<br />
+&nbsp;-&nbsp;to&nbsp;import&nbsp;the&nbsp;typelibrary&nbsp;from&nbsp;Adobe&nbsp;Acrobat&nbsp;(look&nbsp;fo&nbsp;Acrobat.tbl)<br />
+&nbsp;<br />
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++}<br />
+<br />
+<br />
+</i></font><b>unit&nbsp;</b>Unit1;<br />
+<br />
+<b>interface<br />
+<br />
+uses<br />
+&nbsp;&nbsp;</b>Windows,&nbsp;Messages,&nbsp;SysUtils,&nbsp;Variants,&nbsp;Classes,&nbsp;Graphics,&nbsp;Controls,&nbsp;Forms,<br />
+&nbsp;&nbsp;Dialogs,&nbsp;StdCtrls,&nbsp;OleCtrls,&nbsp;acrobat_tlb;<br />
+<br />
+<b>type<br />
+&nbsp;&nbsp;</b>TForm1&nbsp;=&nbsp;<b>class</b>(TForm)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;Button1:&nbsp;TButton;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;Memo1:&nbsp;TMemo;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;OpenDialog1:&nbsp;TOpenDialog;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;GroupBox1:&nbsp;TGroupBox;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;Label1:&nbsp;TLabel;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;Label2:&nbsp;TLabel;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;Label3:&nbsp;TLabel;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;Label4:&nbsp;TLabel;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;Label5:&nbsp;TLabel;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<b>procedure&nbsp;</b>Button1Click(Sender:&nbsp;TObject);<br />
+&nbsp;&nbsp;<b>private<br />
+&nbsp;&nbsp;&nbsp;&nbsp;</b><font color="#000080"><i>{&nbsp;Private-Deklarationen&nbsp;}<br />
+&nbsp;&nbsp;</i></font><b>public<br />
+&nbsp;&nbsp;&nbsp;&nbsp;</b><font color="#000080"><i>{&nbsp;Public-Deklarationen&nbsp;}<br />
+&nbsp;&nbsp;</i></font><b>end</b>;<br />
+<br />
+<br />
+<b>var<br />
+&nbsp;&nbsp;</b>Form1:&nbsp;TForm1;<br />
+<br />
+<b>implementation<br />
+<br />
+uses&nbsp;</b>ComObj;<br />
+<br />
+<font color="#000080"><i>{$R&nbsp;*.dfm}<br />
+{$TYPEDADDRESS&nbsp;OFF}&nbsp;//muss&nbsp;so&nbsp;sein&nbsp;(this&nbsp;have&nbsp;to&nbsp;be)<br />
+</i></font><b>var<br />
+&nbsp;&nbsp;</b>PDDoc:&nbsp;Acrobat_TLB.CAcroPDDoc;<br />
+&nbsp;&nbsp;PDPage:&nbsp;Variant;<br />
+&nbsp;&nbsp;PDHili:&nbsp;Variant;<br />
+&nbsp;&nbsp;PDTextS:&nbsp;Variant;<br />
+&nbsp;&nbsp;acrobat:&nbsp;Variant;<br />
+&nbsp;&nbsp;Result:&nbsp;Boolean;<br />
+&nbsp;&nbsp;NTL,&nbsp;i,&nbsp;j,&nbsp;Pagecount:&nbsp;Integer;<br />
+&nbsp;&nbsp;zeilen:&nbsp;<b>string</b>;<br />
+&nbsp;&nbsp;stichwortcounter:&nbsp;Integer;<br />
+&nbsp;&nbsp;Size:&nbsp;Integer;<br />
+&nbsp;&nbsp;gesamtstring:&nbsp;AnsiString;<br />
+&nbsp;&nbsp;zwreal:&nbsp;Real;<br />
+<br />
+<b>procedure&nbsp;</b>TForm1.Button1Click(Sender:&nbsp;TObject);<br />
+&nbsp;&nbsp;<b>function&nbsp;</b>removecrlf(workstring:&nbsp;<b>string</b>):&nbsp;<b>string</b>;<br />
+&nbsp;&nbsp;<b>var&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;</b>i:&nbsp;Integer;<br />
+&nbsp;&nbsp;<b>begin<br />
+&nbsp;&nbsp;&nbsp;&nbsp;</b>removecrlf&nbsp;:=&nbsp;'';<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<b>for&nbsp;</b>i&nbsp;:=&nbsp;0&nbsp;<b>to&nbsp;</b>Length(workstring)&nbsp;<b>do<br />
+&nbsp;&nbsp;&nbsp;&nbsp;begin<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;</b>workstring[i]&nbsp;=&nbsp;#13&nbsp;<b>then<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>workstring[i]&nbsp;:=&nbsp;'&nbsp;';<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>if&nbsp;</b>workstring[i]&nbsp;=&nbsp;#10&nbsp;<b>then<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>workstring[i]&nbsp;:=&nbsp;'&nbsp;';<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<b>end</b>;<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;removecrlf&nbsp;:=&nbsp;workstring;<br />
+&nbsp;&nbsp;<b>end</b>;<br />
+<b>begin<br />
+&nbsp;&nbsp;if&nbsp;not&nbsp;</b>opendialog1.Execute&nbsp;<b>then&nbsp;</b>Exit;<br />
+<br />
+&nbsp;&nbsp;memo1.Clear;<br />
+<br />
+&nbsp;&nbsp;gesamtstring&nbsp;:=&nbsp;'';<br />
+&nbsp;&nbsp;stichwortcounter&nbsp;:=&nbsp;0;<br />
+&nbsp;&nbsp;Size&nbsp;:=&nbsp;0;<br />
+&nbsp;&nbsp;<b>try<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;</b><font color="#000080"><i>//Object&nbsp;erstellen<br />
+&nbsp;&nbsp;&nbsp;&nbsp;</i></font>acrobat&nbsp;:=&nbsp;CreateOleObject('AcroExch.pdDoc');<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080"><i>//PDF&nbsp;Datei&nbsp;in&nbsp;Object&nbsp;&ouml;ffnen<br />
+&nbsp;&nbsp;&nbsp;&nbsp;</i></font>Result&nbsp;:=&nbsp;acrobat.Open(opendialog1.FileName);<br />
+<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<b>if&nbsp;</b>Result&nbsp;=&nbsp;False&nbsp;<b>then<br />
+&nbsp;&nbsp;&nbsp;&nbsp;begin<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>messagedlg('Kann&nbsp;Datei&nbsp;nicht&nbsp;&ouml;ffnen',&nbsp;mtWarning,&nbsp;[mbOK],&nbsp;0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exit;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<b>end</b>;<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<b>for&nbsp;</b>j&nbsp;:=&nbsp;0&nbsp;<b>to&nbsp;</b>acrobat.GetNumPages&nbsp;-&nbsp;1&nbsp;<b>do<br />
+&nbsp;&nbsp;&nbsp;&nbsp;begin<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>memo1.Lines.Add('----------------------------------------------');<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080"><i>//Erste&nbsp;Seite&nbsp;des&nbsp;Dokuments&nbsp;aktiv&nbsp;setzen&nbsp;&nbsp;(first&nbsp;page)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i></font>PDPage&nbsp;:=&nbsp;acrobat.acquirePage(j);<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080"><i>//Ein&nbsp;Highlight&nbsp;Object&nbsp;mit&nbsp;2000&nbsp;Elementen&nbsp;erzeugen<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i></font>PDHili&nbsp;:=&nbsp;CreateOleObject('AcroExch.HiliteList');<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Result&nbsp;:=&nbsp;PDHili.Add(0,&nbsp;4096);<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080"><i>//Erzeuge&nbsp;eine&nbsp;Markierung&nbsp;&uuml;ber&nbsp;den&nbsp;ganzen&nbsp;Text<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i></font>PDTextS&nbsp;:=&nbsp;PDPage.CreatePageHilite(PDHili);<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ntl&nbsp;:=&nbsp;PDTextS.GetNumText;<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>for&nbsp;</b>i&nbsp;:=&nbsp;0&nbsp;<b>to&nbsp;</b>ntl&nbsp;-&nbsp;1&nbsp;<b>do<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;begin<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>zeilen&nbsp;:=&nbsp;PDTextS.GetText(i);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>if&nbsp;</b>(Length(zeilen)&nbsp;&gt;&nbsp;0)&nbsp;<b>and&nbsp;</b>(zeilen&nbsp;&lt;&gt;&nbsp;'')&nbsp;<b>then<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>memo1.Lines.Add(removecrlf(zeilen));<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gesamtstring&nbsp;:=&nbsp;gesamtstring&nbsp;+&nbsp;removecrlf(zeilen);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080"><i>//nur&nbsp;f&uuml;r&nbsp;statistik<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i></font>Size&nbsp;:=&nbsp;Size&nbsp;+&nbsp;SizeOf(zeilen);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Inc(stichwortcounter);<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Application.ProcessMessages;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>end</b>;<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080"><i>//Wieder&nbsp;freigeben<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i></font>pdhili&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;Unassigned;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pdtextS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;Unassigned;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pdpage&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;Unassigned;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label2.Caption&nbsp;:=&nbsp;IntToStr(stichwortcounter);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label4.Caption&nbsp;:=&nbsp;IntToStr(Size);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label2.Refresh;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label4.Refresh;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<b>end</b>;&nbsp;<font color="#000080"><i>//for&nbsp;i&nbsp;to&nbsp;pagecount<br />
+<br />
+<br />
+&nbsp;&nbsp;</i></font><b>except&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;on&nbsp;</b>e:&nbsp;Exception&nbsp;<b>do<br />
+&nbsp;&nbsp;&nbsp;&nbsp;begin<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>messagedlg('Fehler:&nbsp;'&nbsp;+&nbsp;e.<b>Message</b>,&nbsp;mtError,&nbsp;[mbOK],&nbsp;0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exit;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<b>end</b>;<br />
+&nbsp;&nbsp;<b>end</b>;<br />
+&nbsp;&nbsp;<b>if&nbsp;</b>Size&nbsp;&gt;&nbsp;1024&nbsp;<b>then<br />
+&nbsp;&nbsp;begin<br />
+&nbsp;&nbsp;&nbsp;&nbsp;</b>zwreal&nbsp;:=&nbsp;Size&nbsp;/&nbsp;1024;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;str(zwreal:&nbsp;2:&nbsp;1,zeilen);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;label4.Caption&nbsp;:=&nbsp;zeilen;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;label5.Caption&nbsp;:=&nbsp;'KB';<br />
+&nbsp;&nbsp;<b>end</b>;<br />
+&nbsp;&nbsp;memo1.Lines.SaveToFile(Extractfilepath(Application.exename)&nbsp;+&nbsp;'\debug.txt');<br />
+<b>end</b>;<br />
+<br />
+<b>end</b>.<br />
+</font><br />
+</span>
+<br>
+</p>
+<p>&nbsp;</p>
+<table border="0" bgcolor="#0099FF" cellpadding="2" cellspacing="0" width="100%">
+  <tr align="left" valign="top"> 
+    <td height="3"> 
+      <table width="100%" border="0" cellpadding="10" cellspacing="0">
+        <tr bgcolor="#FFFFFF" align="left" valign="top"> 
+          <td>
+		    <p align="center"><b>Rate this tip:</b></p>
+		  <form name="form1" method="post" action="showcode.php">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td>
+                    <div align="center">
+                      <table width="100%" border="0">
+            <tr>
+              <td width="36%">
+                            <div align="right">poor</div>
+              </td>
+              <td width="250">
+                            <div align="center">
+                              <input type="radio" name="skill" value="1" class="borderless">
+                              <input type="radio" name="skill" value="2" class="borderless">
+                              <input type="radio" name="skill" value="3" class="borderless">
+                              <input type="radio" name="skill" value="4" class="borderless">
+                              <input type="radio" name="skill" value="5" class="borderless">
+                            </div>
+              </td>
+                          <td>very good</td>
+            </tr>
+          </table>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <p align="center"> 
+    <input type="hidden" name="id" value="2169">
+    <input type="submit" name="Abschicken" value="Rate" class="button">
+</form>
+		  </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<br><br>
+
+<table border="0" bgcolor="#0099FF" cellpadding="2" cellspacing="0" width="100%">
+  <tr align="left" valign="top"> 
+    <td height="3"> 
+      <table width="100%" border="0" cellpadding="10" cellspacing="0">
+        <tr bgcolor="#FFFFFF" align="left" valign="top"> 
+          <td bgcolor="#99CCFF"> 
+            <p><b>Sponsored Links</b></p>
+            </td>
+        </tr>
+        <tr bgcolor="#FFFFFF" align="left" valign="top"> 
+          <td>
+<b><a target='_blank' href='http://www.swissdelphicenter.ch/ads/adclick.php?bannerid=155&amp;zoneid=11&amp;source=&amp;dest=http%3A%2F%2Fwww.tsilang.com%3Ftrack%3Dswiss_dc&amp;ismap=' >TsiLang Component Suite - the complete automatic internationalization
+solution</a></b><br>
+Localizing software for different international markets can double and even
+quadruple sales. This is why almost every software company considers
+localization a must. Yet, localization is both a complicated and expensive
+process. Luckily for Delphi, C++Builder, and Kylix developers, there is
+TsiLang Component Suite - the complete automatic localization solution.<div id="beacon_155" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src='http://www.swissdelphicenter.ch/ads/adlog.php?bannerid=155&amp;clientid=187&amp;zoneid=11&amp;source=&amp;block=0&amp;capping=0&amp;cb=9ee382fae7f6b928ce5cab015bb3b935' width='0' height='0' alt='' style='width: 0px; height: 0px;'></div><br><br><b><a target='_blank' href='http://www.swissdelphicenter.ch/ads/adclick.php?bannerid=90&amp;zoneid=11&amp;source=&amp;dest=http%3A%2F%2Fdedipower.com%2Fr.php%3Fid%3D6E98&amp;ismap=' >DediPower - The Leading Dedicated Server Provider!</a></b><br>Dedicated Servers from only £40 per month. Windows and Linux servers.<div id="beacon_90" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src='http://www.swissdelphicenter.ch/ads/adlog.php?bannerid=90&amp;clientid=104&amp;zoneid=11&amp;source=&amp;block=0&amp;capping=0&amp;cb=0979e4fa1875138399b2f264b37dc050' width='0' height='0' alt='' style='width: 0px; height: 0px;'></div><br><br><b><a target='_blank' href='http://www.swissdelphicenter.ch/ads/adclick.php?bannerid=97&amp;zoneid=11&amp;source=&amp;dest=http%3A%2F%2Fwww.deskmarker.com%2Fen%2Findex.php&amp;ismap=' >Desk Marker</a></b><br>
+Desk Marker allows to draw on windows with different pensize and color. The visual controls mode allows to mark visual controls like buttons and forms. With the transparency option you can colorize the visual controls. In the freehand mode the pen marker follows your mouse.<div id="beacon_97" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src='http://www.swissdelphicenter.ch/ads/adlog.php?bannerid=97&amp;clientid=112&amp;zoneid=11&amp;source=&amp;block=0&amp;capping=0&amp;cb=3237439e3f127d464f35e987975cf8cc' width='0' height='0' alt='' style='width: 0px; height: 0px;'></div><br><br><b><a target='_blank' href='http://www.swissdelphicenter.ch/ads/adclick.php?bannerid=85&amp;zoneid=11&amp;source=&amp;dest=http%3A%2F%2Fwww.eurekalog.com%2Fbannerclick.php%3Fid%3D7&amp;ismap=' >Delphi Access Violations?</a></b><br>Catch every run-time Exception logging Unit, Class, Method, Line #.<br>
+See an online demo now!<div id="beacon_85" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src='http://www.swissdelphicenter.ch/ads/adlog.php?bannerid=85&amp;clientid=98&amp;zoneid=11&amp;source=&amp;block=0&amp;capping=0&amp;cb=02d2b4a44353fff2fb7e4ac55a433730' width='0' height='0' alt='' style='width: 0px; height: 0px;'></div><br><br><b><a target='_blank' href='http://www.swissdelphicenter.ch/ads/adclick.php?bannerid=101&amp;zoneid=11&amp;source=&amp;dest=http%3A%2F%2Fwww.atozedsoftware.com&amp;ismap=' >Automate your Build Process with FinalBuilder</a></b><br>FinalBuilder is the tool for automating software builds. Automate compilers,
+install builders, version control, automated testing tools, ftp client and
+much more. Turn your build process into a one click operation, start to
+finish! Add some quality to your development process with a reliable and
+repeatable build process.<div id="beacon_101" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src='http://www.swissdelphicenter.ch/ads/adlog.php?bannerid=101&amp;clientid=116&amp;zoneid=11&amp;source=&amp;block=0&amp;capping=0&amp;cb=83cdf4cce8aba726173207a8c0f2089b' width='0' height='0' alt='' style='width: 0px; height: 0px;'></div><br><br>			  
+           </td>
+        </tr>
+				<td bgcolor="#FFFFFF">
+				<div align="right"><a href="werbung.php">Advertise on SwissDelphiCenter</a></div>
+      </table>
+    </td>
+  </tr>
+</table>
+<br>
+        
+        
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr> 
+    <td> 
+      <div align="center"><img src="../pics/linebottom.gif" width="214" height="1"><br>
+        Copyright &copy; by SwissDelphiCenter.ch<br>
+        All trademarks are the sole property of their respective owners </div>
+    </td>
+  </tr>
+</table>

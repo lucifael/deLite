@@ -1,0 +1,23 @@
+unit PingandTraceRouteTest;
+
+
+{ Global Variables }
+var
+    // Setup Global Variables Here
+    TimeSpent : Integer;
+    Trace : String;
+
+{ User Functions/Procedures }
+// Put Functions and Procedures Here
+
+{ Main }
+begin
+    // Your script runs here
+    TimeSpent := net_ping('www.lucifael.com');
+    dlg_Message('Lucifael.com pinged - ' + IntToStr(TimeSpent));
+    Trace := net_TraceRoute('www.lucifael.com');
+    dlg_Message('Lucifael.com trace route - ' + Trace);
+end.
+
+
+{ EOF }

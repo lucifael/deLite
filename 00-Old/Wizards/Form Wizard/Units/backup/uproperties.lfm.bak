@@ -1,0 +1,177 @@
+object frmProperties: TfrmProperties
+  Left = 308
+  Height = 638
+  Top = 274
+  Width = 182
+  BorderStyle = bsToolWindow
+  Caption = 'Properties'
+  ClientHeight = 638
+  ClientWidth = 182
+  OnClose = FormClose
+  OnCloseQuery = FormCloseQuery
+  LCLVersion = '1.2.4.0'
+  object lblSel: TLabel
+    Left = 0
+    Height = 1
+    Top = 0
+    Width = 182
+    Align = alTop
+    ParentColor = False
+    WordWrap = True
+  end
+  object GroupBox1: TGroupBox
+    Left = 0
+    Height = 264
+    Top = 1
+    Width = 182
+    Align = alTop
+    AutoSize = True
+    Caption = 'Default Properties'
+    ClientHeight = 246
+    ClientWidth = 178
+    TabOrder = 0
+    object GroupBox2: TGroupBox
+      Left = 0
+      Height = 41
+      Top = 0
+      Width = 178
+      Align = alTop
+      AutoSize = True
+      Caption = 'Top'
+      ClientHeight = 23
+      ClientWidth = 174
+      TabOrder = 0
+      object seTop: TSpinEdit
+        Left = 0
+        Height = 23
+        Top = 0
+        Width = 174
+        Align = alTop
+        MaxValue = 0
+        OnChange = seTopChange
+        ReadOnly = True
+        TabOrder = 0
+      end
+    end
+    object GroupBox3: TGroupBox
+      Left = 0
+      Height = 41
+      Top = 41
+      Width = 178
+      Align = alTop
+      AutoSize = True
+      Caption = 'Left'
+      ClientHeight = 23
+      ClientWidth = 174
+      TabOrder = 1
+      object seLeft: TSpinEdit
+        Left = 0
+        Height = 23
+        Top = 0
+        Width = 174
+        Align = alTop
+        MaxValue = 0
+        OnChange = seTopChange
+        ReadOnly = True
+        TabOrder = 0
+      end
+    end
+    object GroupBox4: TGroupBox
+      Left = 0
+      Height = 41
+      Top = 82
+      Width = 178
+      Align = alTop
+      AutoSize = True
+      Caption = 'Width'
+      ClientHeight = 23
+      ClientWidth = 174
+      TabOrder = 2
+      object seWidth: TSpinEdit
+        Left = 0
+        Height = 23
+        Top = 0
+        Width = 174
+        Align = alTop
+        MaxValue = 0
+        OnChange = seTopChange
+        ReadOnly = True
+        TabOrder = 0
+      end
+    end
+    object GroupBox5: TGroupBox
+      Left = 0
+      Height = 41
+      Top = 123
+      Width = 178
+      Align = alTop
+      AutoSize = True
+      Caption = 'Height'
+      ClientHeight = 23
+      ClientWidth = 174
+      TabOrder = 3
+      object seHeight: TSpinEdit
+        Left = 0
+        Height = 23
+        Top = 0
+        Width = 174
+        Align = alTop
+        MaxValue = 0
+        OnChange = seTopChange
+        ReadOnly = True
+        TabOrder = 0
+      end
+    end
+    object GroupBox6: TGroupBox
+      Left = 0
+      Height = 41
+      Top = 164
+      Width = 178
+      Align = alTop
+      AutoSize = True
+      Caption = 'Name'
+      ClientHeight = 23
+      ClientWidth = 174
+      TabOrder = 4
+      object txtName: TEdit
+        Left = 0
+        Height = 23
+        Top = 0
+        Width = 174
+        Align = alTop
+        OnKeyDown = txtNameKeyDown
+        TabOrder = 0
+      end
+    end
+    object GroupBox7: TGroupBox
+      Left = 0
+      Height = 41
+      Top = 205
+      Width = 178
+      Align = alTop
+      AutoSize = True
+      Caption = 'Align'
+      ClientHeight = 23
+      ClientWidth = 174
+      TabOrder = 5
+      object cboAlign: TComboBox
+        Left = 0
+        Height = 23
+        Top = 0
+        Width = 174
+        Align = alTop
+        ItemHeight = 15
+        Items.Strings = (
+          'Top'
+          'Bottom'
+          'Left'
+          'Right'
+          'Client'
+        )
+        OnChange = cboAlignChange
+        Style = csDropDownList
+        TabOrder = 0
+      end
+    end
+  end
+end

@@ -1,0 +1,42 @@
+unit FormTest;
+
+
+{ Global Variables }
+var
+    // Setup Global Variables Here
+    myForm : TForm;
+    MyButton : TButton;
+
+{ User Functions/Procedures }
+// Put Functions and Procedures Here
+
+procedure MyButtonClick(Sender : TObject);
+begin
+     ShowMessage('Hello World');
+end;
+
+{ Main }
+begin
+    // Your script runs here
+    MyForm := TForm.create(self);
+    MyForm.Caption := 'Hello!!';
+    MyForm.BorderStyle := bsDialog;
+    MyForm.top := 100;
+    MyForm.Left := 200;
+    MyForm.Width := 100;
+    MyForm.Height := 100;
+    MyForm.Position := poScreenCenter;
+    // Set up the button
+    MyButton := TButton.create(MyForm);
+    MyButton.Parent := MyForm;
+    myButton.SetBounds(0,0,MyForm.Width, MyForm.Height);
+    MyButton.Caption := 'Hello World';
+    MyButton.Visible := true;
+    // Don't Forget to pointer '@' the event or it won't work!
+    MyButton.OnClick := @MyButtonClick;
+    // Now show the form.  Ignore weird events handling we're showing modal;
+    MyForm.ShowModal;
+end.
+
+
+{ EOF }

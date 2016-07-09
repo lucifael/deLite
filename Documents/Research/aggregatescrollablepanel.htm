@@ -1,0 +1,410 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html><head><!-- #BeginTemplate "/Templates/Content Page.dwt" --><!-- DW6 -->
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="Author" content="Mark Cashman">
+<meta name="keywords" content="The Temporal Doorway, original, art, digital art, photos, images, ray tracing, digital collage, Amiga, Commodore, writing, science-fiction, poetry, non-fiction, rock climbing, programming, C++, C++ Builder, Borland, Carrara, Poser, Eovia, Curious Labs, 3D">
+<meta name="description" content="The Temporal Doorway: original digital art, photographs, and writing ( science-fiction, poetry, non-fiction, rock climbing, and programming)"><!-- #BeginEditable "doctitle" --><title>The Temporal Doorway - An Aggregate Scroll Panel Component</title><!-- #EndEditable -->
+ 
+
+ 
+<script language="JavaScript">
+<!--
+function unFrame() {
+    if (self != top)
+      top.location = self.location;
+  }
+
+function MM_callJS(jsStr) { //v2.0
+  return eval(jsStr)
+}
+
+function MM_findObj(n, d) { //v4.0
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && document.getElementById) x=document.getElementById(n); return x;
+}
+
+function KIA_toggleLayers() { //Programmed by Kariñe Idigoras, Sep 2000
+  var i,v,obj,args=KIA_toggleLayers.arguments;
+  for (i=0; i<(args.length-2); i+=3) {
+    if ((obj=MM_findObj(args[i]))!=null) {
+      if (obj.style) {
+        obj=obj.style;
+        if (obj.visibility=='visible')
+          obj.visibility='hidden';
+        else if (obj.visibility=='hidden')
+          obj.visibility='visible';
+      }
+      else {
+        if (obj.visibility=='show')
+          obj.visibility='hide';
+        else if (obj.visibility=='hide')
+          obj.visibility='show';
+      }
+    }
+  }
+}
+//-->
+</script></head><body linkifytime="141" linkified="0" linkifying="false" nosave="" background="aggregatescrollablepanel_files/pagebg.jpg">
+<font color="#ffffff"> </font> 
+<table border="0" cellpadding="2" cellspacing="2" width="100%">
+  <tbody><tr valign="top"> 
+    <td align="left" bgcolor="#333333" width="74%">
+      <font color="#ffffff"><a href="#" onclick="MM_callJS('unFrame()')">&nbsp;<img src="aggregatescrollablepanel_files/unframe.gif" border="0" height="20" width="71"></a></font>&nbsp; </td>
+    <td align="right" bgcolor="#cccccc" valign="middle" width="12%"><div align="center">t&nbsp;e&nbsp;m&nbsp;p&nbsp;o&nbsp;r&nbsp;a&nbsp;l<font color="#ffffff">&nbsp;</font></div></td>
+    <td align="left" bgcolor="#000000" valign="middle" width="12%">
+      <div align="center"><font color="#ffffff">&nbsp;<font color="#cccccc">d&nbsp;o&nbsp;o&nbsp;r&nbsp;w&nbsp;a&nbsp;y</font><font color="#999999">&nbsp;</font></font></div></td>
+  </tr>
+  <tr valign="top"> 
+    <td bgcolor="#000000" width="74%"> 
+      <div align="center"> 
+        <h1><font color="#cccccc"><!-- #BeginEditable "Document Title" -->An Aggregate 
+          Scroll Panel Component<!-- #EndEditable --></font></h1>
+        
+      </div>
+    </td>
+    <td bgcolor="#666666" valign="middle" width="14%">&nbsp; </td>
+    <td bgcolor="#000000" width="12%">
+      <div align="center"><a href="http://www.temporaldoorway.com/index.asp"><img src="aggregatescrollablepanel_files/tempdoordisc.jpg" onmousedown="KIA_toggleLayers('MenuLayer','*','')" border="0" height="78" width="80"></a> </div>
+    </td>
+  </tr>
+  <tr valign="top">
+    <td colspan="2"><!-- #BeginEditable "Content" --> 
+<h2>Introduction</h2>
+<p>One of the most difficult challenges for the component developer lies in creating 
+  components that, like TPanel, allow other components to be dropped on them. 
+  The reason this is difficult isn't because it is hard, but because it is a) 
+  undocumented and b) relies on the largely undocumented VCL component streaming 
+  system. This article will take care of (a) and some of (b); for more on (b) 
+  see the article on <a href="http://www.temporaldoorway.com/programming/cbuilder/advancedissue/aggregatestreamablecomponents.htm">Aggregate Streamable 
+  Components</a>.</p>
+<p>The component described in this article is a simple one, which allows you to 
+  drop other controls onto a scrollable panel. Almost all of the code supports 
+  the ability of the component to save which controls belong in it. It is based 
+  on the techniques shown in the now out of print "Developing Custom Delphi 
+  3 Components" by Konopka.</p>
+<p align="center"><img src="aggregatescrollablepanel_files/scrollpanel.gif" alt="The Scroll Panel Component in the IDE" height="308" width="355"></p>
+<h2>Technique</h2>
+<p>The key thing to understand is how the streaming system needs to deal with 
+  the dropped components. </p>
+<p>The VCL system itself normally parents a component to the component on which 
+  it is dropped. However, the owner of the component remains the form not the 
+  parent. When the form is saved, it is converted to a DFM file format through 
+  the process of streaming. A number of complex events occur during streaming, 
+  but the most important thing to remember is that only those components owned 
+  by the form are streamed into the DFM.</p>
+<p>Unfortunately, with regard to the control we are developing, we are parenting 
+  dropped components to a child of our component (the drop site). Keep in mind 
+
+  that anything owned by the form can be deleted and can also be modified in the 
+  object inspector. To prevent the drop site from being available for deletion 
+  (which would be a catastrophe) we can't allow it to be owned by the form - it 
+  has to be owned by our component. But since only components owned by the form 
+  are streamed, the drop site will not be streamed, its children will, and the 
+  resulting DFM will be corrupted.</p>
+<p>Getting around the problem requires implementing the following functions...</p>
+<ul>
+  <li> 
+    <p><code>DYNAMIC void __fastcall GetChildren(TGetChildProc theChildDecisionFunction,TComponent 
+      *theRoot);<br>
+      </code></p>
+  </li>
+  <li> 
+    <p><code>void __fastcall DefineProperties(TFiler *theFiler);<br>
+      </code></p>
+  </li>
+  <li> 
+    <p><code>void __fastcall WriteChildComponentList(TWriter *theWriter);</code></p>
+  </li>
+  <li> 
+    <p><code>void __fastcall ReadChildComponentList(TReader *theReader);<br>
+      </code></p>
+  </li>
+  <li> 
+    <p><code>void __fastcall Loaded(void);</code></p>
+  </li>
+</ul>
+<p>These functions are all overrides of functions provided by the streaming system 
+  interface of TPersistent.</p>
+<ul>
+  <li> 
+    <p>GetChildren() provides an opportunity for a component to identify components 
+      which are its children byh any means desired. We use it to pretend that 
+      the dropped controls are children of this component so that the streaming 
+      system knows they should be "inside" it. We have to do that because 
+      the drop site isn't visible to the streaming system.</p>
+  </li>
+  <li> 
+    <p>DefineProperties() lets us stream out properties that are not published 
+      - in this case, a list of the names of the components which are children 
+      of the drop site. We can use that later when the component is streamed in, 
+      to fix up the parentage of the child components to the drop site.</p>
+  </li>
+  <li> 
+    <p>The WriteChildComponentList() is called by the DefineProperty() call in 
+      DefineProperties(). It copies out the content of the list of dropped component 
+      names to the stream.</p>
+  </li>
+  <li> 
+    <p>The WriteChildComponentList() is called by the DefineProperty() call in 
+      DefineProperties(). It copies in the content of the list of dropped component 
+      names from the stream.</p>
+  </li>
+  <li> Loaded() is invoked after everything is streamed in and it looks at the 
+    list of component names, finds the named components, and reparents them to 
+    the drop site.</li>
+</ul>
+<p>Let's look at the implementation in detail....</p>
+<h2>The Header</h2>
+<code>//---------------------------------------------------------------------------<br>
+  <br>
+  #ifndef MCScrollPanelH<br>
+  #define MCScrollPanelH<br>
+  //---------------------------------------------------------------------------<br>
+  #include &lt;SysUtils.hpp&gt;<br>
+  #include &lt;Controls.hpp&gt;<br>
+  #include &lt;Classes.hpp&gt;<br>
+  #include &lt;Forms.hpp&gt;<br>
+  #include &lt;ExtCtrls.hpp&gt;<br>
+  //---------------------------------------------------------------------------<br>
+  class PACKAGE TMCScrollPanel : public TPanel<br>
+  {<br>
+  &nbsp;&nbsp;&nbsp;private:<br>
+  <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TStringList *myChildComponentList;<br>
+  <br>
+  &nbsp;&nbsp;&nbsp;protected:<br>
+  <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPanel *myDropSite;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TScrollBar *myVerticalScrollBar;<br>
+  <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void __fastcall VerticalScrollBarChange(TObject 
+  *Sender);<br>
+  <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int __fastcall GetPanelHeight(void){return 
+  myDropSite-&gt;Height;};<br>
+  <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void __fastcall SetPanelHeight(int thePanelHeight)<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;myVerticalScrollBar-&gt;Max 
+  = thePanelHeight;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;myVerticalScrollBar-&gt;PageSize 
+  = Height;<br>
+  <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;myDropSite-&gt;Height 
+  = thePanelHeight;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br>
+  <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DYNAMIC void __fastcall GetChildren(TGetChildProc 
+  theChildDecisionFunction,TComponent *theRoot);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void __fastcall DefineProperties(TFiler 
+  *theFiler);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void __fastcall WriteChildComponentList(TWriter 
+  *theWriter);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void __fastcall ReadChildComponentList(TReader 
+  *theReader);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void __fastcall Loaded(void);<br>
+  <br>
+  &nbsp;&nbsp;&nbsp;public:<br>
+  <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__fastcall TMCScrollPanel(TComponent* Owner);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__fastcall ~TMCScrollPanel(void);<br>
+  <br>
+  &nbsp;&nbsp;&nbsp;__published:<br>
+  <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__property int PanelHeight = {read=GetPanelHeight,write=SetPanelHeight};<br>
+  };<br>
+  //---------------------------------------------------------------------------<br>
+  #endif</code><br>
+<h2>The Implementation</h2>
+<p><code>//---------------------------------------------------------------------------<br>
+  <br>
+  #include &lt;vcl.h&gt;<br>
+  #pragma hdrstop<br>
+  <br>
+  #include "MCScrollPanel.h"<br>
+  #pragma package(smart_init)<br>
+  //---------------------------------------------------------------------------<br>
+  // ValidCtrCheck is used to assure that the components created do not have<br>
+  // any pure virtual functions.<br>
+  //<br>
+  <br>
+  static inline void ValidCtrCheck(TMCScrollPanel *)<br>
+  {<br>
+  &nbsp;&nbsp;&nbsp;new TMCScrollPanel(NULL);<br>
+  }<br>
+  //---------------------------------------------------------------------------<br>
+  void __fastcall TMCScrollPanel::VerticalScrollBarChange(TObject *Sender)<br>
+  {<br>
+  &nbsp;&nbsp;&nbsp;myDropSite-&gt;Top = -myVerticalScrollBar-&gt;Position;<br>
+  }<br>
+  //---------------------------------------------------------------------------<br>
+  __fastcall TMCScrollPanel::TMCScrollPanel(TComponent* Owner)<br>
+  &nbsp;&nbsp;&nbsp;: TPanel(Owner)<br>
+  {<br>
+  &nbsp;&nbsp;&nbsp;myChildComponentList = new TStringList;<br>
+  <br>
+  &nbsp;&nbsp;&nbsp;Parent = dynamic_cast&lt;TWinControl *&gt;(Owner); // Dimensions 
+  for subcomponents don't work correctly unless this is done<br>
+  &nbsp;&nbsp;&nbsp;<br>
+  &nbsp;&nbsp;&nbsp;Left = 0;<br>
+  &nbsp;&nbsp;&nbsp;Top = 0;<br>
+  &nbsp;&nbsp;&nbsp;Width = 320;<br>
+  &nbsp;&nbsp;&nbsp;Height = 240;<br>
+  &nbsp;&nbsp;&nbsp;TabOrder = 0;<br>
+  <br>
+  &nbsp;&nbsp;&nbsp;myVerticalScrollBar = new TScrollBar(this);<br>
+  &nbsp;&nbsp;&nbsp;myVerticalScrollBar-&gt;Parent = this;<br>
+  <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;myVerticalScrollBar-&gt;Kind = sbVertical;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;myVerticalScrollBar-&gt;Align = alRight;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;myVerticalScrollBar-&gt;OnChange = VerticalScrollBarChange;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;myVerticalScrollBar-&gt;PageSize = Height;<br>
+  <br>
+  &nbsp;&nbsp;&nbsp;myDropSite = new TPanel(this);<br>
+  &nbsp;&nbsp;&nbsp;myDropSite-&gt;Parent = this;<br>
+  <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;myDropSite-&gt;Width = ClientWidth - myVerticalScrollBar-&gt;Width 
+  - 1;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;myDropSite-&gt;Height = 240;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;myDropSite-&gt;Caption = "";<br>
+  }<br>
+  //---------------------------------------------------------------------------<br>
+  __fastcall TMCScrollPanel::~TMCScrollPanel(void)<br>
+  {<br>
+  &nbsp;&nbsp;&nbsp;delete myChildComponentList;<br>
+  }<br>
+  //---------------------------------------------------------------------------<br>
+  void __fastcall TMCScrollPanel::Loaded(void)<br>
+  {<br>
+  &nbsp;&nbsp;&nbsp;for (int Index = 0; Index &lt; myChildComponentList-&gt;Count; 
+  Index++)<br>
+  &nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TComponent *Child =
+GetParentForm(this)-&gt;FindComponent(myChildComponentList-&gt;Strings[Index]);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (Child != NULL) ((TControl *) Child)-&gt;Parent 
+  = myDropSite;<br>
+  &nbsp;&nbsp;&nbsp;};<br>
+  }<br>
+  //---------------------------------------------------------------------------<br>
+  void __fastcall TMCScrollPanel::GetChildren(TGetChildProc theChildDecisionFunction, 
+  TComponent *theRoot)<br>
+  {<br>
+  &nbsp;&nbsp;&nbsp;TPanel::GetChildren(theChildDecisionFunction,theRoot);<br>
+  &nbsp;&nbsp;&nbsp;TCustomForm *Form = GetParentForm(this);<br>
+  <br>
+  &nbsp;&nbsp;&nbsp;for (int Index = 0; Index &lt; myDropSite-&gt;ControlCount; 
+  Index++)<br>
+  &nbsp;&nbsp;&nbsp;{<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TControl *Control = myDropSite-&gt;Controls[Index];<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (Control-&gt;Owner == Form) theChildDecisionFunction(Control);<br>
+  &nbsp;&nbsp;&nbsp;};<br>
+  }<br>
+  //---------------------------------------------------------------------------<br>
+  void __fastcall TMCScrollPanel::DefineProperties(TFiler *theFiler)<br>
+  {<br>
+  &nbsp;&nbsp;&nbsp;theFiler-&gt;DefineProperty("ChildComponentList",ReadChildComponentList,WriteChildComponentList,true);<br>
+  }<br>
+  //---------------------------------------------------------------------------<br>
+  void __fastcall TMCScrollPanel::ReadChildComponentList(TReader *theReader)<br>
+  {<br>
+  &nbsp;&nbsp;&nbsp;myChildComponentList-&gt;Clear();<br>
+  <br>
+  &nbsp;&nbsp;&nbsp;theReader-&gt;ReadListBegin();<br>
+  <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;while (!theReader-&gt;EndOfList())<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;myChildComponentList-&gt;Add(theReader-&gt;ReadIdent());<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br>
+  <br>
+  &nbsp;&nbsp;&nbsp;theReader-&gt;ReadListEnd();<br>
+  }<br>
+  //---------------------------------------------------------------------------<br>
+  void __fastcall TMCScrollPanel::WriteChildComponentList(TWriter *theWriter)<br>
+  {<br>
+  &nbsp;&nbsp;&nbsp;theWriter-&gt;WriteListBegin();<br>
+  <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for (int Index = 0; Index &lt; myDropSite-&gt;ControlCount; 
+  Index++)<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;theWriter-&gt;WriteIdent(myDropSite-&gt;Controls[Index]-&gt;Name);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br>
+  <br>
+  &nbsp;&nbsp;&nbsp;theWriter-&gt;WriteListEnd();<br>
+  }<br>
+  //---------------------------------------------------------------------------<br>
+  namespace Mcscrollpanel<br>
+  {<br>
+  &nbsp;&nbsp;&nbsp;void __fastcall PACKAGE Register()<br>
+  &nbsp;&nbsp;&nbsp;{<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TComponentClass classes[1] = {__classid(TMCScrollPanel)};<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RegisterComponents("MCTestComponent", classes, 
+  0);<br>
+  &nbsp;&nbsp;&nbsp;}<br>
+  }<br>
+  //---------------------------------------------------------------------------</code><br>
+</p>
+<h2>Conclusion</h2>
+<p>Follow the model above, and it's not that hard to make a "panel-like" 
+  component. Enjoy it! Extend it!</p>
+<!-- #EndEditable --></td>
+    <td bgcolor="#666666"><table border="0" cellpadding="2" cellspacing="2" width="100%">
+      <tbody><tr>
+        <td bgcolor="#99ffcc"><div align="center"><font size="-1"><a href="http://www.temporaldoorway.com/gallery/index.htm">Gallery</a></font></div>
+        </td>
+      </tr>
+      <tr>
+        <td bgcolor="#99ffcc"><div align="center"><font size="-1"><a href="http://www.temporaldoorway.com/library/index.htm">Library</a></font></div>
+        </td>
+      </tr>
+      <tr>
+        <td bgcolor="#99ffcc"><div align="center"><font size="-1"><a href="http://www.temporaldoorway.com/studio/index.htm">Studio</a></font></div>
+        </td>
+      </tr>
+      <tr>
+        <td bgcolor="#66ccff"><div align="center"><font size="-1"><a href="http://www.temporaldoorway.com/programming/index.htm">Workstation</a></font></div>
+        </td>
+      </tr>
+      <tr>
+        <td bgcolor="#cc99cc"><div align="center"><font size="-1"><a href="http://www.temporaldoorway.com/climbing/index.htm">Outdoors</a></font></div>
+        </td>
+      </tr>
+      <tr>
+        <td bgcolor="#ffffff"><div align="center"><font size="-1"><a href="http://www.temporaldoorway.com/search/index.htm">Search</a></font></div>
+        </td>
+      </tr>
+      <tr>
+        <td bgcolor="#ffffff"><div align="center"><font size="-1"><a href="http://www.temporaldoorway.com/guestroom/index.asp">Guest
+                Room</a></font></div>
+        </td>
+      </tr>
+      <tr>
+        <td bgcolor="#ffffff"><div align="center"><font size="-1"><a href="http://www.temporaldoorway.com/store/index.htm">Store</a></font></div>
+        </td>
+      </tr>
+      <tr>
+        <td bgcolor="#ffffff"><div align="center"><font size="-1"><a href="http://www.temporaldoorway.com/whatsnew/index.htm">What's
+                New</a></font></div>
+        </td>
+      </tr>
+    </tbody></table></td>
+  </tr>
+</tbody></table>
+<div align="right">
+  <table border="0" cellpadding="2" cellspacing="2" width="100%">
+    <tbody><tr bgcolor="#cccccc"> 
+      <td> 
+        <div align="right"><font size="-2">Copyright © 2004 by <a href="http://www.temporaldoorway.com/author/index.htm">Mark
+               Cashman</a> (unless otherwise indicated), All Rights Reserved</font> 
+        </div>
+      </td>
+    </tr>
+  </tbody></table>
+  <br>
+&nbsp; </div>
+
+<!-- #EndTemplate --></body></html>

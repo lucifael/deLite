@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html><head><title>Design: Configuration tree</title>
+
+ 
+   
+   <link rel="Index" href="http://www.elists.org/pipermail/delphi/2001-September/index.html">
+   <link rel="made" href="mailto:delphi%40elists.org?Subject=Design%3A%20Configuration%20tree&amp;In-Reply-To=C98B3A58B26A654ABB8DE99D60ABA6B70117B8B9%40gexb">
+   <meta name="robots" content="index,nofollow">
+   <meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <link rel="Previous" href="http://www.elists.org/pipermail/delphi/2001-September/016850.html">
+   <link rel="Next" href="http://www.elists.org/pipermail/delphi/2001-September/016870.html"></head><body linkifytime="31" linkified="0" linkifying="false" bgcolor="#ffffff">
+   <h1>Design: Configuration tree</h1>
+    <b>sean</b> 
+    <a href="mailto:delphi%40elists.org?Subject=Design%3A%20Configuration%20tree&amp;In-Reply-To=C98B3A58B26A654ABB8DE99D60ABA6B70117B8B9%40gexb" title="Design: Configuration tree">skahil at iclassfactory.com
+       </a><br>
+    <i>Mon Sep 10 11:28:08 CDT 2001</i>
+    <p></p><ul>
+        <li>Previous message: <a href="http://www.elists.org/pipermail/delphi/2001-September/016850.html">Design: Configuration tree
+</a></li>
+        <li>Next message: <a href="http://www.elists.org/pipermail/delphi/2001-September/016870.html">Design: Configuration tree
+</a></li>
+         <li> <b>Messages sorted by:</b> 
+              <a href="http://www.elists.org/pipermail/delphi/2001-September/date.html#16856">[ date ]</a>
+              <a href="http://www.elists.org/pipermail/delphi/2001-September/thread.html#16856">[ thread ]</a>
+              <a href="http://www.elists.org/pipermail/delphi/2001-September/subject.html#16856">[ subject ]</a>
+              <a href="http://www.elists.org/pipermail/delphi/2001-September/author.html#16856">[ author ]</a>
+         </li>
+       </ul>
+    <hr>  
+<!--beginarticle-->
+<pre>Actually, there's a really easy way to do this:
+
+A StringList nicely parses things into Name=Value pairs which is the same as
+the ini file format.
+StringList also has a CommaText property that flattens the list into a
+single line.
+
+So, you can flatten store an enitire obj's properties into a single line and
+use it as a value.
+
+eg.
+
+procedure MyObj.WriteToStringList(StringList: TStringList);
+Var
+  ChildStringList: TStringList;
+begin
+  StringList.Clear;
+  ChildStringList:= TStringList.Create;
+  StringList.Values['Name']:= Self.Name;
+  StringList.Values['IntProperty']:= IntToStr(Self.IntProperty);
+  StringList.Values['BoolProperty']:= IntToStr( Ord(Self.BoolProperty) );
+
+  ChildObj1.WriteToStringList(ChildStringList);
+  StringList.Values['ChildObj1']:= ChildStringList.CommaText;
+
+  ChildObj2.WriteToStringList(ChildStringList);
+  StringList.Values['ChildObj2']:= ChildStringList.CommaText;
+
+  ChildStringList.Free;
+end;
+
+
+
+-----Original Message-----
+From: <a href="http://www.elists.org/mailman/listinfo/delphi">delphi-admin at elists.org</a> [mailto:<a href="http://www.elists.org/mailman/listinfo/delphi">delphi-admin at elists.org</a>]On Behalf Of
+Gamy Shilo - Israel
+Sent: Monday, September 10, 2001 7:36 AM
+To: '<a href="http://www.elists.org/mailman/listinfo/delphi">delphi at elists.org</a>'
+Subject: RE: Design: Configuration tree
+
+
+Thanks to all of you ;-)
+
+In general I also think in this options but all of them have problems.
+
+Using INI files, the hierarchy property is not enough ready-to-use.
+Using "Registry", I have the problem when saving tha data into flat-files.
+
+Yeah, the best way is using something like the dfm file format !!!!!!
+My questions is how I can handle (read/write) similar file?
+For this topic I need probably an editor, Which one, How I can do it?
+
+Any help, hints or code examples appreciated.
+Thanks in advance,
+Gamy.
+
+
+
+
+</pre>
+<!--endarticle-->
+    <hr>
+    <p></p><ul>
+        <!--threads-->
+	<li>Previous message: <a href="http://www.elists.org/pipermail/delphi/2001-September/016850.html">Design: Configuration tree
+</a></li>
+	<li>Next message: <a href="http://www.elists.org/pipermail/delphi/2001-September/016870.html">Design: Configuration tree
+</a></li>
+         <li> <b>Messages sorted by:</b> 
+              <a href="http://www.elists.org/pipermail/delphi/2001-September/date.html#16856">[ date ]</a>
+              <a href="http://www.elists.org/pipermail/delphi/2001-September/thread.html#16856">[ thread ]</a>
+              <a href="http://www.elists.org/pipermail/delphi/2001-September/subject.html#16856">[ subject ]</a>
+              <a href="http://www.elists.org/pipermail/delphi/2001-September/author.html#16856">[ author ]</a>
+         </li>
+       </ul>
+
+<hr>
+<a href="http://www.elists.org/mailman/listinfo/delphi">More information about the Delphi
+mailing list</a><br>
+
+</body></html>

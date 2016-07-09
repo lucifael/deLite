@@ -1,0 +1,8 @@
+object frmIDE: TfrmIDE
+  Left = 258
+  Height = 768
+  Top = 145
+  Width = 1024
+  Caption = 'deLite - IDE'
+  LCLVersion = '1.6.0.4'
+end

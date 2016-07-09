@@ -1,0 +1,779 @@
+unit MicroBlogFormUI;
+
+// Change these to your values
+const
+     HOST = 'ftp.lucifael.com';
+     PORT = '21';
+     iDIR = '/';
+     Seps = ' /\.,;:' + #13 + #10;
+
+
+
+{ Global Variables }
+var
+      // Setup Global Variables Here
+       MyForm : TForm;
+       pnlButtons: TPanel;
+        btnMakePage: TButton;
+        btnUploadToWeb: TButton;
+        btnArchiveLog: TButton;
+        btnMakeEntry: TButton;
+        btnEditEntry : TButton;
+        btnClose: TButton;
+        Panel2_2220: TPanel;
+        Panel2_7068: TPanel;
+        cboDates: TComboBox;
+        lbTimes: TListBox;
+        memEntry: TMemo;
+
+
+
+        // My Variables
+        Filename_Log : String;
+        Filename_Arc : String;
+        Filename_HTML : String;
+        Filename_Config : String;
+        Filename_KWords : String;
+        Filename_Head, Filename_Foot : String;
+
+        INet_Username,INet_Password : String;
+        FCurrent : Integer;  // Integer index of current entry
+        Blog : TStringList;
+
+{ User Functions/Procedures }
+// Put Functions and Procedures Here
+
+// Form Events
+
+
+
+
+procedure lbTimesClick(Sender : TObject);
+var
+   txt : String;
+   a : Integer;
+   csv : TStringList;
+begin
+     // Bail if there isn't a selcted item
+     if lbTimes.ITemIndeX=-1 then exit;
+     txt := lbTimes.Items[lbTimes.ItemIndex];
+     // txt is our time string to search for
+     for a := 0 to Blog.Count - 1 do
+     begin
+          if pos(txt, blog[a])>0 then
+          begin
+               // If we were being really careful we'd only check the date part of the entry
+               // But this is probably close enough for military work
+               csv := TStringList.create;
+               try
+                   Fill_StringList(csv, blog[a], '|');
+                   if csv.count>=1 then
+                   begin
+                        // We have our entry delimited;
+                        // 1 = The Text Of Out Entry
+                        memEntry.lines.text := csv[1];
+                   end;
+               finally
+                      csv.free;
+               end;
+               FCurrent := a;
+          end;
+     end;
+
+end;
+
+
+procedure GetDates;
+var
+   a : Integer;
+   lst, csv, tmp : TStringList;
+begin
+     cboDates.Items.clear;
+     WriteS('Blog Entries: ' + IntToStr(Blog.Count-1));
+     for a := 0 to Blog.count - 1 do
+     begin
+          lst := TStringList.create;
+          try
+             Fill_StringList(lst, Blog[a], '|')
+             if lst.count>=1 then
+             begin
+                  // Split out the date
+                  csv := TStringList.create;
+                  try
+                     fill_StringList(csv, lst[0], ' ');
+                     if csv.count>=1 then
+                     begin
+                          // Date should be in first entry
+                          cboDates.Items.add(csv[0]);
+                     end;
+                  Finally
+                         csv.free;
+                  end;
+             end;
+          finally
+                 lst.free;
+          end;
+     end;
+     // Lazy ass way of removing the duplicate entries,
+     // the procedure wants a variable, so we have to make a
+     // temp list to change it.
+     tmp := TStringList.create;
+     try
+        tmp.assign(cboDates.Items);
+        lst_RemoveDuplicates(tmp);
+        cboDates.Items.assign(tmp);
+     finally
+            tmp.free;
+     end;
+     cboDates.itemIndex := -1;
+end;
+
+
+procedure MakeEntryClick(sender : TObject);
+var
+   txtBlogEntry : String;
+begin
+     txtBlogEntry := dlg_Text('Enter Micro Blog Entry');
+     if txtBlogEntry<>'' then
+     begin
+          Blog.add(DateTimeToStr(NOW) + '|' + txtBlogEntry);
+          Blog.SaveToFile(Filename_Log);
+          cboDates.ItemIndex := -1;
+          lbTimes.items.clear;
+          GetDates;
+          FCurrent := -1;
+     end;
+end;
+
+// Put Stuff Here
+
+procedure ArchiveClick(sender : TObject);
+begin
+     CopyFile(Filename_log, filename_Arc, true);
+     blog.clear;
+     blog.SaveToFile(Filename_log);
+     memEntry.lines.text := 'Your MicroBlog is empty, it has just been archived' + #10#13 + 'Check the ''Archives\'' subdirectory.' + #10#13 + 'Meanwhile - Make an Entry!';
+     cboDates.items.clear;
+     lbTimes.items.clear;
+     dlg_message('MicroBlog Archived');
+     FCurrent := -1;
+end;
+
+procedure UpLoadClick(sender : TObject);
+var
+    ftplst : TStringList;
+begin
+     if not FileExists(filename_html) then
+     begin
+          dlg_Message('Internet page not yet produced.');
+          exit;
+     end;
+
+     // Password storage uses BlowFish Encryption, but since you pass the password in the script, perhaps
+     // Not that secure.  Could use all sorts of ways of making this more secure, including getting it from the net.
+     Inet_Username := ini_ReadString(filename_Config, 'Login', 'Username', '');
+     Inet_Password := bf_Decrypt(ini_ReadString(filename_Config, 'Login', 'Password', ''), 'MyEncryption');
+     // That's That Loaded
+
+     //  Show the Username and Password dialog, with our saved details already saved
+     dlg_UserPass(Inet_Username, Inet_Password);
+
+     // Save The Login Details now, just incase something bad happens
+     ini_WriteString(filename_Config, 'Login', 'Username', Inet_Username);
+     ini_WriteString(filename_Config, 'Login', 'Password', bf_Encrypt(Inet_Password, 'MyEncryption'));
+     // Do some error checking, and bail if something not set
+     if Inet_Username='' then exit;
+     if Inet_Password='' then exit;
+     // Now create the ftp string list required because of the PArameter oddity
+     ftpLst := TStringList.create;
+     try
+        FTPLst.add(HOST);
+        ftpLst.add(PORT);
+        ftpLst.add(iDIR);
+        ftpLst.add('index.html');
+        ftplst.add(filename_HTML);
+        ftplst.add(INet_Username);
+        ftplst.add(INet_Password);
+        if net_FtpPutFile(ftpLst) then
+        begin
+             // Don't really need to make a fuss unless something bad happened!
+             dlg_message('File uploaded OK');
+        end else
+        begin
+             dlg_Message('File not uploaded');
+        end;
+     finally
+                    ftpLst.free;
+     end;
+end;
+
+function MakeTwitterTags(const str : String) : String;
+var
+   ps : Integer;
+   idx : Integer;
+   st : STring;
+   ToReplace : String;
+   breakloop1, BreakLoop2 : Boolean;
+begin
+     //
+     st := str;
+     ps := pos('@', st);
+     if ps>0 then
+     begin
+          // We have a hash tag
+          // p.s. Make sure to do this before general HTML is inserted
+          BreakLoop1 := false;
+          BreakLoop2 := False;
+          while pos('@', st)>0 do
+          begin
+               // Find the end of the tag
+               BreakLoop2 := false;
+               ps := pos('@', st);
+               idx := pos('@', st);
+               repeat
+                     idx := idx + 1;
+                     if st[idx] = ' ' then BreakLoop2 := true;
+                     if st[idx] = '.' then BreakLoop2 := true;
+                     if st[idx] = '/' then BreakLoop2 := true;
+                     if st[idx] = '\' then BreakLoop2 := true;
+                     if st[idx] = ';' then BreakLoop2 := true;
+                     if st[idx] = ')' then BreakLoop2 := true;
+                     if st[idx] = '(' then BreakLoop2 := true;
+                     if st[idx] = ',' then BreakLoop2 := true;
+                     if st[idx] = #10 then BreakLoop2 := true;
+                     if st[idx] = #13 then BreakLoop2 := true;
+               until BreakLoop2 or (idx>=(length(st)));
+               ToReplace := trim(SubStr(st, ps, idx-1));
+               st := StringReplaceAll(st, ToReplace, '<a href="http://www.twitter.com/' + StringReplaceAll(ToReplace, '@', '') + '" class="twit-link" target="_blank">&#64;' + ToReplace + '</a>');
+               ps := pos('@', st);
+               delete(st, ps, 1);
+          end;
+     end;
+     result := st;
+
+end;
+procedure MakeHashTags;
+var
+   ps : Integer;
+   idx : Integer;
+   st : STring;
+   EntryStr : String;
+   ToReplace : String;
+   BreakLoop2 : Boolean;
+   a : Integer;
+begin
+     //  Start Again
+     for a := 0 to Blog.Count - 1 do
+     begin
+          EntryStr := Blog[a];
+          BreakLoop2 := False;
+          st := EntryStr;
+          while pos('#', st)>0 do
+          begin
+               // Find the end of the tag
+               BreakLoop2 := false;
+               ps := pos('#', st);
+               idx := pos('#', st);
+               repeat
+                     idx := idx + 1;
+                     if st[idx] = ' ' then BreakLoop2 := true;
+                     if st[idx] = '.' then BreakLoop2 := true;
+                     if st[idx] = '/' then BreakLoop2 := true;
+                     if st[idx] = '\' then BreakLoop2 := true;
+                     if st[idx] = ';' then BreakLoop2 := true;
+                     if st[idx] = ')' then BreakLoop2 := true;
+                     if st[idx] = '(' then BreakLoop2 := true;
+                     if st[idx] = ',' then BreakLoop2 := true;
+                     if st[idx] = #10 then BreakLoop2 := true;
+                     if st[idx] = #13 then BreakLoop2 := true;
+               until BreakLoop2 or (idx>=(length(st)));
+               if pos(st[idx], './;)(,')>0 then idx := idx - 1;
+               if idx>Length(st) then idx := length(st);
+               ToReplace := trim(SubStr(st, ps, idx));
+               st := StringReplaceAll(st, ToReplace, '<a href="http://twitter.com/hashtag/' + StringReplaceAll(ToReplace, '#', '') + '" class="hash-link" target="_blank">[LuHash]' + ToReplace + '</a>');
+               ps := pos('#', st);
+               delete(st, ps, 1);
+          end;
+          st := StringReplaceAll(st, '[LuHash]', '&#35;');
+          Blog[a] := st;
+     end;
+end;
+
+procedure ReplaceVar(var txt : String);
+begin
+     // Some Handy variables that are replaced at page generation.
+     // Can be used for statistics and customization without setting
+     // A load of variables via ini_Read functions or something.
+     txt := StringReplaceAll(txt, '%UserName%', sys_GetUserName);
+     txt := StringReplaceAll(txt, '%ComputerName%', sys_GetComputerName);
+     txt := StringReplaceAll(txt, '%ScriptName%', ExtractFileName(de_ReturnScript));
+     txt := StringReplaceAll(txt, '%GenDate%', DateToStr(NOW));
+     txt := StringReplaceAll(txt, '%GenTime%', TimeToStr(NOW));
+end;
+
+procedure MakeHTMLFileClick(Sender : TObject);
+var
+   A, B : Integer;
+    HtmlOutput : TStringList;
+    Temp, CSV, KeyWords, KCSV : TStringList;
+    TimeE, EntryE : String;
+    txt : String;
+begin
+     // Before we do ANY HTML Coding stuff we have to replace the HashTags
+     MakeHashTags;
+     Blog.text := MakeTwitterTags(blog.text);
+     // Just reload the file afterwards
+       HTMLOutput := TStringList.create;
+       try
+          Temp := TStringList.create;
+          try
+             // Include the header
+             temp.LoadFromFile(Filename_Head);
+             txt := temp.text;
+             ReplaceVar(txt);
+             temp.text := txt;
+             HTMLOutput.assign(Temp);
+             temp.clear;
+             // Now we parse the log entries, into time and entry;
+             csv := TStringList.create;
+             try
+                // Work backwards through the list, then the webpage will have the latest entry at the top!
+                for A := Blog.count - 1 downto 0 do
+                begin
+                     csv.clear;
+                     Fill_StringList(csv, Blog[a], '|');
+                     if csv.count>=1 then
+                     begin
+                          TimeE := csv[0];                 // Date and Time of Entry before the '|'
+                          EntryE := csv[1];                // The Entry itself is after the '|'
+                     end;
+                     // Replace The Keywords This allows auto linking of
+                     // certain key phrases, almost a Wiki function no?
+                     // Perhaps not quite, but still, kinda fun.
+                     // Fully User config via the file named below
+                     // There is no error checking for the CSV stuff per say, but the code
+                     // should catch anything that's not quite right, '|' is the delim
+                     // Same as the actual MicroBlog Entries.
+                     KeyWords := TStringList.create;
+                     try
+                        if FileExists(Filename_KWords) then
+                        begin
+                             KeyWords.LoadFromFile(Filename_KWords);
+                             for b := 0 to KeyWords.count - 1 do
+                             begin
+                                  // Loop through each, get Pairs, and replace as needed
+                                  KCSV := TStringList.create;
+                                  try
+                                     Fill_StringList(KCSV, KeyWords[b], '|');
+                                     if KCSV.Count>=1 then
+                                     begin
+                                          EntryE := StringReplaceAll(EntryE, KCSV[0], '<a href="' + KCSV[1] + '" target="_blank" class="keyword-link">' + KCSV[0] + '</a>')
+                                     end;
+                                  finally
+                                         KCSV.Free;
+                                  end;
+                             end;
+                        end;
+                     finally
+                            KeyWords.free;
+                     end;
+                     // Output in HTML, the table styles and everything else was included in the header file.
+                     HTMLOutput.Add('             <TR>');
+                     HTMLOutput.add('                     <TD width="15%" align="center"><i>' + TimeE + '</i></TD><TD width="75%">' + EntryE + '<BR>');
+                     HTMLOutput.add('                     <p align="right" style="font-size: 10px;"><a href="#top">Top</a></TD>');
+                     HTMLOutput.Add('             </TR>');
+                end;
+             finally
+                    csv.free;
+             end;
+             Temp.LoadFromFile(Filename_Foot);
+             txt := temp.text;
+             ReplaceVar(txt);
+             temp.text := txt;
+             // This is a quick access command to copy contents of one list to another, could easily be done IN script as well
+             // This is just to make things easier.
+             lst_copy(temp, HTMLOutput);
+          finally
+                 Temp.free;
+          end;
+          //  Do Header
+          if Filename_HTML<>'' then
+          begin
+               HTMLOutput.SaveToFile(filename_HTML);
+//               HTMLOutput.SaveToFile(ExtractFilePath(OutFilename) + 'index.html');
+          end;
+       finally
+              HTMLOutput.free;
+       end;
+       Blog.LoadFromFile(filename_log);
+       if dlg_Ask('HTML Output to: (' + ExtractFilename(Filename_HTML) + ')' + #10#13#10#13 + 'Would you like to view it?')=1 then
+       begin
+            OpenDocument(Filename_HTML);
+       end;
+end;
+
+procedure btnEditEntryClick(sender : TObject);
+var
+   DStamp, EntryStr : String;
+   csv : TStringList;
+   NewEntry : String;
+begin
+     // Edit an entry
+     If FCurrent<>-1 then
+     begin
+          csv := TStringList.create;
+          try
+             fill_stringList(csv, Blog[FCurrent], '|')
+             if csv.count>=1 then
+             begin
+                  DStamp := Csv[0];
+                  EntryStr := csv[1];
+             end;
+//             dlg_message(dstamp + #10#13 + EntryStr);
+             EntryStr := dlg_Edit('Edit Entry', EntryStr);
+             if EntryStr<>'' then
+             begin
+                  NewEntry := DStamp + '|' + EntryStr;
+                  Blog[FCurrent] := NewEntry;
+                  memEntry.lines.text := EntryStr;
+                  Blog.SaveToFile(Filename_log);
+             end;
+          finally
+                 csv.free;
+          end;
+     end;
+end;
+
+procedure cboDatesChange(sender : TObject);
+var
+   a : Integer;
+   csv, dcsv : TStringList;
+begin
+     // Select the listbox via what's shown in the date value box
+//     dlg_Message('You clicked something');
+     lbTimes.items.clear;
+     for a := 0 to Blog.count - 1 do
+     begin
+          // Page through the blog
+          if pos(cboDates.text, Blog[a])>0 then
+          begin
+               // We have a time to show, can have multiple time entries, never going to be the same as it's second fine
+               dcsv := TStringList.create;
+               try
+                  Fill_StringList(dcsv, Blog[a], '|');
+                  if dcsv.count>=1 then
+                  begin
+                       // Here's our date and time string
+                       CSV := TStringList.create;
+                       try
+                          fill_StringList(csv, dCSV[0], ' ');
+                          // Entry 1 has our time in it.
+                          // Don't need to worry about duplicates this time
+                          if csv.count>=1 then
+                             lbTimes.items.add(csv[1])
+                       finally
+                              csv.free;
+                       end;
+                  end;
+               finally
+                      Dcsv.free;
+               end;
+          end;
+     end;
+end;
+
+
+// Create Form by Form Wizard
+procedure CreateForm;
+begin
+       MyForm := TForm.create(self)
+       MyForm.Top := 130;
+       MyForm.Left := 201;
+       MyForm.Width := 936;
+       MyForm.Height := 657;
+       MyForm.position := poScreenCenter;
+		// Begin pnlButtons Definition
+		pnlButtons := TPanel.create(MyForm);
+		pnlButtons.Parent := MyForm;
+		pnlButtons.SetBounds(852,0,84,657);
+		pnlButtons.Width := 84;
+		pnlButtons.Height := 657;
+		pnlButtons.Name := 'pnlButtons';
+		pnlButtons.caption := '';
+		pnlButtons.Align := alRight;
+                pnlButtons.BevelInner := bvNone;
+                pnlButtons.BevelOuter := bvNone;
+                pnlButtons.color := clWindow;
+		// End pnlButtons Definition
+		// Begin pnlButtons Indentation
+		// Begin btnMakePage Definition
+		btnMakePage := TButton.create(pnlButtons);
+		btnMakePage.Parent := pnlButtons;
+		btnMakePage.SetBounds(1,71,82,35);
+		btnMakePage.Width := 82;
+		btnMakePage.Height := 35;
+		btnMakePage.Name := 'btnMakePage';
+		btnMakePage.Caption := 'Make Page';
+		btnMakePage.Align := alTop;
+                btnMakePage.OnClick := @MakeHTMLFileClick;
+		// End btnMakePage Definition
+		// End pnlButtons Indentation
+		// Begin pnlButtons Indentation
+		// Begin btnUploadToWeb Definition
+		btnUploadToWeb := TButton.create(pnlButtons);
+		btnUploadToWeb.Parent := pnlButtons;
+		btnUploadToWeb.SetBounds(1,106,82,35);
+		btnUploadToWeb.Width := 82;
+		btnUploadToWeb.Height := 35;
+		btnUploadToWeb.Name := 'btnUploadToWeb';
+		btnUploadToWeb.Caption := 'Upload';
+		btnUploadToWeb.Align := alTop;
+                btnUploadToWeb.OnClick := @UpLoadClick;
+		// End btnUploadToWeb Definition
+		// End pnlButtons Indentation
+		// Begin pnlButtons Indentation
+		// Begin btnArchiveLog Definition
+		btnArchiveLog := TButton.create(pnlButtons);
+		btnArchiveLog.Parent := pnlButtons;
+		btnArchiveLog.SetBounds(1,36,82,35);
+		btnArchiveLog.Width := 82;
+		btnArchiveLog.Height := 35;
+		btnArchiveLog.Name := 'btnArchiveLog';
+		btnArchiveLog.Caption := 'Archive';
+		btnArchiveLog.Align := alTop;
+                btnArchiveLog.OnClick := @ArchiveClick;
+		// End btnArchiveLog Definition
+		// End pnlButtons Indentation
+		// Begin pnlButtons Indentation
+		// Begin btnMakeEntry Definition
+		btnMakeEntry := TButton.create(pnlButtons);
+		btnMakeEntry.Parent := pnlButtons;
+		btnMakeEntry.SetBounds(1,1,82,35);
+		btnMakeEntry.Width := 82;
+		btnMakeEntry.Height := 35;
+		btnMakeEntry.Name := 'btnMakeEntry';
+		btnMakeEntry.Caption := 'New Entry';
+		btnMakeEntry.Align := alTop;
+                btnMakeEntry.OnClick := @MakeEntryClick;
+		// End btnMakeEntry Definition
+		btnEditEntry := TButton.create(pnlButtons);
+		btnEditEntry.Parent := pnlButtons;
+		btnEditEntry.SetBounds(1,10,82,35);
+		btnEditEntry.Width := 82;
+		btnEditEntry.Height := 35;
+		btnEditEntry.Name := 'btnEditEntry';
+		btnEditEntry.Caption := 'Edit Entry';
+		btnEditEntry.Align := alTop;
+                btnEditEntry.OnClick := @btnEditEntryClick;
+		// End pnlButtons Indentation
+		// Begin pnlButtons Indentation
+		// Begin btnClose Definition
+		btnClose := TButton.create(pnlButtons);
+		btnClose.Parent := pnlButtons;
+		btnClose.SetBounds(1,621,82,35);
+		btnClose.Width := 82;
+		btnClose.Height := 35;
+		btnClose.Name := 'btnClose';
+		btnClose.Caption := '&Close';
+		btnClose.Align := alBottom;
+                btnClose.ModalResult := mrCancel;
+                btnClose.Cancel := True;
+		// End btnClose Definition
+		// End pnlButtons Indentation
+		// End frmDesign Indentation
+		// Begin Panel2_2220 Definition
+		Panel2_2220 := TPanel.create(MyForm);
+		Panel2_2220.Parent := MyForm;
+		Panel2_2220.SetBounds(0,0,852,657);
+		Panel2_2220.Width := 852;
+		Panel2_2220.Height := 657;
+		Panel2_2220.Name := 'Panel2_2220';
+		Panel2_2220.caption := '';
+		Panel2_2220.Align := alClient;
+                Panel2_2220.BevelInner := bvNone;
+                Panel2_2220.BevelOuter := bvNone;
+                Panel2_2220.color := clWindow;
+		// End Panel2_2220 Definition
+		// Begin Panel2_7068 Definition
+		Panel2_7068 := TPanel.create(Panel2_2220);
+		Panel2_7068.Parent := Panel2_2220;
+		Panel2_7068.SetBounds(1,1,850,34);
+		Panel2_7068.Width := 850;
+		Panel2_7068.Height := 34;
+		Panel2_7068.Name := 'Panel2_7068';
+		Panel2_7068.caption := '';
+		Panel2_7068.Align := alTop;
+                Panel2_7068.BevelInner := bvNone;
+                Panel2_7068.BevelOuter := bvNone;
+                Panel2_7068.color := clWindow;
+		// End Panel2_7068 Definition
+		// Begin cboDates Definition
+		cboDates := TComboBox.create(Panel2_7068);
+		cboDates.Parent := Panel2_7068;
+		cboDates.SetBounds(1,1,848,32);
+		cboDates.Width := 848;
+		cboDates.Height := 32;
+		cboDates.Name := 'cboDates';
+		cboDates.text := '';
+		cboDates.Align := alClient;
+		cboDates.Style := csDropDownList;
+                cboDates.OnChange := @cboDatesChange;
+                cboDates.Font.Size := 12;
+                CboDates.Font.Name := 'Courier New';
+                cboDates.Font.Color := clNavy;
+                cboDates.color := clWindow;
+                Panel2_7068.height := cboDates.height;
+		// End cboDates Definition
+		// End Panel2_7068 Indentation
+		// End Panel2_2220 Indentation
+		// Begin lbTimes Definition
+		lbTimes := TListBox.create(Panel2_2220);
+		lbTimes.Parent := Panel2_2220;
+		lbTimes.SetBounds(1,35,850,223);
+		lbTimes.Width := 850;
+		lbTimes.Height := 223;
+		lbTimes.Name := 'lbTimes';
+		lbTimes.items.text := '';
+		lbTimes.Align := alTop;
+                lbTimes.OnClick := @lbTimesClick;
+                lbTimes.Font.Size := 12;
+                lbTimes.Font.Name := 'Courier New';
+                lbTimes.Font.Color := clNavy;
+                lbTimes.color := clWindow;
+		// End lbTimes Definition
+		// End Panel2_2220 Indentation
+		// Begin memEntry Definition
+		memEntry := TMemo.create(Panel2_2220);
+		memEntry.Parent := Panel2_2220;
+		memEntry.SetBounds(1,258,850,398);
+		memEntry.Width := 850;
+		memEntry.Height := 398;
+		memEntry.Name := 'memEntry';
+		memEntry.lines.text := '';
+		memEntry.Align := alClient;
+                memEntry.ReadOnly := True;
+                memEntry.Font.Name := 'Courier New';
+                memEntry.Color := clWindow;
+                memEntry.font.color := clBlue;
+                memEntry.Font.Size := 12;
+		// End memEntry Definition
+		// End Panel2_2220 Indentation
+		// End frmDesign Indentation
+		// End Of Form Definition
+End;
+
+
+
+procedure AutoArchive;
+var
+   wDay, wMonth, wYear : Word;
+   MyMonth : Integer;
+begin
+     // Auto Archive the blog every month to keep it relatively clean
+//     date := now;
+     decodeDate(now, wYear, wMonth, wDay);
+     MyMonth := ini_ReadInteger(filename_Config, 'Archiving', 'CurrentMonth', -1);
+     if MyMonth<>-1 then
+     begin
+          if MyMonth<>wMonth then
+          begin
+               CopyFile(Filename_log, filename_Arc, true);
+               blog.clear;
+               blog.SaveToFile(Filename_log);
+               memEntry.lines.text := 'Your MicroBlog is empty, it may have just auto monthly archived' + #10#13 + 'Check the ''Archives\'' subdirectory.' + #10#13 +
+               'Meanwhile - Make an Entry!  Start the month Fresh';
+               cboDates.items.clear;
+               lbTimes.items.clear;
+               ini_WriteInteger(filename_Config, 'Archiving', 'CurrentMonth', wMonth);
+          end;
+     end else
+     begin
+          ini_WriteInteger(filename_Config, 'Archiving', 'CurrentMonth', wMonth);
+     end;
+end;
+
+procedure MakeFilenames;
+var
+   Dir : String;
+   date : String;
+begin
+     dir := sys_ReturnSysDir('Personal');
+     Dir := Dir + 'MicroBlog\';
+     // Create the directory if it doesn't already exist
+     ForceDirectories(Dir);
+     // Make the filenames used
+     Filename_log          :=   Dir + 'MicroBlog.mblog';
+     WriteS(Filename_Log);
+     filename_HTML         :=   Dir + 'index.html';
+     WriteS(Filename_HTML);
+     Filename_Arc          :=   Dir + 'Archives\';
+     ForceDirectories(Filename_Arc);
+     date := DateToStr(NOW);
+     Filename_Arc          :=   Filename_Arc + StringReplaceAll(Date, '/', '_') + '.mblog';
+     WriteS(Filename_Arc);
+     Filename_Config       :=   Dir + 'MicroBlog.cfg';
+     WriteS(Filename_Config);
+     Filename_KWords       :=   Dir + 'MicroBlog.kWords';
+     WriteS(Filename_KWords);
+
+     // I store these in my units includes directory, you should make your own wherever you
+     // want, just point to them here.
+     Filename_Head := de_ReturnUnit + 'MBLogHead.html';
+     WriteS(Filename_Head);
+     Filename_Foot := de_ReturnUnit + 'MBLogFoot.html';
+     WriteS(Filename_Foot);
+end;
+
+procedure LoadBlog(const fname : String);
+begin
+     if not assigned(Blog) then Blog := TStringList.create;
+     if FileExists(fname) then Blog.LoadFromFile(Fname)
+     else begin
+          dlg_Message('Blog File Doesn''t Exist...Creating It!');
+          Blog.SaveToFile(Fname);
+     end;
+     if blog.count-1=-1 then
+     begin
+               memEntry.lines.text := 'Your MicroBlog is empty, it may have just auto monthly archived'+#10#13 + 'Check the ''Archives\'' subdirectory.' +#10#13 + 'Meanwhile - Make an Entry!  Start the month Fresh';
+     end;
+end;
+
+
+{ Main }
+begin
+        // Get all the filenames sorted out
+        FCurrent := -1;
+        MakeFilenames;
+        CopyFile(Filename_log, ChangeFileExt(Filename_Log, '.bak'), true);
+        WriteS('Filenames made');
+
+
+        // Working with form now, so make sure it's loaded and init
+        CreateForm;
+
+        // Then Load The Actual Blog File
+        LoadBlog(Filename_log);
+        WriteS('Load Log');
+
+        // Do Automatic jobs
+        // Like Archiving
+        AutoArchive;
+
+        // Load The Date Values
+        GetDates;
+        WriteS('Split Out Dates');
+
+        MyForm.ShowModal;
+        // Write the ini file
+        // Tidy Up
+        MyForm.free;
+        // To be really tidy you would .free all the controls also here
+        // But since most scripts would be run from command line, auto
+        // free would take care of it.
+end.
+
+// DecodeDate(Date, wYear, wMonth, wDay);
+
+
+
+{ EOF }

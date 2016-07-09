@@ -1,0 +1,29 @@
+[Scripts]
+Count=4
+1=C:\Users\test\OneDrive\Development\deLite\Examples\MicroBlog\MicroBlog Make Entry.deScript
+2=C:\Users\test\OneDrive\Development\deLite\Examples\MicroBlog\MicroBlog Make Page.deScript
+3=C:\Users\test\OneDrive\Development\deLite\Examples\MicroBlog\MicroBlog Form UI.deScript
+4=C:\Users\test\OneDrive\Development\deLite\Examples\MicroBlog\MicroBlog Keyword Editor.deScript
+
+[Includes]
+Count=0
+
+[Resources]
+Count=0
+
+[Other]
+Count=3
+1=C:\Users\Lucifael\Documents\MicroBlog\MicroBlog.cfg
+2=C:\Users\Lucifael\Documents\MicroBlog\MicroBlog.kWords
+3=C:\Users\Lucifael\Documents\MicroBlog\MicroBlog.mblog
+
+[General]
+Main=C:\Users\test\OneDrive\Development\deLite\Examples\MicroBlog\MicroBlog Form UI.deScript
+LoadMain=1
+
+[Compile]
+CompressOutput=1
+IntegrateRes=1
+EXEFilename=
+IcoFilename=
+

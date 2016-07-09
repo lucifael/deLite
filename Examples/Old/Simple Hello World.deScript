@@ -1,0 +1,14 @@
+unit SimpleHelloWorld;
+
+
+{ Global Variables }
+
+
+{ User Functions/Procedures }
+// Put Functions and Procedures HERE
+
+{ Main }
+begin
+     // Look in Debug Output after this script has executed
+     WriteS('Hello World From Script Host!');
+end.

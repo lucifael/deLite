@@ -1,0 +1,13 @@
+unit InterfaceScriptExample;
+
+
+{ Global Variables }
+
+{ User Functions/Procedures }
+// Put Functions and Procedures HERE
+
+{ Main }
+begin
+     ShowMessage('You''re Working On: ' + de_ReturnScript + #10#13 + 'You''re Working In: ' + de_ReturnScriptPath);
+     de_SetSelText('// ' + de_GetSelText);
+end.            //
