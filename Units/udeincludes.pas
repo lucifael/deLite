@@ -9,7 +9,7 @@ uses
   SynMemo, IpHtml, Forms, Controls, Graphics, Dialogs, ActnList, Menus,
   ExtCtrls, ComCtrls, Buttons, StdCtrls, uPSComponent, uPSComponent_Default,
   uPSComponent_DB, uPSComponent_Forms, uPSComponent_Controls,
-  uPSComponent_StdCtrls, SMNetGradient, uPSCompiler, httpSend, VersionInfo,
+  uPSComponent_StdCtrls, uPSCompiler, httpSend, VersionInfo,
   uTools, uStrTools, BigIni, uTip, uAsk, lclintf, MMSystem,
   synautil, ftpSend, uUserPass, {uPSPreProcessor, uPSRuntime,}
   Process, uEncrypt, Base64, uPSRuntime, pingsend, sntpsend, winsock;

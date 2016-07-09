@@ -7,7 +7,7 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, pascalscript_New, smnetgradientlaz, uMain, bigini, uabout,
+  Forms, uMain, bigini, uabout,
   uhttpdownloader, unetassets, uStrTools, uTools, versioninfo, utip,
   utipoftheday, uAsk, uSettings, uUserPass, uNewWithWizard, uSolution,
   uEncrypt, uGotoLine, uDEIncludes;

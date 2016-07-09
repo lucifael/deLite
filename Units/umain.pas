@@ -25,7 +25,7 @@ uses
   SynMemo, IpHtml, Forms, Controls, Graphics, Dialogs, ActnList, Menus,
   ExtCtrls, ComCtrls, Buttons, StdCtrls, uPSComponent, uPSComponent_Default,
   uPSComponent_DB, uPSComponent_Forms, uPSComponent_Controls,
-  uPSComponent_StdCtrls, SMNetGradient, uPSCompiler, httpSend, VersionInfo,
+  uPSComponent_StdCtrls, uPSCompiler, httpSend, VersionInfo,
   uTools, uStrTools, BigIni, uTip, uAsk, lclintf,
   synautil, uUserPass, {uPSPreProcessor, uPSRuntime,}
   uEncrypt, Base64, {uPSRuntime,}
@@ -107,8 +107,9 @@ type
     dlgSave: TSaveDialog;
     dlgFind: TFindDialog;
     htmHelp: TIpHtmlPanel;
-    NetGradient9: TNetGradient;
+    NetGradient9: TPanel;
     Panel5: TPanel;
+    PSCustomPlugin1: TPSCustomPlugin;
     ToolBar3: TToolBar;
     btnSearchHelp: TToolButton;
     ToolBar4: TToolBar;
@@ -202,14 +203,14 @@ type
     MenuItem8: TMenuItem;
     MenuItem9: TMenuItem;
     nbEditors: TNotebook;
-    NetGradient1: TNetGradient;
-    NetGradient2: TNetGradient;
-    NetGradient3: TNetGradient;
-    NetGradient4: TNetGradient;
-    NetGradient5: TNetGradient;
-    NetGradient6: TNetGradient;
-    NetGradient7: TNetGradient;
-    NetGradient8: TNetGradient;
+    NetGradient1: TPanel;
+    NetGradient2: TPanel;
+    NetGradient3: TPanel;
+    NetGradient4: TPanel;
+    NetGradient5: TPanel;
+    NetGradient6: TPanel;
+    NetGradient7: TPanel;
+    NetGradient8: TPanel;
     dlgOpenSolution: TOpenDialog;
     dlgAdd: TOpenDialog;
     Page1: TPage;

@@ -19,7 +19,7 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="1"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="48"/>
+      <BuildNr Value="49"/>
       <StringTable ProductVersion=""/>
     </VersionInfo>
     <BuildModes Count="2">
@@ -54,12 +54,6 @@
               </Win32>
             </Options>
           </Linking>
-          <Other>
-            <CompilerMessages>
-              <MsgFileName Value=""/>
-            </CompilerMessages>
-            <CompilerPath Value="$(CompPath)"/>
-          </Other>
         </CompilerOptions>
       </Item2>
     </BuildModes>
@@ -69,31 +63,26 @@
     <RunParams>
       <local>
         <FormatVersion Value="1"/>
-        <CommandLineParams Value="&quot;C:\Users\Lucifael\OneDrive\Development\deLite\Examples\Form Hello World.deScript&quot; /run"/>
       </local>
     </RunParams>
-    <RequiredPackages Count="5">
+    <RequiredPackages Count="4">
       <Item1>
-        <PackageName Value="pascalscript_New"/>
+        <PackageName Value="pascalscript"/>
       </Item1>
       <Item2>
         <PackageName Value="TurboPowerIPro"/>
       </Item2>
       <Item3>
-        <PackageName Value="smnetgradientlaz"/>
+        <PackageName Value="SynEdit"/>
       </Item3>
       <Item4>
-        <PackageName Value="SynEdit"/>
-      </Item4>
-      <Item5>
         <PackageName Value="LCL"/>
-      </Item5>
+      </Item4>
     </RequiredPackages>
     <Units Count="19">
       <Unit0>
         <Filename Value="deLite.lpr"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="deLite"/>
       </Unit0>
       <Unit1>
         <Filename Value="Units\umain.pas"/>
@@ -119,7 +108,6 @@
       <Unit4>
         <Filename Value="Units\uhttpdownloader.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="uhttpdownloader"/>
       </Unit4>
       <Unit5>
         <Filename Value="Units\unetassets.pas"/>
@@ -132,17 +120,15 @@
       <Unit6>
         <Filename Value="Units\uStrTools.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="uStrTools"/>
       </Unit6>
       <Unit7>
         <Filename Value="Units\uTools.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="uTools"/>
       </Unit7>
       <Unit8>
         <Filename Value="Units\versioninfo.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="versioninfo"/>
+        <UnitName Value="VersionInfo"/>
       </Unit8>
       <Unit9>
         <Filename Value="Units\utip.pas"/>
@@ -250,12 +236,6 @@
         </Win32>
       </Options>
     </Linking>
-    <Other>
-      <CompilerMessages>
-        <MsgFileName Value=""/>
-      </CompilerMessages>
-      <CompilerPath Value="$(CompPath)"/>
-    </Other>
   </CompilerOptions>
   <Debugging>
     <Exceptions Count="3">

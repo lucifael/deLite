@@ -10,7 +10,7 @@ object frmSolution: TfrmSolution
   ClientWidth = 714
   Color = clWindow
   Position = poMainFormCenter
-  LCLVersion = '1.2.4.0'
+  LCLVersion = '1.6.0.4'
   object Panel1: TPanel
     Left = 0
     Height = 34
@@ -77,21 +77,20 @@ object frmSolution: TfrmSolution
     TabOrder = 2
     TabStop = True
     object Page1: TPage
-      object NetGradient1: TNetGradient
+      object NetGradient1: TPanel
         Left = 0
         Height = 25
         Top = 0
         Width = 546
-        BeginColor = clWindow
-        EndColor = clNavy
-        FillDirection = fdRightToLeft
-        Font.Color = clWindow
-        Caption = 'General'
         Align = alTop
+        Caption = 'General'
+        Font.Color = clWindow
+        ParentFont = False
+        TabOrder = 0
       end
       object GroupBox1: TGroupBox
         Left = 0
-        Height = 41
+        Height = 43
         Top = 25
         Width = 546
         Align = alTop
@@ -114,7 +113,7 @@ object frmSolution: TfrmSolution
       object chkLoadMain: TCheckBox
         Left = 0
         Height = 19
-        Top = 66
+        Top = 68
         Width = 546
         Align = alTop
         Caption = 'Load Editor Script On Solution Load'
@@ -124,17 +123,16 @@ object frmSolution: TfrmSolution
       end
     end
     object Page2: TPage
-      object NetGradient2: TNetGradient
+      object NetGradient2: TPanel
         Left = 0
         Height = 25
         Top = 0
         Width = 546
-        BeginColor = clWindow
-        EndColor = clNavy
-        FillDirection = fdRightToLeft
-        Font.Color = clWindow
-        Caption = 'Compile'
         Align = alTop
+        Caption = 'Compile'
+        Font.Color = clWindow
+        ParentFont = False
+        TabOrder = 0
       end
       object GroupBox2: TGroupBox
         Left = 0
@@ -211,17 +209,16 @@ object frmSolution: TfrmSolution
       end
     end
     object Page3: TPage
-      object NetGradient3: TNetGradient
+      object NetGradient3: TPanel
         Left = 0
         Height = 25
         Top = 0
         Width = 546
-        BeginColor = clWindow
-        EndColor = clNavy
-        FillDirection = fdRightToLeft
-        Font.Color = clWindow
-        Caption = 'Other'
         Align = alTop
+        Caption = 'Other'
+        Font.Color = clWindow
+        ParentFont = False
+        TabOrder = 0
       end
       object Label1: TLabel
         Left = 0

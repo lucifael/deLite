@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls,
-  Buttons, ComCtrls, StdCtrls, EditBtn, SMNetGradient;
+  Buttons, ComCtrls, StdCtrls, EditBtn;
 
 type
 
@@ -27,9 +27,9 @@ type
     ilSolution: TImageList;
     Label1: TLabel;
     nbSolution: TNotebook;
-    NetGradient1: TNetGradient;
-    NetGradient2: TNetGradient;
-    NetGradient3: TNetGradient;
+    NetGradient1: TPanel;
+    NetGradient2: TPanel;
+    NetGradient3: TPanel;
     Page1: TPage;
     Page2: TPage;
     Page3: TPage;
