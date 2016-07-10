@@ -33,7 +33,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir);C:\LazComp\SVN CheckOuts\Synapse\source\"/>
-            <OtherUnitFiles Value="Units;C:\LazComp\SVN CheckOuts\Synapse\source\"/>
+            <OtherUnitFiles Value="Units;..\01-New\Libraries\Synapse\source"/>
             <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
@@ -210,7 +210,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir);C:\LazComp\SVN CheckOuts\Synapse\source\"/>
-      <OtherUnitFiles Value="Units;C:\LazComp\SVN CheckOuts\Synapse\source\"/>
+      <OtherUnitFiles Value="Units;..\01-New\Libraries\Synapse\source"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Parsing>

@@ -565,7 +565,7 @@ object frmMain: TfrmMain
       Height = 669
       Top = 34
       Width = 800
-      PageIndex = 0
+      PageIndex = 1
       Align = alClient
       TabOrder = 1
       TabStop = True
@@ -1233,7 +1233,7 @@ object frmMain: TfrmMain
           Top = 25
           Width = 211
           Align = alLeft
-          DefaultItemHeight = 24
+          DefaultItemHeight = 22
           Images = ilHelp
           TabOrder = 1
           OnClick = tvHelpClick

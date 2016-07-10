@@ -446,10 +446,10 @@ uses uNetAssets, uAbout, uTipOfTheDay, uSettings, UNewWithWizard,
 
 { SysScript Special Functions }
 
-procedure setSelLength(var textComponent:TSynMemo; newValue:integer);
-begin
-     textComponent.SelEnd := textComponent.SelStart + newValue;
-end;
+  procedure setSelLength(var textComponent:TSynMemo; newValue:integer);
+  begin
+       textComponent.SelEnd := textComponent.SelStart + newValue;
+  end;
 
 procedure MWrites(const s: string);
 begin
